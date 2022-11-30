@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BancoDeDados.Migrations
 {
-    public partial class UsuarioLogin : Migration
+    public partial class usuarios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

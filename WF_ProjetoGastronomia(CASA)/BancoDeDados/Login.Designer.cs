@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnLogar = new System.Windows.Forms.Button();
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.mTextBoxSenha = new System.Windows.Forms.MaskedTextBox();
@@ -36,12 +37,14 @@
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemEditarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.checkBoxManterLogin = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogar
             // 
-            this.btnLogar.Location = new System.Drawing.Point(337, 339);
+            this.btnLogar.Location = new System.Drawing.Point(362, 353);
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(75, 23);
             this.btnLogar.TabIndex = 0;
@@ -51,7 +54,7 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(282, 258);
+            this.textBoxUser.Location = new System.Drawing.Point(282, 239);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 1;
@@ -59,7 +62,7 @@
             // 
             // mTextBoxSenha
             // 
-            this.mTextBoxSenha.Location = new System.Drawing.Point(282, 293);
+            this.mTextBoxSenha.Location = new System.Drawing.Point(282, 282);
             this.mTextBoxSenha.Name = "mTextBoxSenha";
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
@@ -110,11 +113,22 @@
             this.menuItemEditarUsuario.Text = "Editar Usuário";
             this.menuItemEditarUsuario.Click += new System.EventHandler(this.menuItemEditarUsuario_Click);
             // 
+            // checkBoxManterLogin
+            // 
+            this.checkBoxManterLogin.AutoSize = true;
+            this.checkBoxManterLogin.Location = new System.Drawing.Point(282, 320);
+            this.checkBoxManterLogin.Name = "checkBoxManterLogin";
+            this.checkBoxManterLogin.Size = new System.Drawing.Size(88, 17);
+            this.checkBoxManterLogin.TabIndex = 6;
+            this.checkBoxManterLogin.Text = "Manter Login";
+            this.checkBoxManterLogin.UseVisualStyleBackColor = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBoxManterLogin);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.mTextBoxSenha);
             this.Controls.Add(this.textBoxUser);
@@ -123,6 +137,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -140,5 +155,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemCadastrarUsuario;
         private System.Windows.Forms.ToolStripMenuItem menuItemEditarUsuario;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.CheckBox checkBoxManterLogin;
     }
 }

@@ -79,6 +79,7 @@
             this.checkBoxIsAdministrador.TabIndex = 8;
             this.checkBoxIsAdministrador.Text = "Administrador";
             this.checkBoxIsAdministrador.UseVisualStyleBackColor = true;
+            this.checkBoxIsAdministrador.CheckedChanged += new System.EventHandler(this.checkBoxIsAdministrador_CheckedChanged);
             // 
             // CadastroUsuario
             // 

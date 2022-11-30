@@ -15,7 +15,7 @@ namespace BancoDeDados.Contexto
         public string Complemento { get; set; }
         public string Email { get; set; }
         public long Celular { get; set; }
-        public PedidoConcluido PedidosConcluidos { get; set; }
-        public PedidoPendente PedidosPendentes { get; set; }
+        public List<PedidoConcluido> PedidosConcluidos { get; set; }
+        public List<PedidoPendente> PedidosPendentes { get; set; }
     }
 }

@@ -1,15 +1,8 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDeDados.Contexto.Usuario;
 
 namespace BancoDeDados
 {
@@ -27,16 +20,9 @@ namespace BancoDeDados
             var usuario = textBoxUser.Text.ToString();
             var senha = mTextBoxSenha.Text.ToString();
 
-            var existe = contexto.Usuarios.Any(u => u.Nome == usuario);
-            if(string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha) )
-            {
-                MessageBox.Show("Você digitou caracteres inválidos!");
+            var valido = UsuarioLogin.ValidaUsuario(contexto, usuario, senha);
+            if (valido == false)
                 return;
-            }else if (existe)
-            {
-                MessageBox.Show("Usuário já existe, tente um nome diferente!");
-                return;
-            }
             UsuarioLogin.NivelAcesso acesso = UsuarioLogin.NivelAcesso.Operador;
             if (checkBoxIsAdministrador.Checked)
                 acesso = UsuarioLogin.NivelAcesso.Administrador;
@@ -47,11 +33,15 @@ namespace BancoDeDados
                 Acesso = acesso
             };
 
-
-            var retorno = contexto.Usuarios.Add(login);
-            contexto.SaveChanges();
-            if(retorno.Entity.Id > 0)
+            contexto.Usuarios.Add(login);
+            var retorno = contexto.SaveChanges();
+            if (retorno > 0)
                 MessageBox.Show("Usuário salvo com sucesso!");
+        }
+
+        private void checkBoxIsAdministrador_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

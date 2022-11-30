@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
+using System.Collections.Generic;
 
 namespace BancoDeDados.Contexto
 {
@@ -14,7 +15,8 @@ namespace BancoDeDados.Contexto
 
         public int Id { get; set; }
         public double PerdaPorReceita { get; set; }
-        public ProdutoReceita ProdutosReceita { get; set; }
+        public int ProdutoId { get; set; }
+        public List<Produto> Produto { get; set; }
         public int QuantidadeProduto { get; set; }
 
         // hh:mm:ss

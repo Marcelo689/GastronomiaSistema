@@ -17,8 +17,10 @@
         public decimal Preco { get; set; }
         public TipoUnidade ProdutoTipoUnidade { get; set; }
         public int QuantidadeUnidade { get; set; }
-        public Pedido PedidoId { get; set; }
-        public Receita ReceitaId { get; set; }
+        public int PedidoId { get; set; }
+        public Pedido Pedido{ get; set; } = null;
+        public int ReceitaId { get; set; }
+        public Receita Receita { get; set; } = null;
 
     }
 }

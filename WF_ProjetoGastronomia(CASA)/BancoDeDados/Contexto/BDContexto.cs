@@ -1,5 +1,6 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Models;
+using BancoDeDados.ModelTeste;
 using Microsoft.EntityFrameworkCore;
 
 namespace BancoDeDados.Contexto
@@ -15,7 +16,9 @@ namespace BancoDeDados.Contexto
         public DbSet<PedidoConcluido> PedidosConcluidos { get; set; }
         public DbSet<PedidoPendente> PedidosPendentes { get; set; }
         public DbSet<ReceitaDoPedido> ReceitasDoPedido { get; set; }
-        public DbSet<ProdutoReceita> ProdutosReceita{ get; set; }
+        public DbSet<ProdutoReceita> ProdutosReceita { get; set; }
+        //public DbSet<Blog> Blog { get; set; }
+        //public DbSet<Post> Post { get; set; }
         public static BDContexto _contexto { get; set; }
         public UsuarioLogin Login { get; set; }
 
