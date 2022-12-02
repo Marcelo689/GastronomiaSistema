@@ -33,6 +33,7 @@
             this.textBoxUser = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.checkBoxIsAdministrador = new System.Windows.Forms.CheckBox();
+            this.btnDeletar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
@@ -81,11 +82,21 @@
             this.checkBoxIsAdministrador.UseVisualStyleBackColor = true;
             this.checkBoxIsAdministrador.CheckedChanged += new System.EventHandler(this.checkBoxIsAdministrador_CheckedChanged);
             // 
+            // btnDeletar
+            // 
+            this.btnDeletar.Location = new System.Drawing.Point(403, 314);
+            this.btnDeletar.Name = "btnDeletar";
+            this.btnDeletar.Size = new System.Drawing.Size(75, 23);
+            this.btnDeletar.TabIndex = 9;
+            this.btnDeletar.Text = "Deletar";
+            this.btnDeletar.UseVisualStyleBackColor = true;
+            // 
             // CadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.checkBoxIsAdministrador);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.mTextBoxSenha);
@@ -93,6 +104,7 @@
             this.Controls.Add(this.btnCadastrar);
             this.Name = "CadastroUsuario";
             this.Text = "CadastroUsuario";
+            this.Load += new System.EventHandler(this.CadastroUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,5 +117,6 @@
         private System.Windows.Forms.TextBox textBoxUser;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.CheckBox checkBoxIsAdministrador;
+        private System.Windows.Forms.Button btnDeletar;
     }
 }

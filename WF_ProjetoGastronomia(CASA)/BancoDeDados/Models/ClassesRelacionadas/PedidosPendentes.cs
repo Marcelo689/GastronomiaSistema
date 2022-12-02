@@ -5,10 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto.ClassesRelacionadas
 {
-    public class PedidoPendente
+    public class PedidoPendente : TEntity
     {
         [Key]
         public int Id { get; set; }

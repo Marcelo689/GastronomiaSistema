@@ -1,6 +1,8 @@
-﻿namespace BancoDeDados.Contexto
+﻿using static BancoDeDados.Controller.OperacoesBanco;
+
+namespace BancoDeDados.Contexto
 {
-    public class Usuario
+    public class Usuario : TEntity
     {
         public enum NivelAcesso
         {

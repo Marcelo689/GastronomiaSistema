@@ -164,6 +164,7 @@
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Contexto\BDContexto.cs" />
+    <Compile Include="Controller\OperacoesBanco.cs" />
     <Compile Include="EditarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -182,6 +183,10 @@
     <Compile Include="Migrations\20221130164428_manter-login.designer.cs">
       <DependentUpon>20221130164428_manter-login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221202115317_controllerCriado.cs" />
+    <Compile Include="Migrations\20221202115317_controllerCriado.designer.cs">
+      <DependentUpon>20221202115317_controllerCriado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Models\ClassesRelacionadas\PedidosConcluidos.cs" />
     <Compile Include="Models\ClassesRelacionadas\PedidosPendentes.cs" />
@@ -192,6 +197,8 @@
     <Compile Include="Models\Pedido.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Receita.cs" />
+    <Compile Include="Models\TipoReceita.cs" />
+    <Compile Include="Models\UnidadeMedida.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioLogin.cs" />
     <Compile Include="ModelTeste\BancoTeste.cs" />
@@ -245,9 +252,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

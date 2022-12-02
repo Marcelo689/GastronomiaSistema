@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller;
 using BancoDeDados.Models;
 using NPOI.SS.Formula.Functions;
 using System;
@@ -16,17 +17,18 @@ namespace BancoDeDados
     public partial class Login : Form
     {
         private BDContexto _contexto;
+        private OperacoesBanco _banco;
         public Login()
         {
             InitializeComponent();
             _contexto = new BDContexto().getInstancia();
+            _banco = new OperacoesBanco();
         }
 
         public bool ExisteAdministrador()
         {
-            var qtdAdmin = _contexto.Usuarios.AsQueryable().Where(u => u.Acesso == UsuarioLogin.NivelAcesso.Administrador).Count();
+            var qtdAdmin = _contexto.Usuarios.AsQueryable().Where(u => u.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador).Count();
                 return qtdAdmin > 0;
-            
         }
                                 // form
         public void AbrirTela(Form tela , bool isAdmin = false)

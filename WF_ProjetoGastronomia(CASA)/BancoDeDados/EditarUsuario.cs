@@ -41,7 +41,7 @@ namespace BancoDeDados
             _contexto.Login.Nome  =  usuarioTextBox ?? _contexto.Login.Nome;
             _contexto.Login.Senha =  senhaTextBox ?? _contexto.Login.Senha;
             _contexto.Login.Nome  =  usuarioTextBox ?? _contexto.Login.Nome;
-            _contexto.Login.Acesso  = acesso;
+            _contexto.Login.PermissaoAcesso  = acesso;
            
             _contexto.Usuarios.Update(_contexto.Login);
             var retorno = _contexto.SaveChanges();
@@ -55,7 +55,7 @@ namespace BancoDeDados
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             var usuarioLogado = _contexto.Login;
-            if (usuarioLogado.Acesso == UsuarioLogin.NivelAcesso.Administrador)
+            if (usuarioLogado.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador)
             {
                 _contexto.Usuarios.Remove(_contexto.Login);
                 _contexto.SaveChanges();

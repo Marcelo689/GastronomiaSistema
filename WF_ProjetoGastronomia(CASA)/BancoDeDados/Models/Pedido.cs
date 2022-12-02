@@ -2,13 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto
 {
-    public class Pedido
+    public class Pedido : TEntity
     {
         //id, idReceita, FoiEntrege,Data,Nome destinatario, precoVenda, precoCusto, Lucro.
         public int Id { get; set; }
+        public int QuantidadeReceita { get; set; }
+        public int ReceitaId { get; set; }
         public List<Receita> ReceitasDoPedido { get; set; }
         public bool FoiEntregue { get; set; }
         public DateTime DataParaEntrega { get; set; }

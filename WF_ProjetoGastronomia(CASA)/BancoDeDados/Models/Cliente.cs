@@ -1,9 +1,10 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
 using System.Collections.Generic;
+using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto
 {
-    public class Cliente
+    public class Cliente : TEntity
     {
         public int Id { get; set; }
         public long CPF { get; set; }

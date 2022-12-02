@@ -28,6 +28,15 @@ namespace BancoDeDados.Contexto
                 _contexto = new BDContexto();
             return _contexto;
         }
+
+        public bool UsuarioLogadoIsAdmin()
+        {
+            if(Login == null || Login.UsuarioAtivo == false)
+                return false;
+            if (Login.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador)
+                return true;
+            return false;
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = @"server=localhost;database=Gastronomia;uid=root;password=root";
