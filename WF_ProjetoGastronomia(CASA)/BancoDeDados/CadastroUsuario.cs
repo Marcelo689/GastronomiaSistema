@@ -1,42 +1,32 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller;
 using BancoDeDados.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static BancoDeDados.Contexto.Usuario;
 
 namespace BancoDeDados
 {
     public partial class CadastroUsuario : Form
     {
+        private static BDContexto _contexto;
+        private static OperacoesBanco _banco;
         public CadastroUsuario()
         {
             InitializeComponent();
+            _contexto = new BDContexto().getInstancia();
+            if(_banco == null)
+            _banco = new OperacoesBanco();
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
-            var contexto = new BDContexto().getInstancia();
             var usuario = textBoxUser.Text.ToString();
             var senha = mTextBoxSenha.Text.ToString();
 
-            var existe = contexto.Usuarios.Any(u => u.Nome == usuario);
-            if(string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha) )
-            {
-                MessageBox.Show("Você digitou caracteres inválidos!");
+            var valido = UsuarioLogin.ValidaUsuario(_contexto, usuario, senha);
+            if (valido == false)
                 return;
-            }else if (existe)
-            {
-                MessageBox.Show("Usuário já existe, tente um nome diferente!");
-                return;
-            }
             UsuarioLogin.NivelAcesso acesso = UsuarioLogin.NivelAcesso.Operador;
             if (checkBoxIsAdministrador.Checked)
                 acesso = UsuarioLogin.NivelAcesso.Administrador;
@@ -44,14 +34,25 @@ namespace BancoDeDados
             {
                 Nome = usuario,
                 Senha = senha,
-                Acesso = acesso
+                PermissaoAcesso = acesso
             };
 
-
-            var retorno = contexto.Usuarios.Add(login);
-            contexto.SaveChanges();
-            if(retorno.Entity.Id > 0)
+            var retorno = _banco.Cadastrar<UsuarioLogin>(login);
+            if (retorno)
                 MessageBox.Show("Usuário salvo com sucesso!");
+            else
+                MessageBox.Show("Erro ao salvar!");
+        }
+
+        private void checkBoxIsAdministrador_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CadastroUsuario_Load(object sender, EventArgs e)
+        {
+            if(_contexto.Login)
+            btnDeletar.Enabled = false;
         }
     }
 }
