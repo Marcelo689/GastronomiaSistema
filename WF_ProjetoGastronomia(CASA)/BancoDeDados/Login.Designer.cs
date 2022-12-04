@@ -36,15 +36,15 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemEditarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxManterLogin = new System.Windows.Forms.CheckBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogar
             // 
-            this.btnLogar.Location = new System.Drawing.Point(362, 353);
+            this.btnLogar.Location = new System.Drawing.Point(479, 352);
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(75, 23);
             this.btnLogar.TabIndex = 0;
@@ -58,7 +58,6 @@
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 1;
-            this.textBoxUser.TextChanged += new System.EventHandler(this.textBoxUser_TextChanged);
             // 
             // mTextBoxSenha
             // 
@@ -67,7 +66,6 @@
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
             this.mTextBoxSenha.TabIndex = 2;
-            this.mTextBoxSenha.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mTextBox_MaskInputRejected);
             // 
             // lblTitulo
             // 
@@ -78,7 +76,6 @@
             this.lblTitulo.Size = new System.Drawing.Size(96, 37);
             this.lblTitulo.TabIndex = 3;
             this.lblTitulo.Text = "Login";
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // menuStrip1
             // 
@@ -93,8 +90,7 @@
             // menuItem
             // 
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemCadastrarUsuario,
-            this.menuItemEditarUsuario});
+            this.menuItemCadastrarUsuario});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
@@ -106,13 +102,6 @@
             this.menuItemCadastrarUsuario.Text = "Cadastrar Usuário";
             this.menuItemCadastrarUsuario.Click += new System.EventHandler(this.menuItemCadastrarUsuario_Click);
             // 
-            // menuItemEditarUsuario
-            // 
-            this.menuItemEditarUsuario.Name = "menuItemEditarUsuario";
-            this.menuItemEditarUsuario.Size = new System.Drawing.Size(180, 22);
-            this.menuItemEditarUsuario.Text = "Editar Usuário";
-            this.menuItemEditarUsuario.Click += new System.EventHandler(this.menuItemEditarUsuario_Click);
-            // 
             // checkBoxManterLogin
             // 
             this.checkBoxManterLogin.AutoSize = true;
@@ -123,11 +112,22 @@
             this.checkBoxManterLogin.Text = "Manter Login";
             this.checkBoxManterLogin.UseVisualStyleBackColor = true;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(376, 351);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 24);
+            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.checkBoxManterLogin);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.mTextBoxSenha);
@@ -154,8 +154,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuItem;
         private System.Windows.Forms.ToolStripMenuItem menuItemCadastrarUsuario;
-        private System.Windows.Forms.ToolStripMenuItem menuItemEditarUsuario;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox checkBoxManterLogin;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace BancoDeDados.Controller
 {
@@ -21,13 +22,20 @@ namespace BancoDeDados.Controller
         {
             _contexto = new BDContexto().getInstancia();
         }
-        public List<T> RetornarLista<T>(int? [] ids = null) where T : TEntity
+        public List<T> RetornarLista<T>(int? id = null) where T : TEntity
         {
             var lista = new List<T>();
-            if(ids == null)
+            if(id == null)
                 lista = _contexto.Set<T>().ToList();
             else
-                lista = _contexto.Set<T>().Where(e => ids.Contains( e.Id)).ToList();
+                lista = _contexto.Set<T>().Where(e => id == e.Id).ToList();
+            return lista;
+        }
+
+        public List<T> RetornarLista<T>(params int [] ids) where T : TEntity
+        {
+            var lista = new List<T>();
+            lista = _contexto.Set<T>().Where(e => ids.Contains(e.Id)).ToList();
             return lista;
         }
         public bool Deletar<T>(params T[] entity) where T : TEntity
@@ -47,20 +55,38 @@ namespace BancoDeDados.Controller
                 return true;
             return false;
         }
-        public T[] Atualizar<T>(params T[] entidades) where T : TEntity
+        public bool Atualizar<T>(params T[] entidades) where T : TEntity
         {
             _contexto.Set<T>().UpdateRange(entidades);
             var quantidadeMudancas = _contexto.SaveChanges();
-            return entidades;
+            return quantidadeMudancas > 0;
         }
         public bool Cadastrar<T>(params T[] entidades) where T : TEntity
         {
-            _contexto.Set<T>().AddRange(entidades);
+            int[] idsEntidades = new int[] { };
+            // pega ids das entidades
+            foreach (var entidade in entidades)
+            {
+                idsEntidades.Append(entidade.Id);
+            }
+
+            var lista = new List<T>();
+            if(idsEntidades != null && idsEntidades.Length > 0)
+                lista = RetornarLista<T>(idsEntidades);
+
+            if(lista.Count() > 0)// atualiza pois já existe
+                Atualizar<T>(entidades);
+            else // adiciona pois não existe no banco
+                _contexto.Set<T>().AddRange(entidades);
+
             var quantidadeMudancas = _contexto.SaveChanges();
             if (quantidadeMudancas > 0)
                 return true;
             else
+            {
+                MessageBox.Show("Erro ao cadastrar!");
                 return false;
+            }
         }
     }
 }

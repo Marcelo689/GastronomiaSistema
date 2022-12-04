@@ -203,7 +203,6 @@ C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\System
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.CadastroUsuario.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.csproj.CopyComplete
-C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.EditarUsuario.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\Module.NPOI.dll
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\NPOI.dll
@@ -211,3 +210,4 @@ C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\NPOI.O
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\NPOI.OpenXml4Net.dll
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\NPOI.OpenXmlFormats.dll
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\NPOI.xml
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.FormularioPrincipal.resources

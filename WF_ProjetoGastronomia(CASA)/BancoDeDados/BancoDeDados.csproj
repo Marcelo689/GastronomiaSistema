@@ -165,11 +165,11 @@
     </Compile>
     <Compile Include="Contexto\BDContexto.cs" />
     <Compile Include="Controller\OperacoesBanco.cs" />
-    <Compile Include="EditarUsuario.cs">
+    <Compile Include="FormularioPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarUsuario.Designer.cs">
-      <DependentUpon>EditarUsuario.cs</DependentUpon>
+    <Compile Include="FormularioPrincipal.Designer.cs">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20221130150757_003.cs" />
     <Compile Include="Migrations\20221130150757_003.designer.cs">
@@ -217,11 +217,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rascunhos\Rascunhos.cs" />
+    <Compile Include="Servicos\Servico.cs" />
     <EmbeddedResource Include="CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EditarUsuario.resx">
-      <DependentUpon>EditarUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="FormularioPrincipal.resx">
+      <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Rascunhos\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

@@ -2,6 +2,8 @@
 using BancoDeDados.Models;
 using BancoDeDados.ModelTeste;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace BancoDeDados.Contexto
 {
@@ -28,10 +30,21 @@ namespace BancoDeDados.Contexto
                 _contexto = new BDContexto();
             return _contexto;
         }
+        public void Logar(UsuarioLogin usuario)
+        {
+            if (usuario.UsuarioAtivo)
+                Login = usuario;
+            else
+                MessageBox.Show("Usuário inativo, um administrador deve ativá-lo");
 
+        }
+        public bool ExisteAdmin()
+        {
+            return _contexto.Usuarios.Where(e => e.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador && e.UsuarioAtivo).Any();
+        }
         public bool UsuarioLogadoIsAdmin()
         {
-            if(Login == null || Login.UsuarioAtivo == false)
+            if(Login == null)
                 return false;
             if (Login.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador)
                 return true;

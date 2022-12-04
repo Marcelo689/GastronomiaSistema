@@ -34,13 +34,19 @@
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.checkBoxIsAdministrador = new System.Windows.Forms.CheckBox();
             this.btnDeletar = new System.Windows.Forms.Button();
+            this.checkBoxUsuarioAtivo = new System.Windows.Forms.CheckBox();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.headerNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.headerAtivo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.headerAcesso = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnLimpar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(228, 91);
+            this.lblTitulo.Location = new System.Drawing.Point(80, 19);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(279, 37);
             this.lblTitulo.TabIndex = 7;
@@ -48,7 +54,7 @@
             // 
             // mTextBoxSenha
             // 
-            this.mTextBoxSenha.Location = new System.Drawing.Point(235, 253);
+            this.mTextBoxSenha.Location = new System.Drawing.Point(87, 133);
             this.mTextBoxSenha.Name = "mTextBoxSenha";
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
@@ -56,14 +62,14 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(235, 218);
+            this.textBoxUser.Location = new System.Drawing.Point(87, 85);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 5;
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(284, 314);
+            this.btnCadastrar.Location = new System.Drawing.Point(284, 224);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 4;
@@ -74,7 +80,7 @@
             // checkBoxIsAdministrador
             // 
             this.checkBoxIsAdministrador.AutoSize = true;
-            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(235, 291);
+            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(87, 179);
             this.checkBoxIsAdministrador.Name = "checkBoxIsAdministrador";
             this.checkBoxIsAdministrador.Size = new System.Drawing.Size(89, 17);
             this.checkBoxIsAdministrador.TabIndex = 8;
@@ -84,18 +90,73 @@
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(403, 314);
+            this.btnDeletar.Location = new System.Drawing.Point(87, 224);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletar.TabIndex = 9;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
+            // 
+            // checkBoxUsuarioAtivo
+            // 
+            this.checkBoxUsuarioAtivo.AutoSize = true;
+            this.checkBoxUsuarioAtivo.Location = new System.Drawing.Point(241, 179);
+            this.checkBoxUsuarioAtivo.Name = "checkBoxUsuarioAtivo";
+            this.checkBoxUsuarioAtivo.Size = new System.Drawing.Size(50, 17);
+            this.checkBoxUsuarioAtivo.TabIndex = 10;
+            this.checkBoxUsuarioAtivo.Text = "Ativo";
+            this.checkBoxUsuarioAtivo.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.headerNome,
+            this.headerAtivo,
+            this.headerAcesso});
+            this.listView1.FullRowSelect = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(389, 33);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(385, 386);
+            this.listView1.TabIndex = 11;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // headerNome
+            // 
+            this.headerNome.Text = "Nome";
+            this.headerNome.Width = 182;
+            // 
+            // headerAtivo
+            // 
+            this.headerAtivo.Text = "Ativo";
+            this.headerAtivo.Width = 65;
+            // 
+            // headerAcesso
+            // 
+            this.headerAcesso.Text = "Nivel de Acesso";
+            this.headerAcesso.Width = 133;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(187, 224);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.TabIndex = 12;
+            this.btnLimpar.Text = "Limpar";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // CadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLimpar);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.checkBoxUsuarioAtivo);
             this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.checkBoxIsAdministrador);
             this.Controls.Add(this.lblTitulo);
@@ -118,5 +179,11 @@
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.CheckBox checkBoxIsAdministrador;
         private System.Windows.Forms.Button btnDeletar;
+        private System.Windows.Forms.CheckBox checkBoxUsuarioAtivo;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader headerNome;
+        private System.Windows.Forms.ColumnHeader headerAtivo;
+        private System.Windows.Forms.ColumnHeader headerAcesso;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }
