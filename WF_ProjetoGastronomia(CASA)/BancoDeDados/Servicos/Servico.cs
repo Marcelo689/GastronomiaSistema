@@ -1,17 +1,15 @@
-﻿using BancoDeDados.Contexto;
-using BancoDeDados.Models;
+﻿using BancoDeDados.Models;
 using System.Linq;
 using System.Windows.Forms;
+using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Servicos
 {
-    public class Servico
+    public class Servico : BaseServico
     {
-        private BDContexto _contexto;
-
         public Servico()
         {
-           _contexto = new BDContexto().getInstancia();
+
         }
         public bool ExisteAdministrador()
         {
@@ -28,5 +26,26 @@ namespace BancoDeDados.Servicos
                 MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!");
 
         }
+        public bool ExisteLinhaSelecionada(ListView listView)
+        {
+            var linhasSelecionadas = listView.SelectedItems;
+
+            if (linhasSelecionadas.Count > 0)
+                return true;
+            return false;
+        }
+        public T RetornaItemLinhaSelecionada<T>(ListView listView) where T : TEntity
+        {
+            if (!ExisteLinhaSelecionada(listView))
+                return null;
+            var indice = listView.SelectedIndices[0];
+
+            int? id = int.Parse(listView.Items[indice].Tag.ToString());
+            
+            var entidade = _banco.RetornarLista<T>(id).FirstOrDefault();
+
+            return entidade;
+        }
+        
     }
 }

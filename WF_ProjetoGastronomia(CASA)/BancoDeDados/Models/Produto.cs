@@ -19,6 +19,5 @@ namespace BancoDeDados.Contexto
         public decimal PrecoPorQuantidade { get; set; }
         //public TipoUnidade ProdutoTipoUnidade { get; set; }
         public UnidadeMedida UnidadeMedida { get; set; }
-        public int QuantidadeUnidade { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Windows.Forms;
 
 namespace BancoDeDados
@@ -11,6 +12,7 @@ namespace BancoDeDados
         [STAThread]
         static void Main()
         {
+            var service = new ServiceCollection();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormularioPrincipal());

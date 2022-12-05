@@ -1,5 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Controller;
+using BancoDeDados.Controller.Model;
+using BancoDeDados.Controller.Telas;
 using BancoDeDados.Models;
 using BancoDeDados.Servicos;
 using System;
@@ -14,30 +16,24 @@ using System.Windows.Forms;
 
 namespace BancoDeDados
 {
-    public partial class FormularioPrincipal : Form
+    public partial class FormularioPrincipal : FormBase
     {
-        private Servico _servico;
-        private BDContexto _contexto;
-        private OperacoesBanco _banco;
-        public FormularioPrincipal()
+        public FormularioPrincipal() : base()
         {
             InitializeComponent();
-            _servico = new Servico();
-            _contexto = new BDContexto().getInstancia();
         }
 
         private void menuItemCadastrarUsuario_Click(object sender, EventArgs e)
         {
             if (
                  _contexto.ExisteAdmin() && 
-                !(UsuarioLogin.NivelAcesso.Administrador == _contexto.Login.PermissaoAcesso)
+                !(_contexto.UsuarioLogadoIsAdmin())
                 )
             {
                 MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!");
                 return;
             }
-            var telaCadastrarUsuario = new CadastroUsuario();
-            telaCadastrarUsuario.ShowDialog();
+            _servico.AbrirTela(new CadastroUsuario());
         }
 
         private void FormularioPrincipal_Shown(object sender, EventArgs e)
@@ -49,6 +45,16 @@ namespace BancoDeDados
         {
             _contexto.Login = null;
             _servico.AbrirTela(new Login());
+        }
+
+        private void gerenciarProdutosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarProdutos());
+        }
+
+        private void gerenciarUnidadesDeMedidaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarUnidadeMedida());
         }
     }
 }

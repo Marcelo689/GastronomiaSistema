@@ -1,27 +1,20 @@
-﻿using BancoDeDados.Contexto;
-using BancoDeDados.Controller;
+﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace BancoDeDados
 {
-    public partial class CadastroUsuario : Form
+    public partial class CadastroUsuario : FormBase
     {
-        private static BDContexto _contexto;
-        private static OperacoesBanco _banco;
         public CadastroUsuario()
         {
             InitializeComponent();
-            _contexto = new BDContexto().getInstancia();
-            if(_banco == null)
-            _banco = new OperacoesBanco();
         }
         private bool ValidaECasoNaoExisteCadastraUsuario()
         {
-            if (ExisteLinhaSelecionada()) // é um update
+            if (_servico.ExisteLinhaSelecionada(listView1)) // é um update
                 return true;
             var usuario = textBoxUser.Text.ToString();
             var senha = mTextBoxSenha.Text.ToString();
@@ -62,7 +55,7 @@ namespace BancoDeDados
             bool retorno = ValidaECasoNaoExisteCadastraUsuario();
             if (retorno == false)
                 return;
-            else if(ExisteLinhaSelecionada())
+            else if(_servico.ExisteLinhaSelecionada(listView1))
             {
                 var usuarioExistente = new UsuarioLogin(); 
                 var indice = listView1.SelectedIndices[0];
@@ -109,14 +102,6 @@ namespace BancoDeDados
 
             CarregarLista();
         }
-        private bool ExisteLinhaSelecionada()
-        {
-            var linhasSelecionadas = listView1.SelectedItems;
-
-            if (linhasSelecionadas.Count > 0)
-                return true;
-            return false;
-        }
         private void PreencheTelaCadastro(string nome, string senha,UsuarioLogin.NivelAcesso acesso,bool ativo)
         {
             textBoxUser.Text = nome;
@@ -130,23 +115,7 @@ namespace BancoDeDados
                 checkBoxUsuarioAtivo.Checked = true;
             else
                 checkBoxUsuarioAtivo.Checked = false;
-        }
-        private UsuarioLogin RetornaUsuarioLinhaSelecionada()
-        {
-            if (!ExisteLinhaSelecionada())
-                return null;
-            var indice = listView1.SelectedIndices[0];
-
-            int? id =  int.Parse(listView1.Items[indice].Tag.ToString());
-            var nome = listView1.Items[indice].Text.ToString();
-            var ativo = listView1.Items[indice].SubItems[1].Text.ToString();
-            var permissaoAcesso = listView1.Items[indice].SubItems[2].Text.ToString();
-            
-            var usuario = _banco.RetornarLista<UsuarioLogin>(id).FirstOrDefault();
-            PreencheTelaCadastro(usuario.Nome, usuario.Senha, usuario.PermissaoAcesso, usuario.UsuarioAtivo);
-
-            return usuario;
-        }
+        }        
         private void CarregarLista()
         {
             var lista = _banco.RetornarLista<UsuarioLogin>();
@@ -169,9 +138,16 @@ namespace BancoDeDados
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var existeSelecionado = RetornaUsuarioLinhaSelecionada();
+            var existeSelecionado = false;
+                
+            var usuarioSelecionado  = _servico.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
+            if (usuarioSelecionado != null)
+            {
+                existeSelecionado = true;
+                PreencheTelaCadastro(usuarioSelecionado.Nome,usuarioSelecionado.Senha,usuarioSelecionado.PermissaoAcesso,usuarioSelecionado.UsuarioAtivo);
+            }
             DesabilitaCheckBoxesCasoNecessario();
-            if (existeSelecionado != null)
+            if (existeSelecionado)
             {
                 btnDeletar.Enabled = true;
             }
@@ -183,14 +159,13 @@ namespace BancoDeDados
             var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?","Deletar!!!" ,MessageBoxButtons.YesNo );
             if(quer == DialogResult.Yes)
             {
-                var usuarioSelecionado = RetornaUsuarioLinhaSelecionada();
+                var usuarioSelecionado = _servico.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
                 _banco.Deletar<UsuarioLogin>(usuarioSelecionado);
                 CarregarLista();
                 LimparTela();
                 DesabilitaCheckBoxesCasoNecessario();
             }
         }
-
         private void LimparTela()
         {
             textBoxUser.Text = "";

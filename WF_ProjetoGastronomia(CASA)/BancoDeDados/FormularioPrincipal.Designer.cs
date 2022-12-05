@@ -31,8 +31,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,9 @@
             // menuItem
             // 
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemCadastrarUsuario});
+            this.menuItemCadastrarUsuario,
+            this.gerenciarProdutosToolStripMenuItem,
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
@@ -58,9 +62,16 @@
             // menuItemCadastrarUsuario
             // 
             this.menuItemCadastrarUsuario.Name = "menuItemCadastrarUsuario";
-            this.menuItemCadastrarUsuario.Size = new System.Drawing.Size(180, 22);
+            this.menuItemCadastrarUsuario.Size = new System.Drawing.Size(235, 22);
             this.menuItemCadastrarUsuario.Text = "Gerenciar Usuários";
             this.menuItemCadastrarUsuario.Click += new System.EventHandler(this.menuItemCadastrarUsuario_Click);
+            // 
+            // gerenciarProdutosToolStripMenuItem
+            // 
+            this.gerenciarProdutosToolStripMenuItem.Name = "gerenciarProdutosToolStripMenuItem";
+            this.gerenciarProdutosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarProdutosToolStripMenuItem.Text = "Gerenciar Produtos";
+            this.gerenciarProdutosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarProdutosToolStripMenuItem_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -73,9 +84,16 @@
             // deslogarToolStripMenuItem
             // 
             this.deslogarToolStripMenuItem.Name = "deslogarToolStripMenuItem";
-            this.deslogarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deslogarToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             this.deslogarToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
+            // 
+            // gerenciarUnidadesDeMedidaToolStripMenuItem
+            // 
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Name = "gerenciarUnidadesDeMedidaToolStripMenuItem";
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Text = "Gerenciar Unidades de Medida";
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarUnidadesDeMedidaToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -100,5 +118,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuItemCadastrarUsuario;
         private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deslogarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarProdutosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarUnidadesDeMedidaToolStripMenuItem;
     }
 }

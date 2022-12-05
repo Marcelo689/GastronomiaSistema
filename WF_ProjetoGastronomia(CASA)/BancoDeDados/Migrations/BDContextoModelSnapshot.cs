@@ -235,9 +235,6 @@ namespace BancoDeDados.Migrations
                     b.Property<decimal>("PrecoPorQuantidade")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("QuantidadeUnidade")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ReceitaId")
                         .HasColumnType("int");
 
@@ -320,7 +317,7 @@ namespace BancoDeDados.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UnidadeMedida");
+                    b.ToTable("UnidadesMedida");
                 });
 
             modelBuilder.Entity("BancoDeDados.Models.UsuarioLogin", b =>

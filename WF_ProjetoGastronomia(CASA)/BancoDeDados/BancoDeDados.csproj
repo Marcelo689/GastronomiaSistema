@@ -164,7 +164,22 @@
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Contexto\BDContexto.cs" />
-    <Compile Include="Controller\OperacoesBanco.cs" />
+    <Compile Include="Controller\FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servicos\OperacoesBanco.cs" />
+    <Compile Include="Controller\Telas\GerenciarProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\Telas\GerenciarProdutos.Designer.cs">
+      <DependentUpon>GerenciarProdutos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\Telas\GerenciarUnidadesMedida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\Telas\GerenciarUnidadesMedida.Designer.cs">
+      <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +201,10 @@
     <Compile Include="Migrations\20221202115317_controllerCriado.cs" />
     <Compile Include="Migrations\20221202115317_controllerCriado.designer.cs">
       <DependentUpon>20221202115317_controllerCriado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221204112054_unidadeMedida.cs" />
+    <Compile Include="Migrations\20221204112054_unidadeMedida.designer.cs">
+      <DependentUpon>20221204112054_unidadeMedida.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Models\ClassesRelacionadas\PedidosConcluidos.cs" />
@@ -217,9 +236,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rascunhos\Rascunhos.cs" />
+    <Compile Include="Servicos\BaseDB.cs" />
     <Compile Include="Servicos\Servico.cs" />
     <EmbeddedResource Include="CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Telas\GerenciarProdutos.resx">
+      <DependentUpon>GerenciarProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Telas\GerenciarUnidadesMedida.resx">
+      <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormularioPrincipal.resx">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
@@ -253,7 +279,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Controller\Model\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
