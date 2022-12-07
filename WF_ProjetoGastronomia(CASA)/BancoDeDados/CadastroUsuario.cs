@@ -1,5 +1,6 @@
 ﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
+using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -8,13 +9,14 @@ namespace BancoDeDados
 {
     public partial class CadastroUsuario : FormBase
     {
+        public ListViewFunc listViewFunc = new ListViewFunc();
         public CadastroUsuario()
         {
             InitializeComponent();
         }
         private bool ValidaECasoNaoExisteCadastraUsuario()
         {
-            if (_servico.ExisteLinhaSelecionada(listView1)) // é um update
+            if (listViewFunc.ExisteLinhaSelecionada(listView1)) // é um update
                 return true;
             var usuario = textBoxUser.Text.ToString();
             var senha = mTextBoxSenha.Text.ToString();
@@ -55,7 +57,7 @@ namespace BancoDeDados
             bool retorno = ValidaECasoNaoExisteCadastraUsuario();
             if (retorno == false)
                 return;
-            else if(_servico.ExisteLinhaSelecionada(listView1))
+            else if(listViewFunc.ExisteLinhaSelecionada(listView1))
             {
                 var usuarioExistente = new UsuarioLogin(); 
                 var indice = listView1.SelectedIndices[0];
@@ -140,7 +142,7 @@ namespace BancoDeDados
         {
             var existeSelecionado = false;
                 
-            var usuarioSelecionado  = _servico.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
+            var usuarioSelecionado  = listViewFunc.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
             if (usuarioSelecionado != null)
             {
                 existeSelecionado = true;
@@ -156,9 +158,9 @@ namespace BancoDeDados
         }
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if(_servico.ConfirmaDeletarItemDoList(listView1))
+            if(listViewFunc.ConfirmaDeletarItemDoList(listView1))
             {
-                var usuarioSelecionado = _servico.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
+                var usuarioSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
                 _banco.Deletar<UsuarioLogin>(usuarioSelecionado);
                 CarregarLista();
                 LimparTela();

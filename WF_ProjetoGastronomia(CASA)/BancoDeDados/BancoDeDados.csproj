@@ -167,6 +167,14 @@
     <Compile Include="Controller\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Controller\Telas\GerenciarReceitas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\Telas\GerenciarReceitas.Designer.cs">
+      <DependentUpon>GerenciarReceitas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Servicos\ComboBoxMetodos\ComboBoxFunc.cs" />
+    <Compile Include="Servicos\ListVIewMetodos\ListViewFunc.cs" />
     <Compile Include="Servicos\OperacoesBanco.cs" />
     <Compile Include="Controller\Telas\GerenciarProdutos.cs">
       <SubType>Form</SubType>
@@ -238,11 +246,15 @@
     <Compile Include="Rascunhos\Rascunhos.cs" />
     <Compile Include="Servicos\BaseDB.cs" />
     <Compile Include="Servicos\Servico.cs" />
+    <Compile Include="Servicos\TextBoxMetodos\TextBoxFunc.cs" />
     <EmbeddedResource Include="CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\Telas\GerenciarProdutos.resx">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Telas\GerenciarReceitas.resx">
+      <DependentUpon>GerenciarReceitas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\Telas\GerenciarUnidadesMedida.resx">
       <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>

@@ -1,4 +1,7 @@
 ﻿using BancoDeDados.Models;
+using BancoDeDados.Servicos.ComboBoxMetodos;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -12,18 +15,7 @@ namespace BancoDeDados.Servicos
         {
 
         }
-        public bool ConfirmaDeletarItemDoList(ListView listview)
-        {
-            var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?", "Deletar!!!", MessageBoxButtons.YesNo);
-            if (quer == DialogResult.Yes)
-            {
-                if (ExisteLinhaSelecionada(listview))
-                    return true;
-                else
-                    return false;
-            }
-            return false;
-        }
+        
         public string FormataValor(decimal valor)
         {
             return valor.ToString("F2", CultureInfo.InvariantCulture);
@@ -49,26 +41,7 @@ namespace BancoDeDados.Servicos
                 MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!");
 
         }
-        public bool ExisteLinhaSelecionada(ListView listView)
-        {
-            var linhasSelecionadas = listView.SelectedItems;
-
-            if (linhasSelecionadas.Count > 0)
-                return true;
-            return false;
-        }
-        public T RetornaItemLinhaSelecionada<T>(ListView listView) where T : TEntity
-        {
-            if (!ExisteLinhaSelecionada(listView))
-                return null;
-            var indice = listView.SelectedIndices[0];
-
-            int? id = int.Parse(listView.Items[indice].Tag.ToString());
-            
-            var entidade = _banco.RetornarLista<T>(id).FirstOrDefault();
-
-            return entidade;
-        }
+        
         
     }
 }

@@ -104,7 +104,6 @@
             this.lblTitulo.Size = new System.Drawing.Size(295, 37);
             this.lblTitulo.TabIndex = 16;
             this.lblTitulo.Text = "Gerenciar Produtos";
-            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // textBoxNomeProduto
             // 
@@ -131,7 +130,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 22;
             this.label1.Text = "Nome";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -141,7 +139,6 @@
             this.label2.Size = new System.Drawing.Size(94, 13);
             this.label2.TabIndex = 23;
             this.label2.Text = "Preço da unidade:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // comboBoxUnidadesMedida
             // 
@@ -160,7 +157,6 @@
             this.label3.Size = new System.Drawing.Size(102, 13);
             this.label3.TabIndex = 25;
             this.label3.Text = "Unidade de medida:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // textBoxPreco
             // 
@@ -168,7 +164,6 @@
             this.textBoxPreco.Name = "textBoxPreco";
             this.textBoxPreco.Size = new System.Drawing.Size(167, 20);
             this.textBoxPreco.TabIndex = 26;
-            this.textBoxPreco.TextChanged += new System.EventHandler(this.textBoxPreco_TextChanged);
             this.textBoxPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPreco_KeyPress);
             // 
             // GerenciarProdutos

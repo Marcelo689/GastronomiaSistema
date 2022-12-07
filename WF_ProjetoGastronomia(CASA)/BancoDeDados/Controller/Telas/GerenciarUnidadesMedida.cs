@@ -1,5 +1,6 @@
 ﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
+using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,16 +15,17 @@ namespace BancoDeDados.Controller.Telas
 {
     public partial class GerenciarUnidadeMedida : FormBase 
     {
+        private ListViewFunc listViewFunc = new ListViewFunc();
         public GerenciarUnidadeMedida()
         {
             InitializeComponent();
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_servico.ExisteLinhaSelecionada(listView1))
+            if (listViewFunc.ExisteLinhaSelecionada(listView1))
             {
                 btnDeletar.Enabled = true;
-                var itemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                var itemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
 
                 textBoxNomeUnidadeMedida.Text = itemSelecionado.Descricao.ToString();
             }
@@ -54,10 +56,10 @@ namespace BancoDeDados.Controller.Telas
         {
             var nomeUnidadeMedida = textBoxNomeUnidadeMedida.Text;
 
-            bool existeItemSelecionado = _servico.ExisteLinhaSelecionada(listView1);
+            bool existeItemSelecionado = listViewFunc.ExisteLinhaSelecionada(listView1);
             if (existeItemSelecionado)
             {
-                var ItemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                var ItemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
                 ItemSelecionado.Descricao = nomeUnidadeMedida; 
                 _banco.Atualizar<UnidadeMedida>(ItemSelecionado);
                 CarregarLista();
@@ -98,9 +100,9 @@ namespace BancoDeDados.Controller.Telas
         
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (_servico.ConfirmaDeletarItemDoList(listView1))
+            if (listViewFunc.ConfirmaDeletarItemDoList(listView1))
             {
-                var itemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                var itemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
                 _banco.Deletar<UnidadeMedida>(itemSelecionado);
                 CarregarLista();
                 LimparTela();
