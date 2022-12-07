@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Models;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -10,6 +11,28 @@ namespace BancoDeDados.Servicos
         public Servico()
         {
 
+        }
+        public bool ConfirmaDeletarItemDoList(ListView listview)
+        {
+            var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?", "Deletar!!!", MessageBoxButtons.YesNo);
+            if (quer == DialogResult.Yes)
+            {
+                if (ExisteLinhaSelecionada(listview))
+                    return true;
+                else
+                    return false;
+            }
+            return false;
+        }
+        public string FormataValor(decimal valor)
+        {
+            return valor.ToString("F2", CultureInfo.InvariantCulture);
+        }   
+        public decimal FormataDinheiro(string valor)
+        {
+            var preco = 0m;
+            decimal.TryParse(valor, NumberStyles.AllowDecimalPoint, CultureInfo.InvariantCulture, out preco);
+            return preco;
         }
         public bool ExisteAdministrador()
         {

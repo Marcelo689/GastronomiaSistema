@@ -156,8 +156,7 @@ namespace BancoDeDados
         }
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?","Deletar!!!" ,MessageBoxButtons.YesNo );
-            if(quer == DialogResult.Yes)
+            if(_servico.ConfirmaDeletarItemDoList(listView1))
             {
                 var usuarioSelecionado = _servico.RetornaItemLinhaSelecionada<UsuarioLogin>(listView1);
                 _banco.Deletar<UsuarioLogin>(usuarioSelecionado);

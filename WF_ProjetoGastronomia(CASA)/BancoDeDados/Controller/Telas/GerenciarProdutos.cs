@@ -6,6 +6,7 @@ using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,7 +23,13 @@ namespace BancoDeDados.Controller.Telas
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_servico.ExisteLinhaSelecionada(listView1))
+            {
+                var produtoSelecionado = _servico.RetornaItemLinhaSelecionada<Produto>(listView1);
+                textBoxNomeProduto.Text = produtoSelecionado.Nome;
+                textBoxPreco.Text = _servico.FormataValor(produtoSelecionado.PrecoPorQuantidade);
+                comboBoxUnidadesMedida.SelectedIndex = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Descricao);
                 btnDeletar.Enabled = true;
+            }
             else
                 btnDeletar.Enabled = false;
         }
@@ -39,16 +46,13 @@ namespace BancoDeDados.Controller.Telas
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             var nomeProduto = textBoxNomeProduto.Text;
-            var preco = 0m;
-            
-            decimal.TryParse(textBoxPreco.Text, out preco);
-
+            var preco = _servico.FormataDinheiro(textBoxPreco.Text);
             var indiceCombo = comboBoxUnidadesMedida.SelectedIndex;
             var existeLinhaSelecionada = _servico.ExisteLinhaSelecionada(listView1);
             if (string.IsNullOrWhiteSpace(nomeProduto))
                 MessageBox.Show("Digite o nome do produto!");
             else
-            if (ExisteNomeProduto(nomeProduto))
+            if (ExisteNomeProduto(nomeProduto) && !existeLinhaSelecionada)
             {
                 MessageBox.Show("Nome do produto já existe!");
                 return;
@@ -63,6 +67,7 @@ namespace BancoDeDados.Controller.Telas
                 produtoSelecionado.PrecoPorQuantidade = preco;
                 produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado(indiceCombo);
                 _banco.Atualizar<Produto>(produtoSelecionado);
+                CarregarLista();
             }
             else // Cadastrar
             {
@@ -75,6 +80,7 @@ namespace BancoDeDados.Controller.Telas
                         UnidadeMedida = unidadeMedidaEntity
                     }
                 );
+                CarregarLista();
             }
 
         }
@@ -96,11 +102,16 @@ namespace BancoDeDados.Controller.Telas
             comboBoxUnidadesMedida.DisplayMember = "Descricao";
             comboBoxUnidadesMedida.ValueMember = "Id";
         }
-        private void btnLimpar_Click(object sender, EventArgs e)
+
+        private void Limpar()
         {
             textBoxNomeProduto.Text = "";
             textBoxPreco.Text = "0.0";
             btnDeletar.Enabled = false;
+        }
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            Limpar();
         }
         private void CarregarLista()
         {
@@ -112,7 +123,7 @@ namespace BancoDeDados.Controller.Telas
                         new String[]
                         {
                             linha.Nome,
-                            linha.PrecoPorQuantidade.ToString(),
+                            linha.PrecoPorQuantidade.ToString("F2"),
                             linha.UnidadeMedida.Descricao
                         }
 
@@ -123,11 +134,14 @@ namespace BancoDeDados.Controller.Telas
         }
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            if (_servico.ExisteLinhaSelecionada(listView1))
+            if (_servico.ConfirmaDeletarItemDoList(listView1))
             {
                 var produtoSelecionado = _servico.RetornaItemLinhaSelecionada<Produto>(listView1);
                 _banco.Deletar(produtoSelecionado);
+                CarregarLista();
+                Limpar();
             }
+            
         }
 
         private void GerenciarProdutos_Load(object sender, EventArgs e)
@@ -161,9 +175,22 @@ namespace BancoDeDados.Controller.Telas
 
         }
 
-        private void textBoxNomeProduto_TextChanged(object sender, EventArgs e)
+        private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (
+                    !char.IsControl(e.KeyChar) && 
+                    !char.IsDigit(e.KeyChar)   &&
+                    (e.KeyChar != '.')
+                )
+            {
+                e.Handled = true;
+            }
 
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

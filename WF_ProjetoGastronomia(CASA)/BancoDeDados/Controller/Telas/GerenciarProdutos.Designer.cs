@@ -112,7 +112,6 @@
             this.textBoxNomeProduto.Name = "textBoxNomeProduto";
             this.textBoxNomeProduto.Size = new System.Drawing.Size(272, 20);
             this.textBoxNomeProduto.TabIndex = 14;
-            this.textBoxNomeProduto.TextChanged += new System.EventHandler(this.textBoxNomeProduto_TextChanged);
             // 
             // btnCadastrar
             // 
@@ -170,6 +169,7 @@
             this.textBoxPreco.Size = new System.Drawing.Size(167, 20);
             this.textBoxPreco.TabIndex = 26;
             this.textBoxPreco.TextChanged += new System.EventHandler(this.textBoxPreco_TextChanged);
+            this.textBoxPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPreco_KeyPress);
             // 
             // GerenciarProdutos
             // 

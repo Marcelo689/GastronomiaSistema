@@ -58,6 +58,7 @@ namespace BancoDeDados.Controller.Telas
             if (existeItemSelecionado)
             {
                 var ItemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                ItemSelecionado.Descricao = nomeUnidadeMedida; 
                 _banco.Atualizar<UnidadeMedida>(ItemSelecionado);
                 CarregarLista();
                 MessageBox.Show("Atualizado Com sucesso!"); 
@@ -94,12 +95,16 @@ namespace BancoDeDados.Controller.Telas
         {
             LimparTela();
         }
+        
         private void btnDeletar_Click(object sender, EventArgs e)
         {
-            var itemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
-            _banco.Deletar<UnidadeMedida>(itemSelecionado);
-            CarregarLista();
-            LimparTela();
+            if (_servico.ConfirmaDeletarItemDoList(listView1))
+            {
+                var itemSelecionado = _servico.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                _banco.Deletar<UnidadeMedida>(itemSelecionado);
+                CarregarLista();
+                LimparTela();
+            }
         }
 
         private void GerenciarUnidadeMedida_Load(object sender, EventArgs e)
