@@ -1,5 +1,6 @@
 ﻿using BancoDeDados.Models;
 using BancoDeDados.Servicos.ComboBoxMetodos;
+using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,7 +16,47 @@ namespace BancoDeDados.Servicos
         {
 
         }
-        
+        private List<T> RetornaTodosComponentesDoForm<T>(Control control,Type type) where T : Control
+        {
+            //EXAMPLE HOW TO USE
+            //     var c = RetornaTodosComponentesDoForm(this,typeof(TextBox));
+            var controls = control.Controls.Cast<Control>();
+            
+            var lista =  controls.Where(c => c.GetType() == type).ToList();
+            var listaConvertidaControl = lista as List<T>;
+            return listaConvertidaControl;
+        }
+
+        public void LimparTodosComponentesDoForm(Form form)
+        {
+            List<TextBox>  textBoxes = RetornaTodosComponentesDoForm<TextBox>(form, typeof(TextBox));
+            List<MaskedTextBox>  MtextBoxes = RetornaTodosComponentesDoForm<MaskedTextBox>(form, typeof(MaskedTextBox));
+            List<ComboBox> comboBoxes = RetornaTodosComponentesDoForm<ComboBox>(form, typeof(ComboBox));
+            List<ListView> listViews = RetornaTodosComponentesDoForm<ListView>(form, typeof(ListView));
+            
+            if(comboBoxes != null)
+            foreach (var item in comboBoxes)
+            {
+                item.SelectedIndex = -1;    
+            }
+
+            if(listViews != null)
+            foreach (var item in listViews)
+            {
+                item.SelectedItems.Clear();
+            }
+            if(textBoxes != null)
+            foreach (var item in textBoxes)
+            {
+                item.Text = "";
+            }
+            if(MtextBoxes != null)
+            foreach (var item in MtextBoxes)
+            {
+                item.Text = "";
+            }
+        }
+
         public string FormataValor(decimal valor)
         {
             return valor.ToString("F2", CultureInfo.InvariantCulture);

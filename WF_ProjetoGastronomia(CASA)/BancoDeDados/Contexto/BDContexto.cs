@@ -53,7 +53,7 @@ namespace BancoDeDados.Contexto
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = @"server=localhost;database=Gastronomia;uid=root;password=root";
+            string connectionString = @"server=localhost;database=Gastronomia;uid=root;password=;";
             optionsBuilder.UseMySql(connectionString);
 
         }

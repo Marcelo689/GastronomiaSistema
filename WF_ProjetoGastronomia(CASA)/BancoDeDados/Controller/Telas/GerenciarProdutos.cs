@@ -66,7 +66,7 @@ namespace BancoDeDados.Controller.Telas
                 produtoSelecionado.PrecoPorQuantidade = preco;
                 produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado(indiceCombo);
                 _banco.Atualizar<Produto>(produtoSelecionado);
-                CarregarLista();
+                listViewFunc.PreencheListViewProduto(listView1);
             }
             else // Cadastrar
             {
@@ -79,7 +79,7 @@ namespace BancoDeDados.Controller.Telas
                         UnidadeMedida = unidadeMedidaEntity
                     }
                 );
-                CarregarLista();
+                listViewFunc.PreencheListViewProduto(listView1);
             }
 
         }
@@ -101,32 +101,14 @@ namespace BancoDeDados.Controller.Telas
         {
             Limpar();
         }
-        private void CarregarLista()
-        {
-            var lista = _banco.RetornarLista<Produto>();
-            listView1.Items.Clear();
-            foreach (var linha in lista)
-            {
-                var listItem = new ListViewItem(
-                        new String[]
-                        {
-                            linha.Nome,
-                            linha.PrecoPorQuantidade.ToString("F2"),
-                            linha.UnidadeMedida.Descricao
-                        }
-
-                );
-                listItem.Tag = linha.Id;
-                listView1.Items.Add(listItem);
-            }
-        }
+        
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             if (listViewFunc.ConfirmaDeletarItemDoList(listView1))
             {
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 _banco.Deletar(produtoSelecionado);
-                CarregarLista();
+                listViewFunc.PreencheListViewProduto(listView1);
                 Limpar();
             }
             
@@ -134,16 +116,7 @@ namespace BancoDeDados.Controller.Telas
         private void GerenciarProdutos_Load(object sender, EventArgs e)
         {
             PreencheComboBox();
-            CarregarLista();
-
-
-            // IMPORTANTE CONTINUAR
-            //listViewFunc.PreencheListView<Produto>(listView1, p => new Produto()
-            //{
-            //    Nome = p.Nome,
-            //    PrecoPorQuantidade = p.PrecoPorQuantidade,
-            //    UnidadeMedida = p.UnidadeMedida,
-            //});
+            listViewFunc.PreencheListViewProduto(listView1);
         }
         private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
         {

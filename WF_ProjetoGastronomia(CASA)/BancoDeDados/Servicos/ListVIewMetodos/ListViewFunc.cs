@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller.Telas;
+using BancoDeDados.Models;
+using System;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -91,11 +92,87 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
 
                 var listItem = new ListViewItem(
                     colunasValues
-                //teste
                 );
 
                 listItem.Tag = item.Id;
                 listView.Items.Add(listItem);
+            }
+        }
+        public void PreencheListViewProduto(ListView listView)
+        {
+            var lista = _banco.RetornarLista<Produto>();
+
+            listView.Items.Clear();
+            foreach (var item in lista)
+            {
+                var listItem = new ListViewItem(
+                    new string []{
+                        item.Nome,
+                        item.PrecoPorQuantidade.ToString("F2"),
+                        item.UnidadeMedida.Sigla
+                    }
+                );
+
+                listItem.Tag = item.Id;
+                listView.Items.Add(listItem);
+            }
+        }
+
+        public void PreencheListViewUnidadeMedida(ListView listView)
+        {
+            var lista = _banco.RetornarLista<UnidadeMedida>();
+
+            listView.Items.Clear();
+            foreach (var item in lista)
+            {
+                var listItem = new ListViewItem(
+                    new string[]{
+                        item.Descricao,
+                        item.Sigla
+                    }
+                );
+
+                listItem.Tag = item.Id;
+                listView.Items.Add(listItem);
+            }
+        }
+
+        public void PreencheListViewReceitas(ListView listView)
+        {
+            var lista = _banco.RetornarLista<Receita>();
+
+            listView.Items.Clear();
+            foreach (var item in lista)
+            {
+                var listItem = new ListViewItem(
+                    new string[]{
+                        item.NomeReceita,
+                        item.PrecoCusto.ToString("F2"),
+                        //item.TempoDePreparo.ToString()
+                    }
+                );
+
+                listItem.Tag = item.Id;
+                listView.Items.Add(listItem);
+            }
+        }
+
+        public void PreencheListViewGastos(ListView listViewGastos)
+        {
+            var lista = _banco.RetornarLista<Gasto>();
+
+            listViewGastos.Items.Clear();
+            foreach (var item in lista)
+            {
+                var listItem = new ListViewItem(
+                    new string[]{
+                        item.Nome,
+                        item.Valor.ToString("F2")
+                    }
+                );
+
+                listItem.Tag = item.Id;
+                listViewGastos.Items.Add(listItem);
             }
         }
     }

@@ -167,6 +167,15 @@
     <Compile Include="Controller\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Migrations\20221208210242_sigla-unidade-medida.cs" />
+    <Compile Include="Migrations\20221208210242_sigla-unidade-medida.designer.cs">
+      <DependentUpon>20221208210242_sigla-unidade-medida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221208210834_NomeReceita.cs" />
+    <Compile Include="Migrations\20221208210834_NomeReceita.designer.cs">
+      <DependentUpon>20221208210834_NomeReceita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gasto.cs" />
     <Compile Include="Controller\Telas\Gerenciar Empresas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,8 +188,10 @@
     <Compile Include="Controller\Telas\GerenciarReceitas.Designer.cs">
       <DependentUpon>GerenciarReceitas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\TEtntity.cs" />
     <Compile Include="Servicos\ComboBoxMetodos\ComboBoxFunc.cs" />
     <Compile Include="Servicos\ListVIewMetodos\ListViewFunc.cs" />
+    <Compile Include="Servicos\ListVIewMetodos\ProdutoListView.cs" />
     <Compile Include="Servicos\OperacoesBanco.cs" />
     <Compile Include="Controller\Telas\GerenciarProdutos.cs">
       <SubType>Form</SubType>

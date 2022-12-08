@@ -16,6 +16,7 @@ namespace BancoDeDados.Contexto
         //}
 
         public int Id { get; set; }
+        public string NomeReceita { get; set; }
         public double PerdaPorReceita { get; set; }
         public int ProdutoId { get; set; }
         public List<Produto> Produto { get; set; }

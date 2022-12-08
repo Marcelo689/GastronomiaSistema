@@ -44,6 +44,7 @@ namespace BancoDeDados.Controller.Telas
                         new String[]
                         {
                             linha.Descricao,
+                            linha.Sigla
                         }
 
                 );
@@ -55,12 +56,13 @@ namespace BancoDeDados.Controller.Telas
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             var nomeUnidadeMedida = textBoxNomeUnidadeMedida.Text;
-
+            var siglaUnidadeMedida = textBoxSigla.Text;
             bool existeItemSelecionado = listViewFunc.ExisteLinhaSelecionada(listView1);
             if (existeItemSelecionado)
             {
                 var ItemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
-                ItemSelecionado.Descricao = nomeUnidadeMedida; 
+                ItemSelecionado.Descricao = nomeUnidadeMedida;
+                ItemSelecionado.Sigla = siglaUnidadeMedida;
                 _banco.Atualizar<UnidadeMedida>(ItemSelecionado);
                 CarregarLista();
                 MessageBox.Show("Atualizado Com sucesso!"); 
@@ -76,6 +78,7 @@ namespace BancoDeDados.Controller.Telas
                 var ItemSelecionado = new UnidadeMedida()
                 {
                     Descricao = nomeUnidadeMedida,
+                    Sigla = siglaUnidadeMedida,
                 };
                 _banco.Cadastrar<UnidadeMedida>(ItemSelecionado);
                 CarregarLista();

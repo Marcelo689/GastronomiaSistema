@@ -21,7 +21,18 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
                 _banco = new OperacoesBanco();
         }
         public virtual string Descricao { get; set; }
-        public void PreencheComboBox<T>(ComboBox combo) where T : ComboBoxFunc
+        public virtual string Sigla { get; set; }
+
+        private bool ExisteItemSelecionado(ComboBox combo)
+        {
+            if( combo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Primeiro você deve selecionar um produto!");
+                return false;
+            }
+            return true;
+        }
+        public void PreencheComboBox<T>(ComboBox combo) where T : ComboBoxFunc //unidadeMedida
         {
             if (combo is null)
             {
@@ -30,20 +41,28 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
 
             List<T> lista = _banco.RetornarLista<T>();
 
-            var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Descricao }).ToList();
+            var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Sigla }).ToList();
             combo.Items.Clear();
             combo.SelectedIndex = -1;
             combo.DataSource = _lista;
             combo.DisplayMember = "Descricao";
             combo.ValueMember = "Id";
         }
-        public T RetornaItemComboSelecionado<T>(int indiceComboBox) where T : TEntity
+        public T RetornaItemComboSelecionado<T>(ComboBox combo) where T : TEntity , new()
         {
-            List<T> lista = _banco.RetornarLista<T>();
-            var idsLista = (from u in lista select new { u.Id }).ToList();
-            var idSelecionado = idsLista[indiceComboBox].Id;
-            var Entity = _banco.RetornarLista<T>(idSelecionado).First();
-            return Entity;
+            var existe = ExisteItemSelecionado(combo);
+            if (existe)
+            {
+                //var indiceComboBox = combo.SelectedIndex;
+                var idSelecionado = int.Parse( combo.SelectedValue.ToString());
+                //List<T> lista = _banco.RetornarLista<T>();
+                //var idsLista = (from u in lista select new { u.Id }).ToList();
+                //var idSelecionado = idsLista[indiceComboBox].Id;
+                var Entity = _banco.RetornarLista<T>(idSelecionado).First();
+                return Entity;
+            }
+
+            return new T();
         }
 
     }

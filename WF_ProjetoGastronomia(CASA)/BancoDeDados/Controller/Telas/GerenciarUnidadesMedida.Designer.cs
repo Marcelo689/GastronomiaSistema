@@ -38,6 +38,8 @@ namespace BancoDeDados.Controller.Telas
             this.lblTitulo = new System.Windows.Forms.Label();
             this.textBoxNomeUnidadeMedida = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
+            this.textBoxSigla = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -115,11 +117,29 @@ namespace BancoDeDados.Controller.Telas
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
+            // textBoxSigla
+            // 
+            this.textBoxSigla.Location = new System.Drawing.Point(40, 157);
+            this.textBoxSigla.Name = "textBoxSigla";
+            this.textBoxSigla.Size = new System.Drawing.Size(272, 20);
+            this.textBoxSigla.TabIndex = 34;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(40, 138);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Sigla";
+            // 
             // GerenciarUnidadeMedida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBoxSigla);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.listView1);
@@ -144,5 +164,7 @@ namespace BancoDeDados.Controller.Telas
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox textBoxNomeUnidadeMedida;
         private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.TextBox textBoxSigla;
+        private System.Windows.Forms.Label label2;
     }
 }
