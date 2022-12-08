@@ -32,9 +32,10 @@
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarReceitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +55,8 @@
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemCadastrarUsuario,
             this.gerenciarProdutosToolStripMenuItem,
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem});
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem,
+            this.gerenciarReceitasToolStripMenuItem});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
@@ -73,6 +75,13 @@
             this.gerenciarProdutosToolStripMenuItem.Text = "Gerenciar Produtos";
             this.gerenciarProdutosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarProdutosToolStripMenuItem_Click);
             // 
+            // gerenciarUnidadesDeMedidaToolStripMenuItem
+            // 
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Name = "gerenciarUnidadesDeMedidaToolStripMenuItem";
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Text = "Gerenciar Unidades de Medida";
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarUnidadesDeMedidaToolStripMenuItem_Click);
+            // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -88,12 +97,12 @@
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             this.deslogarToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
             // 
-            // gerenciarUnidadesDeMedidaToolStripMenuItem
+            // gerenciarReceitasToolStripMenuItem
             // 
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Name = "gerenciarUnidadesDeMedidaToolStripMenuItem";
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Text = "Gerenciar Unidades de Medida";
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarUnidadesDeMedidaToolStripMenuItem_Click);
+            this.gerenciarReceitasToolStripMenuItem.Name = "gerenciarReceitasToolStripMenuItem";
+            this.gerenciarReceitasToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarReceitasToolStripMenuItem.Text = "Gerenciar Receitas";
+            this.gerenciarReceitasToolStripMenuItem.Click += new System.EventHandler(this.gerenciarReceitasToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -120,5 +129,6 @@
         private System.Windows.Forms.ToolStripMenuItem deslogarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarProdutosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarUnidadesDeMedidaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarReceitasToolStripMenuItem;
     }
 }

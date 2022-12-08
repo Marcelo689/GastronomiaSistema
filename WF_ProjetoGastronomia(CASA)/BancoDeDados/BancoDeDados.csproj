@@ -167,6 +167,12 @@
     <Compile Include="Controller\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Controller\Telas\Gerenciar Empresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\Telas\Gerenciar Empresas.Designer.cs">
+      <DependentUpon>Gerenciar Empresas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controller\Telas\GerenciarReceitas.cs">
       <SubType>Form</SubType>
     </Compile>

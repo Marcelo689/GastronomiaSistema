@@ -25,5 +25,10 @@ namespace BancoDeDados.Controller.Telas
         {
             
         }
+
+        private void GerenciarReceitas_Load(object sender, System.EventArgs e)
+        {
+            //listViewFunc.
+        }
     }
 }

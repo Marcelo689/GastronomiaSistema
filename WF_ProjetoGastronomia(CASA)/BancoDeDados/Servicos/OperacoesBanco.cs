@@ -17,7 +17,15 @@ namespace BancoDeDados.Controller
             public int Id { get; set; }
         }
         private BDContexto _contexto;
-
+        public override string ToString()
+        {
+            return this.GetType().GetProperties()
+                .Select(info => (info.Name, Value: info.GetValue(this, null) ?? "(null)"))
+                .Aggregate(
+                    new StringBuilder(),
+                    (sb, pair) => sb.AppendLine($"{pair.Name}: {pair.Value}"),
+                    sb => sb.ToString());
+        }
         public OperacoesBanco()
         {
             _contexto = new BDContexto().getInstancia();
@@ -32,6 +40,18 @@ namespace BancoDeDados.Controller
             return lista;
         }
 
+        public List<T> RetornaListaComAlgumasColunas<T>(Func<T,T> filtro) where T : TEntity
+        {
+            var listaFiltrada = _contexto.Set<T>().ToList().Select(
+                filtro
+                //e => new Produto()
+                //{
+                //     Nome = e.Nome,
+                //     PrecoPorQuantidade =  e.PrecoPorQuantidade
+                //}
+            ).ToList();
+            return listaFiltrada;
+        }
         public List<T> RetornarLista<T>(params int [] ids) where T : TEntity
         {
             var lista = new List<T>();

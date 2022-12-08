@@ -135,6 +135,15 @@ namespace BancoDeDados.Controller.Telas
         {
             PreencheComboBox();
             CarregarLista();
+
+
+            // IMPORTANTE CONTINUAR
+            //listViewFunc.PreencheListView<Produto>(listView1, p => new Produto()
+            //{
+            //    Nome = p.Nome,
+            //    PrecoPorQuantidade = p.PrecoPorQuantidade,
+            //    UnidadeMedida = p.UnidadeMedida,
+            //});
         }
         private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
         {

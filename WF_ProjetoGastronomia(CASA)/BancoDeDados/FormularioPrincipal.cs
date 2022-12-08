@@ -56,5 +56,10 @@ namespace BancoDeDados
         {
             _servico.AbrirTela(new GerenciarUnidadeMedida());
         }
+
+        private void gerenciarReceitasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarReceitas());
+        }
     }
 }
