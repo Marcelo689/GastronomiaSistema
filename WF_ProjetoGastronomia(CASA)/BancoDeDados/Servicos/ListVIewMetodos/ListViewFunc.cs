@@ -2,6 +2,7 @@
 using BancoDeDados.Controller.Telas;
 using BancoDeDados.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -78,18 +79,38 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
 
         //    return valores;
         //} 
-        public void PreencheListView<T>(ListView listView, Func<T,T> filtro) where T : TEntity
+
+        public string[] RetornaPropriedadesEmStringArray<T>(T item) where T : TEntity
         {
-            var listaFiltrada = _banco.RetornaListaComAlgumasColunas<T>(filtro);
+            var propriedades = item.GetType().GetProperties();
+            List<String> colunasStrings = new List<String>();
+            foreach (var lin in propriedades)
+            {
+                var nome = lin.Name;
+                if (nome == "Id")
+                    continue;
+                var TipoDecimal = lin.PropertyType;
+                var valor = lin.GetValue(item);
+                if (TipoDecimal == typeof(decimal))
+                    valor = decimal.Parse(lin.GetValue(item).ToString()).ToString("F2");
+                if (valor != null)
+                    colunasStrings.Add(valor.ToString());
+                else
+                    colunasStrings.Add("");
+            }
+
+            return colunasStrings.ToArray();
+        } 
+        public void PreencheListView<T,R>(ListView listView, Func<T,R> filtro) 
+            where T : TEntity 
+            where R : TEntity
+        {
+            var listaFiltrada = _banco.RetornaListaComAlgumasColunas<T,R>(filtro);
             
             listView.Items.Clear();
             foreach (var item in listaFiltrada)
             {
-                var listaPropriedades = item.ToString().Replace("\r\n", "?");
-
-                var arrayString = listaPropriedades.Split('?');
-                var colunasValues = GetValuesFromStringArray(arrayString);
-
+                var colunasValues = RetornaPropriedadesEmStringArray<R>(item);
                 var listItem = new ListViewItem(
                     colunasValues
                 );

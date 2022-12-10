@@ -36,7 +36,7 @@
             this.lblPrecoCusto = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAdicionarGasto = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxGastos = new System.Windows.Forms.ComboBox();
             this.textBoxPotenciaKwh = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -135,13 +135,13 @@
             this.btnAdicionarGasto.UseVisualStyleBackColor = true;
             this.btnAdicionarGasto.Click += new System.EventHandler(this.btnAdicionarGasto_Click);
             // 
-            // comboBox1
+            // comboBoxGastos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(364, 187);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 21);
-            this.comboBox1.TabIndex = 48;
+            this.comboBoxGastos.FormattingEnabled = true;
+            this.comboBoxGastos.Location = new System.Drawing.Point(364, 187);
+            this.comboBoxGastos.Name = "comboBoxGastos";
+            this.comboBoxGastos.Size = new System.Drawing.Size(157, 21);
+            this.comboBoxGastos.TabIndex = 48;
             // 
             // textBoxPotenciaKwh
             // 
@@ -358,6 +358,7 @@
             this.btnCadastrar.TabIndex = 27;
             this.btnCadastrar.Text = "Cadastrar Receita";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // GerenciarReceitas
             // 
@@ -370,7 +371,7 @@
             this.Controls.Add(this.lblPrecoCusto);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnAdicionarGasto);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxGastos);
             this.Controls.Add(this.textBoxPotenciaKwh);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -426,7 +427,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxPotenciaKwh;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxGastos;
         private System.Windows.Forms.Button btnAdicionarGasto;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ColumnHeader ProdutosCustos;

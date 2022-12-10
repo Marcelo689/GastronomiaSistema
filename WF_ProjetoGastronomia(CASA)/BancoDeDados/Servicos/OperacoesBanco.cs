@@ -40,7 +40,7 @@ namespace BancoDeDados.Controller
             return lista;
         }
 
-        public List<T> RetornaListaComAlgumasColunas<T>(Func<T,T> filtro) where T : TEntity
+        public List<R> RetornaListaComAlgumasColunas<T,R>(Func<T,R> filtro) where T : TEntity
         {
             var listaFiltrada = _contexto.Set<T>().ToList().Select(
                 filtro

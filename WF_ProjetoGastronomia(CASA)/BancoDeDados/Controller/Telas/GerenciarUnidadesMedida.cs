@@ -28,7 +28,8 @@ namespace BancoDeDados.Controller.Telas
                 var itemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
 
                 textBoxNomeUnidadeMedida.Text = itemSelecionado.Descricao.ToString();
-            }
+                textBoxSigla.Text = itemSelecionado.Sigla.ToString();
+            }   
             else
             {
                 btnDeletar.Enabled = false;

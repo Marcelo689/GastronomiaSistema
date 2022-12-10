@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BancoDeDados.ModelTeste
 {
@@ -10,7 +6,6 @@ namespace BancoDeDados.ModelTeste
     {
         public int BlogId { get; set; }
         public string Url { get; set; }
-
         public List<Post> Posts { get; set; }
     }
 

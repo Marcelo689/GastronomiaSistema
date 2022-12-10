@@ -10,7 +10,6 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
 {
     public class ComboBoxFunc : TEntity
     {
-
         protected BDContexto _contexto;
         protected OperacoesBanco _banco;
         public ComboBoxFunc()
@@ -32,7 +31,30 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
             }
             return true;
         }
-        public void PreencheComboBox<T>(ComboBox combo) where T : ComboBoxFunc //unidadeMedida
+        public string[] RetornaPropriedadesEmStringArray<T>(T item) where T : TEntity
+        {
+            var propriedades = item.GetType().GetProperties();
+            List<String> colunasStrings = new List<String>();
+            foreach (var lin in propriedades)
+            {
+                var nome = lin.Name;
+                if (nome == "Id")
+                    continue;
+                var TipoDecimal = lin.PropertyType;
+                var valor = lin.GetValue(item);
+                if (TipoDecimal == typeof(decimal))
+                    valor = decimal.Parse(lin.GetValue(item).ToString()).ToString("F2");
+                if (valor != null)
+                    colunasStrings.Add(valor.ToString());
+                else
+                    colunasStrings.Add("");
+            }
+
+            return colunasStrings.ToArray();
+        }
+        public void PreencheComboBox<T,R>(ComboBox combo,Func<T,R> descricaoEId) 
+            where T : ComboBoxFunc //unidadeMedida
+            where R : TEntity
         {
             if (combo is null)
             {
@@ -41,7 +63,8 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
 
             List<T> lista = _banco.RetornarLista<T>();
 
-            var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Sigla }).ToList();
+            //var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Sigla }).ToList();
+            var _lista = (from u in lista select descricaoEId).ToList();
             combo.Items.Clear();
             combo.SelectedIndex = -1;
             combo.DataSource = _lista;

@@ -28,7 +28,7 @@ namespace BancoDeDados.Controller.Telas
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 textBoxNomeProduto.Text = produtoSelecionado.Nome;
                 textBoxPreco.Text = _servico.FormataValor(produtoSelecionado.PrecoPorQuantidade);
-                comboBoxUnidadesMedida.SelectedIndex = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Descricao);
+                comboBoxUnidadesMedida.SelectedIndex = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Sigla);
                 btnDeletar.Enabled = true;
             }
             else
@@ -64,13 +64,13 @@ namespace BancoDeDados.Controller.Telas
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 produtoSelecionado.Nome = nomeProduto;
                 produtoSelecionado.PrecoPorQuantidade = preco;
-                produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado(indiceCombo);
+                produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado();
                 _banco.Atualizar<Produto>(produtoSelecionado);
                 listViewFunc.PreencheListViewProduto(listView1);
             }
             else // Cadastrar
             {
-                var unidadeMedidaEntity = RetornaUnidadeMedidaSelecionado(indiceCombo);
+                var unidadeMedidaEntity = RetornaUnidadeMedidaSelecionado();
                 _banco.Cadastrar<Produto>(
                     new Produto()
                     {
@@ -83,13 +83,20 @@ namespace BancoDeDados.Controller.Telas
             }
 
         }
-        private UnidadeMedida RetornaUnidadeMedidaSelecionado(int indiceComboBox)
+        private UnidadeMedida RetornaUnidadeMedidaSelecionado()
         {
-            return comboBoxFunc.RetornaItemComboSelecionado<UnidadeMedida>(indiceComboBox);
+            return comboBoxFunc.RetornaItemComboSelecionado<UnidadeMedida>(comboBoxUnidadesMedida);
         }
         private void PreencheComboBox()
         {
-            comboBoxFunc.PreencheComboBox<UnidadeMedida>(comboBoxUnidadesMedida);
+            comboBoxFunc.PreencheComboBox<UnidadeMedida, UnidadeMedida>(comboBoxUnidadesMedida,
+                unidadeMedida => new UnidadeMedida()
+                {
+                    Sigla = unidadeMedida.Sigla,
+                    Id = unidadeMedida.Id,  
+                    Descricao = unidadeMedida.Sigla,
+                }
+                );
         }
         private void Limpar()
         {
@@ -116,7 +123,20 @@ namespace BancoDeDados.Controller.Telas
         private void GerenciarProdutos_Load(object sender, EventArgs e)
         {
             PreencheComboBox();
-            listViewFunc.PreencheListViewProduto(listView1);
+            //listViewFunc.PreencheListViewProduto(listView1);
+
+            listViewFunc.PreencheListView<Produto, ProdutoListView>(listView1, 
+            (produto) =>
+                new ProdutoListView()
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    Preco = produto.PrecoPorQuantidade,
+                    UnidadeMedida = produto.UnidadeMedida.Sigla
+                }
+                //produto.PrecoPorQuantidade;
+            );
+
         }
         private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
         {

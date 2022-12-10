@@ -4,6 +4,7 @@ using BancoDeDados.Controller.Model;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Servicos.TextBoxMetodos;
+using System;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -50,15 +51,52 @@ namespace BancoDeDados.Controller.Telas
 
         private void PreencheListViews()
         {
-            listViewFunc.PreencheListViewProduto(listViewProdutos);
-            listViewFunc.PreencheListViewReceitas(listViewReceitas);
-            listViewFunc.PreencheListViewGastos(listViewGastos);
+            listViewFunc.PreencheListView<Produto,Produto>(listViewProdutos,
+                produto => new Produto()
+                {
+                    Id = produto.Id,
+                    Nome = produto.Nome,
+                    PrecoPorQuantidade = produto.PrecoPorQuantidade,
+                });
+            listViewFunc.PreencheListView<Receita,Receita>(listViewReceitas,
+                receita => new Receita()
+            {
+                    Id= receita.Id, 
+                NomeReceita = receita.NomeReceita,
+                PrecoCusto = receita.PrecoCusto,
+            });
+            listViewFunc.PreencheListView<Gasto, Gasto>(listViewGastos,
+                gasto => new Gasto()
+            {
+                Id = gasto.Id,
+                Nome = gasto.Nome,
+                Valor = gasto.Valor,
+            });
         }
         private void GerenciarReceitas_Load(object sender, System.EventArgs e)
         {
             PreencheListViews();
+            PreencheComboBoxes();
             btnDeletarLinha.Enabled = false;
             btnDeletar.Enabled = false;
+        }
+
+        private void PreencheComboBoxes()
+        {
+            comboBoxFunc.PreencheComboBox<ProdutoComboBox, ProdutoComboBox>(comboBoxProdutos,
+                produto => new ProdutoComboBox()
+                {
+                    Id = produto.Id,
+                    Descricao = produto.Nome
+                }
+            );
+            comboBoxFunc.PreencheComboBox<Gasto,Gasto>(comboBoxGastos,
+               (gasto) => new Gasto()
+               {
+                   Id = gasto.Id,
+                   Descricao = gasto.Nome,
+               }
+            );
         }
 
         private void textBoxPrecoReceita_KeyPress(object sender, KeyPressEventArgs e)
@@ -161,6 +199,11 @@ namespace BancoDeDados.Controller.Telas
                     listViewFunc.PreencheListViewGastos(listViewGastos);
                 }
             }
+        }
+
+        private void btnCadastrar_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

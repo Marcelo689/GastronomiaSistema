@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
+using BancoDeDados.Controller.Telas;
 using BancoDeDados.Models;
 using BancoDeDados.ModelTeste;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,7 @@ namespace BancoDeDados.Contexto
         public DbSet<Receita> Receitas { get; set; }
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Gasto> Gastos { get; set; }
         public DbSet<UnidadeMedida> UnidadesMedida { get; set; }
         public DbSet<PedidoConcluido> PedidosConcluidos { get; set; }
         public DbSet<PedidoPendente> PedidosPendentes { get; set; }
@@ -53,7 +55,7 @@ namespace BancoDeDados.Contexto
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            string connectionString = @"server=localhost;database=Gastronomia;uid=root;password=;";
+            string connectionString = @"server=localhost;database=Gastronomia;uid=root;password=root;";
             optionsBuilder.UseMySql(connectionString);
 
         }

@@ -3,7 +3,7 @@ using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Controller.Telas
 {
-    internal class GastoReceita : TEntity
+    public class GastoReceita : TEntity
     {
         public GastoReceita()
         {
