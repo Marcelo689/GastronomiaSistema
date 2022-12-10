@@ -52,23 +52,30 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
 
             return colunasStrings.ToArray();
         }
-        public void PreencheComboBox<T,R>(ComboBox combo,Func<T,R> descricaoEId) 
-            where T : ComboBoxFunc //unidadeMedida
-            where R : TEntity
+        public interface NameAndId
+        {
+            string Name { get; set; }
+            string Id { get; set; }
+        }
+
+        public void PreencheComboBox<Entrada>(ComboBox combo,string ValueProperyName) 
+            where Entrada : TEntity 
         {
             if (combo is null)
             {
                 throw new ArgumentNullException(nameof(combo));
             }
 
-            List<T> lista = _banco.RetornarLista<T>();
+            List<Entrada> lista = _banco.RetornarLista<Entrada>();
 
             //var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Sigla }).ToList();
-            var _lista = (from u in lista select descricaoEId).ToList();
+            //var _lista = (from u in lista select idEDescricao).ToList();
+            
             combo.Items.Clear();
             combo.SelectedIndex = -1;
-            combo.DataSource = _lista;
-            combo.DisplayMember = "Descricao";
+            combo.DataSource = lista;
+
+            combo.DisplayMember = ValueProperyName;
             combo.ValueMember = "Id";
         }
         public T RetornaItemComboSelecionado<T>(ComboBox combo) where T : TEntity , new()

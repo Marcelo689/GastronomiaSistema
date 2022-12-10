@@ -28,7 +28,8 @@ namespace BancoDeDados.Controller.Telas
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 textBoxNomeProduto.Text = produtoSelecionado.Nome;
                 textBoxPreco.Text = _servico.FormataValor(produtoSelecionado.PrecoPorQuantidade);
-                comboBoxUnidadesMedida.SelectedIndex = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Sigla);
+                var indiceCombo = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Sigla);
+                comboBoxUnidadesMedida.SelectedIndex = indiceCombo;
                 btnDeletar.Enabled = true;
             }
             else
@@ -89,14 +90,7 @@ namespace BancoDeDados.Controller.Telas
         }
         private void PreencheComboBox()
         {
-            comboBoxFunc.PreencheComboBox<UnidadeMedida, UnidadeMedida>(comboBoxUnidadesMedida,
-                unidadeMedida => new UnidadeMedida()
-                {
-                    Sigla = unidadeMedida.Sigla,
-                    Id = unidadeMedida.Id,  
-                    Descricao = unidadeMedida.Sigla,
-                }
-                );
+            comboBoxFunc.PreencheComboBox<UnidadeMedida>(comboBoxUnidadesMedida, "Sigla");
         }
         private void Limpar()
         {

@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
+using BancoDeDados.Models;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Servicos.TextBoxMetodos;
@@ -61,7 +62,7 @@ namespace BancoDeDados.Controller.Telas
             listViewFunc.PreencheListView<Receita,Receita>(listViewReceitas,
                 receita => new Receita()
             {
-                    Id= receita.Id, 
+                Id= receita.Id, 
                 NomeReceita = receita.NomeReceita,
                 PrecoCusto = receita.PrecoCusto,
             });
@@ -79,24 +80,15 @@ namespace BancoDeDados.Controller.Telas
             PreencheComboBoxes();
             btnDeletarLinha.Enabled = false;
             btnDeletar.Enabled = false;
+            listViewGastos.Enabled = false;
+            listViewProdutos.Enabled = false;
         }
 
         private void PreencheComboBoxes()
         {
-            comboBoxFunc.PreencheComboBox<ProdutoComboBox, ProdutoComboBox>(comboBoxProdutos,
-                produto => new ProdutoComboBox()
-                {
-                    Id = produto.Id,
-                    Descricao = produto.Nome
-                }
-            );
-            comboBoxFunc.PreencheComboBox<Gasto,Gasto>(comboBoxGastos,
-               (gasto) => new Gasto()
-               {
-                   Id = gasto.Id,
-                   Descricao = gasto.Nome,
-               }
-            );
+            comboBoxFunc.PreencheComboBox<Produto>(comboBoxProdutos, "Nome");
+            comboBoxFunc.PreencheComboBox<Gasto>(comboBoxGastos, "Nome");
+            comboBoxFunc.PreencheComboBox<TipoReceita>(comboBoxTipoReceita, "Descricao");
         }
 
         private void textBoxPrecoReceita_KeyPress(object sender, KeyPressEventArgs e)
@@ -171,10 +163,16 @@ namespace BancoDeDados.Controller.Telas
             if (listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
                 btnDeletar.Enabled = true;
+                listViewGastos.Enabled = true;
+                listViewProdutos.Enabled = true;
+                btnDeletarLinha.Enabled = true;
             }
             else
             {
                 btnDeletar.Enabled = false;
+                listViewGastos.Enabled = false;
+                listViewProdutos.Enabled = false;
+                btnDeletarLinha.Enabled = false;
             }
         }
 
@@ -203,6 +201,23 @@ namespace BancoDeDados.Controller.Telas
 
         private void btnCadastrar_Click(object sender, System.EventArgs e)
         {
+            var nomeReceita = textBoxNomeReceita.Text;
+            var precoVenda = 0m;
+            decimal.TryParse(textBoxPrecoReceita.Text, out precoVenda);
+            var potenciaKwh = 0;
+            int.TryParse(textBoxPotenciaKwh.Text, out potenciaKwh);
+            var tipoReceita = comboBoxFunc.RetornaItemComboSelecionado<TipoReceita>(comboBoxTipoReceita);
+
+            var receita = new Receita()
+            {
+                NomeReceita = nomeReceita,
+                PrecoCusto = precoVenda,
+                PotenciaKwh = potenciaKwh,
+                TipoReceita = tipoReceita,
+
+            };
+            _banco.Cadastrar<Receita>(receita);
+            PreencheListViews();
 
         }
     }

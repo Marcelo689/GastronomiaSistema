@@ -22,8 +22,6 @@ namespace BancoDeDados.Contexto
         public DbSet<PedidoPendente> PedidosPendentes { get; set; }
         public DbSet<ReceitaDoPedido> ReceitasDoPedido { get; set; }
         public DbSet<ProdutoReceita> ProdutosReceita { get; set; }
-        //public DbSet<Blog> Blog { get; set; }
-        //public DbSet<Post> Post { get; set; }
         public static BDContexto _contexto { get; set; }
         public UsuarioLogin Login { get; set; }
 
