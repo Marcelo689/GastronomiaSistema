@@ -18,13 +18,11 @@ namespace BancoDeDados.Contexto
         //    Grama = 2,
         //    Litro = 3,
         //}
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Nome { get; set; }
         public decimal PrecoPorQuantidade { get; set; }
         //public TipoUnidade ProdutoTipoUnidade { get; set; }
         public UnidadeMedida UnidadeMedida { get; set; }
-
-        
         public IEnumerator GetEnumerator()
         {
             throw new System.NotImplementedException();

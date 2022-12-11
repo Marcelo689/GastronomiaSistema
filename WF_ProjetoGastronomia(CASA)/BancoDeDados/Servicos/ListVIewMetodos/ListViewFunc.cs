@@ -4,6 +4,8 @@ using BancoDeDados.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -80,19 +82,28 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
         //    return valores;
         //} 
 
-        public string[] RetornaPropriedadesEmStringArray<T>(T item) where T : TEntity
+        public string[] RetornaPropriedadesEmStringArray<T>(T item,params string [] propriedadesSelecionadas) 
+            where T : TEntity
         {
             var propriedades = item.GetType().GetProperties();
             List<String> colunasStrings = new List<String>();
+           
             foreach (var lin in propriedades)
             {
                 var nome = lin.Name;
+                //var teste = propriedadesSelecionadas.ToArray();
+                if (!propriedadesSelecionadas.Contains(nome))
+                    continue;
                 if (nome == "Id")
                     continue;
-                var TipoDecimal = lin.PropertyType;
+                var Tipo = lin.PropertyType;
                 var valor = lin.GetValue(item);
-                if (TipoDecimal == typeof(decimal))
+                if (Tipo == typeof(decimal))
                     valor = decimal.Parse(lin.GetValue(item).ToString()).ToString("F2");
+                else
+                if (Tipo == typeof(UnidadeMedida))
+                    valor = (lin.GetValue(item) as UnidadeMedida).Descricao;
+
                 if (valor != null)
                     colunasStrings.Add(valor.ToString());
                 else
@@ -100,17 +111,36 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
             }
 
             return colunasStrings.ToArray();
-        } 
-        public void PreencheListView<T,R>(ListView listView, Func<T,R> filtro) 
+        }
+        public void PreencheListView<T, R>(ListView listView, params string[] propriedadesSelecionadas) 
             where T : TEntity 
             where R : TEntity
         {
-            var listaFiltrada = _banco.RetornaListaComAlgumasColunas<T,R>(filtro);
-            
+            var lista = new List<T>();
+            lista = _banco.RetornarLista<T>();
             listView.Items.Clear();
-            foreach (var item in listaFiltrada)
+            
+            foreach (var item in lista)
             {
-                var colunasValues = RetornaPropriedadesEmStringArray<R>(item);
+                var colunasValues = RetornaPropriedadesEmStringArray<T>(item, propriedadesSelecionadas);
+                var listItem = new ListViewItem(
+                    colunasValues
+                );
+
+                listItem.Tag = item.Id;
+                listView.Items.Add(listItem);
+            }
+        }
+
+        public void PreencheListView<T, R>(ListView listView,List<T> lista, params string[] propriedadesSelecionadas)
+           where T : TEntity
+           where R : TEntity
+        {
+            listView.Items.Clear();
+
+            foreach (var item in lista)
+            {
+                var colunasValues = RetornaPropriedadesEmStringArray<T>(item, propriedadesSelecionadas);
                 var listItem = new ListViewItem(
                     colunasValues
                 );

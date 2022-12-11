@@ -179,6 +179,10 @@
     <Compile Include="Migrations\20221209191503_gastos.designer.cs">
       <DependentUpon>20221209191503_gastos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221211021426_GastosReceita.cs" />
+    <Compile Include="Migrations\20221211021426_GastosReceita.designer.cs">
+      <DependentUpon>20221211021426_GastosReceita.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ClassesRelacionadas\GastoReceita.cs" />
     <Compile Include="Models\Gasto.cs" />
     <Compile Include="Controller\Telas\Gerenciar Empresas.cs">
@@ -196,6 +200,7 @@
     <Compile Include="Servicos\ComboBoxMetodos\ComboBoxFunc.cs" />
     <Compile Include="Servicos\ListVIewMetodos\ListViewFunc.cs" />
     <Compile Include="Servicos\ListVIewMetodos\ProdutoListView.cs" />
+    <Compile Include="Servicos\ListVIewMetodos\ReceitaListView.cs" />
     <Compile Include="Servicos\OperacoesBanco.cs" />
     <Compile Include="Controller\Telas\GerenciarProdutos.cs">
       <SubType>Form</SubType>

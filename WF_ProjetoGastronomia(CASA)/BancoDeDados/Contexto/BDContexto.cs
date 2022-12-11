@@ -17,6 +17,7 @@ namespace BancoDeDados.Contexto
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Gasto> Gastos { get; set; }
+        public DbSet<GastoReceita> GastosReceita { get; set; }
         public DbSet<UnidadeMedida> UnidadesMedida { get; set; }
         public DbSet<PedidoConcluido> PedidosConcluidos { get; set; }
         public DbSet<PedidoPendente> PedidosPendentes { get; set; }

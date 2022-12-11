@@ -8,5 +8,4 @@ namespace BancoDeDados.Models
         public override string Descricao { get; set; }
         public override string Sigla { get; set; }
     }
-    
 }

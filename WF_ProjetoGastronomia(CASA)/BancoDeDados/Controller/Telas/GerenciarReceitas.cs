@@ -50,29 +50,29 @@ namespace BancoDeDados.Controller.Telas
             }
         }
 
-        private void PreencheListViews()
+        private void PreencheListViews(int id = 0)
         {
-            listViewFunc.PreencheListView<Produto,Produto>(listViewProdutos,
-                produto => new Produto()
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
+               new string[]
+               {
+                    "Id","NomeReceita","PrecoCusto"
+               }
+            );
+            var listaProdutos = _banco.RetornaProdutosDaReceita(id);
+            listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
+                listaProdutos,
+                new string[]
                 {
-                    Id = produto.Id,
-                    Nome = produto.Nome,
-                    PrecoPorQuantidade = produto.PrecoPorQuantidade,
+                    "Id","Nome","PrecoPorQuantidade"
                 });
-            listViewFunc.PreencheListView<Receita,Receita>(listViewReceitas,
-                receita => new Receita()
-            {
-                Id= receita.Id, 
-                NomeReceita = receita.NomeReceita,
-                PrecoCusto = receita.PrecoCusto,
-            });
+            var listaGastos = _banco.RetornaGastosDaReceita(id);
             listViewFunc.PreencheListView<Gasto, Gasto>(listViewGastos,
-                gasto => new Gasto()
-            {
-                Id = gasto.Id,
-                Nome = gasto.Nome,
-                Valor = gasto.Valor,
-            });
+                listaGastos,
+                new string[]
+                {
+                    "Id","Nome","Valor"
+                }      
+            );
         }
         private void GerenciarReceitas_Load(object sender, System.EventArgs e)
         {
@@ -152,16 +152,16 @@ namespace BancoDeDados.Controller.Telas
 
         private void btnLimpar_Click(object sender, System.EventArgs e)
         {
-            // não funciona, em testes
-            //_servico.LimparTodosComponentesDoForm(form);
-
             Limpar();
         }
 
+        
         private void listViewReceitas_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
+                var receita = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+                PreencheListViews(receita.Id);
                 btnDeletar.Enabled = true;
                 listViewGastos.Enabled = true;
                 listViewProdutos.Enabled = true;

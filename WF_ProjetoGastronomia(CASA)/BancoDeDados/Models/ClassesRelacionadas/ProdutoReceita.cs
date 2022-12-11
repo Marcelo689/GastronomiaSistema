@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static BancoDeDados.Controller.OperacoesBanco;
+﻿using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto.ClassesRelacionadas
 {
     public class ProdutoReceita : TEntity
     {
-        [Key]
-        public int Id { get; set; }
+        //[Key]
+        //public int Id { get; set; }
         public int ReceitaId { get; set; }
         public Receita Receita { get; set; }
         public int ProdutoId { get; set; }

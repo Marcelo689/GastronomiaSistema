@@ -15,7 +15,7 @@ namespace BancoDeDados.Contexto
         //    Salgado = 1
         //}
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string NomeReceita { get; set; }
         public double PerdaPorReceita { get; set; }
         public int ProdutoId { get; set; }
@@ -29,4 +29,6 @@ namespace BancoDeDados.Contexto
         public TipoReceita TipoReceita { get; set; }
         //public TipoReceita CategoriaTipoReceita { get; set; }
     }
+
+
 }

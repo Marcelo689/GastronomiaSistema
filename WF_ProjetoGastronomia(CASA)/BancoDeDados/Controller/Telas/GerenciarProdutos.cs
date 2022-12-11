@@ -5,7 +5,6 @@ using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Servicos.TextBoxMetodos;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -67,7 +66,8 @@ namespace BancoDeDados.Controller.Telas
                 produtoSelecionado.PrecoPorQuantidade = preco;
                 produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado();
                 _banco.Atualizar<Produto>(produtoSelecionado);
-                listViewFunc.PreencheListViewProduto(listView1);
+
+                PreencheListView();
             }
             else // Cadastrar
             {
@@ -80,7 +80,7 @@ namespace BancoDeDados.Controller.Telas
                         UnidadeMedida = unidadeMedidaEntity
                     }
                 );
-                listViewFunc.PreencheListViewProduto(listView1);
+                PreencheListView();
             }
 
         }
@@ -109,28 +109,28 @@ namespace BancoDeDados.Controller.Telas
             {
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 _banco.Deletar(produtoSelecionado);
-                listViewFunc.PreencheListViewProduto(listView1);
+                PreencheListView();
                 Limpar();
             }
             
+        }
+
+        private void PreencheListView()
+        {
+            listViewFunc.PreencheListView<Produto, ProdutoListView>(listView1,
+                new string[] {
+                       "Id",
+                       "Nome",
+                       "PrecoPorQuantidade",
+                       "UnidadeMedida"
+                  }
+           );
         }
         private void GerenciarProdutos_Load(object sender, EventArgs e)
         {
             PreencheComboBox();
             //listViewFunc.PreencheListViewProduto(listView1);
-
-            listViewFunc.PreencheListView<Produto, ProdutoListView>(listView1, 
-            (produto) =>
-                new ProdutoListView()
-                {
-                    Id = produto.Id,
-                    Nome = produto.Nome,
-                    Preco = produto.PrecoPorQuantidade,
-                    UnidadeMedida = produto.UnidadeMedida.Sigla
-                }
-                //produto.PrecoPorQuantidade;
-            );
-
+            PreencheListView();
         }
         private void textBoxPreco_KeyPress(object sender, KeyPressEventArgs e)
         {

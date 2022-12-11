@@ -1,7 +1,9 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller.Telas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Windows.Forms;
 
@@ -27,6 +29,15 @@ namespace BancoDeDados.Controller
         {
             _contexto = new BDContexto().getInstancia();
         }
+
+        public List<Produto> RetornaProdutosDaReceita(int idReceita)
+        {
+            if(idReceita == 0)  
+                return new List<Produto>();
+            var idsProdutos = _contexto.ProdutosReceita.Where(x => x.ReceitaId == idReceita).Select( e => e.ProdutoId).ToList();
+
+            return _contexto.Produtos.Where(e => idsProdutos.Contains(e.Id)).ToList();
+        }
         public List<T> RetornarLista<T>(int? id = null) where T : TEntity
         {
             var lista = new List<T>();
@@ -37,16 +48,19 @@ namespace BancoDeDados.Controller
             return lista;
         }
 
-        public List<R> RetornaListaComAlgumasColunas<T,R>(Func<T,R> filtro) where T : TEntity
+        public List<R> RetornaListaComAlgumasColunas<T,R>(Expression<Func<T,R>> filtro) 
+            where T : TEntity 
+            where R : TEntity
         {
-            var listaFiltrada = _contexto.Set<T>().ToList().Select(
+            var listaFiltrada = _contexto.Set<T>().Select(
                 filtro
-                //e => new Produto()
-                //{
-                //     Nome = e.Nome,
-                //     PrecoPorQuantidade =  e.PrecoPorQuantidade
-                //}
             ).ToList();
+                //selectFiltro
+            //e => new Produto()
+            //{
+            //     Nome = e.Nome,
+            //     PrecoPorQuantidade =  e.PrecoPorQuantidade
+            //}
             return listaFiltrada;
         }
         public List<T> RetornarLista<T>(params int [] ids) where T : TEntity
@@ -63,6 +77,16 @@ namespace BancoDeDados.Controller
                 return true;
             return false;
         }
+
+        public List<Gasto> RetornaGastosDaReceita(int idReceita)
+        {
+            if (idReceita == 0)
+                return new List<Gasto>();
+            var idsGasto = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId).Select(e => e.GastoId).ToList();
+
+            return _contexto.Gastos.Where(e => idsGasto.Contains(e.Id)).ToList();
+        }
+
         public bool Deletar<T>(params int[] entityIds) where T : TEntity
         {
             var listaParaDeletar = _contexto.Set<T>().Where(e => entityIds.Contains(e.Id)).ToList();
