@@ -13,9 +13,6 @@ namespace BancoDeDados.Controller.Telas
 {
     public partial class GerenciarProdutos : FormBase
     {
-        private ListViewFunc listViewFunc = new ListViewFunc();
-        private ComboBoxFunc comboBoxFunc = new ComboBoxFunc();
-        private TextBoxFunc textBoxFunc = new TextBoxFunc();
         public GerenciarProdutos()
         {
             InitializeComponent();
@@ -46,6 +43,7 @@ namespace BancoDeDados.Controller.Telas
         {
             var nomeProduto = textBoxNomeProduto.Text;
             var preco = _servico.FormataDinheiro(textBoxPreco.Text);
+            var quantidadeUnidade = _servico.FormataDinheiro(textBoxQuantidadeUnidade.Text);
             var indiceCombo = comboBoxUnidadesMedida.SelectedIndex;
             var existeLinhaSelecionada = listViewFunc.ExisteLinhaSelecionada(listView1);
             if (string.IsNullOrWhiteSpace(nomeProduto))
@@ -64,6 +62,7 @@ namespace BancoDeDados.Controller.Telas
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listView1);
                 produtoSelecionado.Nome = nomeProduto;
                 produtoSelecionado.PrecoPorQuantidade = preco;
+                produtoSelecionado.QuantidadeUnidade = quantidadeUnidade;
                 produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado();
                 _banco.Atualizar<Produto>(produtoSelecionado);
 
@@ -77,7 +76,8 @@ namespace BancoDeDados.Controller.Telas
                     {
                         Nome = nomeProduto,
                         PrecoPorQuantidade = preco,
-                        UnidadeMedida = unidadeMedidaEntity
+                        UnidadeMedida = unidadeMedidaEntity,
+                        QuantidadeUnidade = quantidadeUnidade
                     }
                 );
                 PreencheListView();

@@ -9,7 +9,6 @@ namespace BancoDeDados
 {
     public partial class CadastroUsuario : FormBase
     {
-        public ListViewFunc listViewFunc = new ListViewFunc();
         public CadastroUsuario()
         {
             InitializeComponent();

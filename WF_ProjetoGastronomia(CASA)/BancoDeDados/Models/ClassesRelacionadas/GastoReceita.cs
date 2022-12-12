@@ -13,5 +13,14 @@ namespace BancoDeDados.Controller.Telas
         public int GastoId { get; set; }
         public Receita Receita { get; set; }
         public int ReceitaId { get; set; }
+        public decimal QuantidadeGasto { get; set; }
     }
+
+    public class GastoReceitaListView : TEntity
+    {
+        public int GastoId { get; set; }
+        public string Nome { get; set; }
+        public decimal QuantidadeGasto { get; set; }
+    }
+
 }

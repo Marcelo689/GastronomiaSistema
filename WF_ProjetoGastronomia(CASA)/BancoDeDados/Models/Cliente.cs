@@ -6,7 +6,7 @@ namespace BancoDeDados.Contexto
 {
     public class Cliente : TEntity
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public long CPF { get; set; }
         public byte[] Foto { get; set; }
         public string NomeCompleto { get; set; }

@@ -11,5 +11,4 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
         public virtual string UnidadeMedida { get; set; }
     }
 
-
 }

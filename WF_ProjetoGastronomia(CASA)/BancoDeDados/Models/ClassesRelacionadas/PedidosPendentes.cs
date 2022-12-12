@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto.ClassesRelacionadas
@@ -12,7 +11,7 @@ namespace BancoDeDados.Contexto.ClassesRelacionadas
     public class PedidoPendente : TEntity
     {
         [Key]
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public int PedidoId { get; set; }
         public Pedido Pedido { get; set; }
         public int ClienteId { get; set; }

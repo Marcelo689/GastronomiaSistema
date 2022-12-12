@@ -4,8 +4,6 @@ using BancoDeDados.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -14,6 +12,15 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
 {
     public class ListViewFunc : BaseServico
     {
+
+        public void DesSelecionionaListView(ListView listView)
+        {
+            if (listView.SelectedIndices.Count > 0)
+                for (int i = 0; i < listView.SelectedIndices.Count; i++)
+                {
+                    listView.Items[listView.SelectedIndices[i]].Selected = false;
+                }
+        }
         public bool ConfirmaDeletarItemDoList(ListView listview)
         {
             var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?", "Deletar!!!", MessageBoxButtons.YesNo);
@@ -67,21 +74,6 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
 
             return saida.Split(':');
         }
-        //private string [] GetValuesFromStringArray(string[] array)
-        //{
-        //    string[] chaves = new string[array.Length];
-        //    string[] valores = new string[array.Length];
-        //    for(var i=0; i< array.Length; i++)
-        //    {
-        //        if(i % 2 == 0)
-        //            chaves[i] = array[i].ToString();
-        //        else
-        //            valores[i] = array[i].ToString();
-        //    }
-
-        //    return valores;
-        //} 
-
         public string[] RetornaPropriedadesEmStringArray<T>(T item,params string [] propriedadesSelecionadas) 
             where T : TEntity
         {
@@ -149,9 +141,10 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
                 listView.Items.Add(listItem);
             }
         }
-        public void PreencheListViewProduto(ListView listView)
+        public void PreencheListViewProduto(ListView listView,List<Produto> lista = null)
         {
-            var lista = _banco.RetornarLista<Produto>();
+            if(lista == null)
+               lista = _banco.RetornarLista<Produto>();
 
             listView.Items.Clear();
             foreach (var item in lista)

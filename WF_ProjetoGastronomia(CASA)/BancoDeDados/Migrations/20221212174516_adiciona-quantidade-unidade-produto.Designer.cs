@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    [Migration("20221211021426_GastosReceita")]
-    partial class GastosReceita
+    [Migration("20221212174516_adiciona-quantidade-unidade-produto")]
+    partial class adicionaquantidadeunidadeproduto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,6 +32,9 @@ namespace BancoDeDados.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.Property<int>("PedidoId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuantidadePedido")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -75,6 +78,9 @@ namespace BancoDeDados.Migrations
 
                     b.Property<int>("ProdutoId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("QuantidadeProduto")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ReceitaId")
                         .HasColumnType("int");
@@ -156,11 +162,11 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("Bairro")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<long>("CNPJ")
-                        .HasColumnType("bigint");
+                    b.Property<string>("CNPJ")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<long>("Celular")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Celular")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Cidade")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -183,8 +189,8 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("Rua")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<long>("Telefone")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Telefone")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
@@ -235,6 +241,9 @@ namespace BancoDeDados.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<decimal>("PrecoPorQuantidade")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<decimal>("QuantidadeUnidade")
                         .HasColumnType("decimal(65,30)");
 
                     b.Property<int?>("ReceitaId")
@@ -322,6 +331,9 @@ namespace BancoDeDados.Migrations
 
                     b.Property<int>("GastoId")
                         .HasColumnType("int");
+
+                    b.Property<decimal>("QuantidadeGasto")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ReceitaId")
                         .HasColumnType("int");

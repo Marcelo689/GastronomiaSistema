@@ -167,29 +167,28 @@
     <Compile Include="Controller\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Migrations\20221208210242_sigla-unidade-medida.cs" />
-    <Compile Include="Migrations\20221208210242_sigla-unidade-medida.designer.cs">
-      <DependentUpon>20221208210242_sigla-unidade-medida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221208210834_NomeReceita.cs" />
-    <Compile Include="Migrations\20221208210834_NomeReceita.designer.cs">
-      <DependentUpon>20221208210834_NomeReceita.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221209191503_gastos.cs" />
-    <Compile Include="Migrations\20221209191503_gastos.designer.cs">
-      <DependentUpon>20221209191503_gastos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221211021426_GastosReceita.cs" />
-    <Compile Include="Migrations\20221211021426_GastosReceita.designer.cs">
-      <DependentUpon>20221211021426_GastosReceita.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ClassesRelacionadas\GastoReceita.cs" />
-    <Compile Include="Models\Gasto.cs" />
-    <Compile Include="Controller\Telas\Gerenciar Empresas.cs">
+    <Compile Include="Controller\Telas\GerenciarTipoReceita.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\Gerenciar Empresas.Designer.cs">
-      <DependentUpon>Gerenciar Empresas.cs</DependentUpon>
+    <Compile Include="Controller\Telas\GerenciarTipoReceita.Designer.cs">
+      <DependentUpon>GerenciarTipoReceita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221212171903_completa.cs" />
+    <Compile Include="Migrations\20221212171903_completa.designer.cs">
+      <DependentUpon>20221212171903_completa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221212174516_adiciona-quantidade-unidade-produto.cs" />
+    <Compile Include="Migrations\20221212174516_adiciona-quantidade-unidade-produto.designer.cs">
+      <DependentUpon>20221212174516_adiciona-quantidade-unidade-produto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
+    <Compile Include="Models\ClassesRelacionadas\GastoReceita.cs" />
+    <Compile Include="Models\Gasto.cs" />
+    <Compile Include="Controller\Telas\GerenciarEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controller\Telas\GerenciarEmpresas.Designer.cs">
+      <DependentUpon>GerenciarEmpresas.cs</DependentUpon>
     </Compile>
     <Compile Include="Controller\Telas\GerenciarReceitas.cs">
       <SubType>Form</SubType>
@@ -220,27 +219,6 @@
     <Compile Include="FormularioPrincipal.Designer.cs">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20221130150757_003.cs" />
-    <Compile Include="Migrations\20221130150757_003.designer.cs">
-      <DependentUpon>20221130150757_003.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221130152401_usuarios.cs" />
-    <Compile Include="Migrations\20221130152401_usuarios.designer.cs">
-      <DependentUpon>20221130152401_usuarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221130164428_manter-login.cs" />
-    <Compile Include="Migrations\20221130164428_manter-login.designer.cs">
-      <DependentUpon>20221130164428_manter-login.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221202115317_controllerCriado.cs" />
-    <Compile Include="Migrations\20221202115317_controllerCriado.designer.cs">
-      <DependentUpon>20221202115317_controllerCriado.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221204112054_unidadeMedida.cs" />
-    <Compile Include="Migrations\20221204112054_unidadeMedida.designer.cs">
-      <DependentUpon>20221204112054_unidadeMedida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Models\ClassesRelacionadas\PedidosConcluidos.cs" />
     <Compile Include="Models\ClassesRelacionadas\PedidosPendentes.cs" />
     <Compile Include="Models\ClassesRelacionadas\ProdutoReceita.cs" />
@@ -276,11 +254,17 @@
     <EmbeddedResource Include="CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Telas\GerenciarEmpresas.resx">
+      <DependentUpon>GerenciarEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controller\Telas\GerenciarProdutos.resx">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\Telas\GerenciarReceitas.resx">
       <DependentUpon>GerenciarReceitas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controller\Telas\GerenciarTipoReceita.resx">
+      <DependentUpon>GerenciarTipoReceita.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controller\Telas\GerenciarUnidadesMedida.resx">
       <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>

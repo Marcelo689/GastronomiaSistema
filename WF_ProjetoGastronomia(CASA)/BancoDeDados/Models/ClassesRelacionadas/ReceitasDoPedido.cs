@@ -12,7 +12,7 @@ namespace BancoDeDados.Contexto.ClassesRelacionadas
     public class ReceitaDoPedido : TEntity
     {
         [Key]
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public int ReceitaId { get; set; }
         public Receita Receita { get; set; }
         public int PedidoId { get; set; }

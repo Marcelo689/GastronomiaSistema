@@ -13,9 +13,6 @@ namespace BancoDeDados.Controller.Telas
 {
     public partial class GerenciarReceitas : FormBase
     {
-        private ListViewFunc listViewFunc = new ListViewFunc();
-        private ComboBoxFunc comboBoxFunc = new ComboBoxFunc();
-        private TextBoxFunc textBoxFunc = new TextBoxFunc();
         public GerenciarReceitas()
         {
             InitializeComponent();
@@ -33,23 +30,30 @@ namespace BancoDeDados.Controller.Telas
             {
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
                 var produtoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Produto>(comboBoxProdutos);
-
-                if (produtoSelecionado != null)
+                var quantidade = decimal.Parse(textBoxQuantidadeProduto.Text);
+                for(var i = 0; i < quantidade; i++)
                 {
-                    var produtoReceita = new ProdutoReceita()
+                    if (produtoSelecionado != null)
                     {
-                        Produto = produtoSelecionado,
-                        ProdutoId = produtoSelecionado.Id,
-                        Receita = receitaSelecionada,
-                        ReceitaId = receitaSelecionada.Id,
-                    };
-                    _banco.Cadastrar<ProdutoReceita>();
-
-                    listViewFunc.PreencheListViewProduto(listViewProdutos);
+                        var produtoReceita = new ProdutoReceita()
+                        {
+                            Produto = produtoSelecionado,
+                            ProdutoId = produtoSelecionado.Id,
+                            Receita = receitaSelecionada,
+                            ReceitaId = receitaSelecionada.Id,
+                        };
+                        _banco.Cadastrar<ProdutoReceita>(produtoReceita);
+                        var lista = _banco.RetornaProdutosDaReceita(receitaSelecionada.Id);
+                        listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
+                        lista,
+                        new string[]
+                        {
+                            "Id","Nome","PrecoPorQuantidade"
+                        });
+                    }
                 }
             }
         }
-
         private void PreencheListViews(int id = 0)
         {
             listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
@@ -66,7 +70,7 @@ namespace BancoDeDados.Controller.Telas
                     "Id","Nome","PrecoPorQuantidade"
                 });
             var listaGastos = _banco.RetornaGastosDaReceita(id);
-            listViewFunc.PreencheListView<Gasto, Gasto>(listViewGastos,
+            listViewFunc.PreencheListView<GastoReceitaListView, GastoReceitaListView>(listViewGastos,
                 listaGastos,
                 new string[]
                 {
@@ -154,14 +158,12 @@ namespace BancoDeDados.Controller.Telas
         {
             Limpar();
         }
-
-        
         private void listViewReceitas_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
                 var receita = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
-                PreencheListViews(receita.Id);
+                PreencheListViewsDaReceita(receita.Id);
                 btnDeletar.Enabled = true;
                 listViewGastos.Enabled = true;
                 listViewProdutos.Enabled = true;
@@ -174,6 +176,25 @@ namespace BancoDeDados.Controller.Telas
                 listViewProdutos.Enabled = false;
                 btnDeletarLinha.Enabled = false;
             }
+        }
+
+        private void PreencheListViewsDaReceita(int id)
+        {
+            var listaProdutos = _banco.RetornaProdutosDaReceita(id);
+            listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
+                listaProdutos,
+                new string[]
+                {
+                    "Id","Nome","PrecoPorQuantidade"
+                });
+            var listaGastos = _banco.RetornaGastosDaReceita(id);
+            listViewFunc.PreencheListView<GastoReceitaListView, GastoReceitaListView>(listViewGastos,
+                listaGastos,
+                new string[]
+                {
+                    "Id","Nome","Valor"
+                }
+            );
         }
 
         private void btnAdicionarGasto_Click(object sender, System.EventArgs e)

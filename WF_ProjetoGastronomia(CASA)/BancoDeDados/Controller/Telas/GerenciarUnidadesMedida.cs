@@ -1,21 +1,14 @@
 ﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
-using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BancoDeDados.Controller.Telas
 {
     public partial class GerenciarUnidadeMedida : FormBase 
     {
-        private ListViewFunc listViewFunc = new ListViewFunc();
         public GerenciarUnidadeMedida()
         {
             InitializeComponent();
@@ -95,6 +88,7 @@ namespace BancoDeDados.Controller.Telas
         private void LimparTela()
         {
             textBoxNomeUnidadeMedida.Text = "";
+            textBoxSigla.Text = "";
             btnDeletar.Enabled = false;
         }
         private void btnLimpar_Click(object sender, EventArgs e)

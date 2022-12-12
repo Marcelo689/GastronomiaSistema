@@ -10,5 +10,6 @@ namespace BancoDeDados.Contexto.ClassesRelacionadas
         public Receita Receita { get; set; }
         public int ProdutoId { get; set; }
         public Produto Produto { get; set; }
+        public decimal QuantidadeProduto { get; set; }
     }
 }

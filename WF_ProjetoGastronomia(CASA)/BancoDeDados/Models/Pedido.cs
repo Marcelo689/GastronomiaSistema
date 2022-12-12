@@ -9,7 +9,7 @@ namespace BancoDeDados.Contexto
     public class Pedido : TEntity
     {
         //id, idReceita, FoiEntrege,Data,Nome destinatario, precoVenda, precoCusto, Lucro.
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public int QuantidadeReceita { get; set; }
         public int ReceitaId { get; set; }
         public List<Receita> ReceitasDoPedido { get; set; }

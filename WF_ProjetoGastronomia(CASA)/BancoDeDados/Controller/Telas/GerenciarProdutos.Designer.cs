@@ -42,6 +42,8 @@
             this.comboBoxUnidadesMedida = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxPreco = new System.Windows.Forms.TextBox();
+            this.textBoxQuantidadeUnidade = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLimpar
@@ -64,7 +66,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(362, 25);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(426, 386);
+            this.listView1.Size = new System.Drawing.Size(426, 235);
             this.listView1.TabIndex = 20;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -78,7 +80,7 @@
             // headerPrecoUnidade
             // 
             this.headerPrecoUnidade.Text = "Preço";
-            this.headerPrecoUnidade.Width = 130;
+            this.headerPrecoUnidade.Width = 129;
             // 
             // headerUnidadeMedida
             // 
@@ -166,11 +168,29 @@
             this.textBoxPreco.TabIndex = 26;
             this.textBoxPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPreco_KeyPress);
             // 
+            // textBoxQuantidadeUnidade
+            // 
+            this.textBoxQuantidadeUnidade.Location = new System.Drawing.Point(184, 194);
+            this.textBoxQuantidadeUnidade.Name = "textBoxQuantidadeUnidade";
+            this.textBoxQuantidadeUnidade.Size = new System.Drawing.Size(148, 20);
+            this.textBoxQuantidadeUnidade.TabIndex = 28;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(57, 197);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(121, 13);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Quantidade da unidade:";
+            // 
             // GerenciarProdutos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 272);
+            this.Controls.Add(this.textBoxQuantidadeUnidade);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxPreco);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxUnidadesMedida);
@@ -206,5 +226,7 @@
         private System.Windows.Forms.ComboBox comboBoxUnidadesMedida;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxPreco;
+        private System.Windows.Forms.TextBox textBoxQuantidadeUnidade;
+        private System.Windows.Forms.Label label4;
     }
 }

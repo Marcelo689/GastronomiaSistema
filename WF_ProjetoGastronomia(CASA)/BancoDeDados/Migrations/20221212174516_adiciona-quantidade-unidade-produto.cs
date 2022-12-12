@@ -2,22 +2,22 @@
 
 namespace BancoDeDados.Migrations
 {
-    public partial class manterlogin : Migration
+    public partial class adicionaquantidadeunidadeproduto : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "ManterLogin",
-                table: "Usuarios",
+            migrationBuilder.AddColumn<decimal>(
+                name: "QuantidadeUnidade",
+                table: "Produtos",
                 nullable: false,
-                defaultValue: false);
+                defaultValue: 0m);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ManterLogin",
-                table: "Usuarios");
+                name: "QuantidadeUnidade",
+                table: "Produtos");
         }
     }
 }

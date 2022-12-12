@@ -35,7 +35,7 @@ namespace BancoDeDados.Controller
             if(idReceita == 0)  
                 return new List<Produto>();
             var idsProdutos = _contexto.ProdutosReceita.Where(x => x.ReceitaId == idReceita).Select( e => e.ProdutoId).ToList();
-
+                        
             return _contexto.Produtos.Where(e => idsProdutos.Contains(e.Id)).ToList();
         }
         public List<T> RetornarLista<T>(int? id = null) where T : TEntity
@@ -55,12 +55,6 @@ namespace BancoDeDados.Controller
             var listaFiltrada = _contexto.Set<T>().Select(
                 filtro
             ).ToList();
-                //selectFiltro
-            //e => new Produto()
-            //{
-            //     Nome = e.Nome,
-            //     PrecoPorQuantidade =  e.PrecoPorQuantidade
-            //}
             return listaFiltrada;
         }
         public List<T> RetornarLista<T>(params int [] ids) where T : TEntity
@@ -72,19 +66,39 @@ namespace BancoDeDados.Controller
         public bool Deletar<T>(params T[] entity) where T : TEntity
         {
             _contexto.Set<T>().RemoveRange(entity);
-            var mudancas = _contexto.SaveChanges();
-            if (mudancas > 0)
-                return true;
+            try
+            {
+                var mudancas = _contexto.SaveChanges();
+                if (mudancas > 0)
+                    return true;
+            }catch (Exception)
+            {
+                MessageBox.Show("Erro ao deletar, existe algo que depende do que você tentou deletar!");
+            }
             return false;
         }
 
-        public List<Gasto> RetornaGastosDaReceita(int idReceita)
+        public List<GastoReceitaListView> RetornaGastosDaReceita(int idReceita)
         {
             if (idReceita == 0)
-                return new List<Gasto>();
-            var idsGasto = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId).Select(e => e.GastoId).ToList();
+                return new List<GastoReceitaListView>();
+            var gastosDaReceita = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId);
+            var idsGastos = gastosDaReceita.Select(e => e.Id).ToArray();
+            var quantidades = gastosDaReceita.Select(e => e.QuantidadeGasto).ToList();
+            var lista =  _contexto.Gastos.Where(e => idsGastos.Contains(e.Id)).ToList();
+            var saidaLista = new List<GastoReceitaListView>();
+            
+            foreach (var item in lista.Select((value, i) => new { i, value }))
+            {
+                saidaLista.Add(new GastoReceitaListView
+                {
+                    Id = item.value.Id,
+                    Nome = item.value.Nome,
+                    QuantidadeGasto = quantidades[item.i]
+                });
+            }
 
-            return _contexto.Gastos.Where(e => idsGasto.Contains(e.Id)).ToList();
+            return saidaLista;
         }
 
         public bool Deletar<T>(params int[] entityIds) where T : TEntity

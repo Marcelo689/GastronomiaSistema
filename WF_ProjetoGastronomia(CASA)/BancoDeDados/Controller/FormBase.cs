@@ -1,7 +1,8 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Servicos;
-using System.ComponentModel;
-using System.Diagnostics;
+using BancoDeDados.Servicos.ComboBoxMetodos;
+using BancoDeDados.Servicos.ListVIewMetodos;
+using BancoDeDados.Servicos.TextBoxMetodos;
 using System.Windows.Forms;
 
 namespace BancoDeDados.Controller.Model
@@ -12,6 +13,9 @@ namespace BancoDeDados.Controller.Model
         protected OperacoesBanco _banco { get; set; }
         protected Servico _servico { get; set; }
 
+        protected ListViewFunc listViewFunc { get; set; }
+        protected ComboBoxFunc comboBoxFunc { get; set; }
+        protected TextBoxFunc textBoxFunc { get; set; }
         public FormBase() 
         {
             bool isInFormsDesignerMode = (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
@@ -23,7 +27,13 @@ namespace BancoDeDados.Controller.Model
                 _banco = new OperacoesBanco();
             if (_servico == null)
                 _servico = new Servico();
-            
+            if(listViewFunc == null)
+                listViewFunc = new ListViewFunc();
+            if(comboBoxFunc == null)
+                comboBoxFunc = new ComboBoxFunc();
+            if(textBoxFunc == null)
+                textBoxFunc = new TextBoxFunc();
+
         }
     }
 }

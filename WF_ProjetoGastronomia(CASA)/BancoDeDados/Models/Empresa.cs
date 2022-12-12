@@ -5,8 +5,8 @@ namespace BancoDeDados.Contexto
     public class Empresa : TEntity
     {
         //CNPJ obrigatório , tem lugar para logo, e Nome da empresa, endereço, contato(email, celular)
-        public int Id { get; set; } 
-        public long CNPJ { get; set; }
+        //public int Id { get; set; } 
+        public string CNPJ { get; set; }
         public byte[] Logo { get; set; }
         public string NomeEmpresa { get; set; }
         public string Rua { get; set; }
@@ -15,7 +15,7 @@ namespace BancoDeDados.Contexto
         public string EnderecoNumero { get; set; }
         public string Complemento { get; set; }
         public string Email { get; set; }
-        public long Celular { get; set; }
-        public long Telefone { get; set; }
+        public string Celular { get; set; }
+        public string Telefone { get; set; }
     }
 }

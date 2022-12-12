@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static BancoDeDados.Controller.OperacoesBanco;
 
@@ -26,7 +27,7 @@ namespace BancoDeDados.Servicos
             var listaConvertidaControl = lista as List<T>;
             return listaConvertidaControl;
         }
-
+        
         public void LimparTodosComponentesDoForm(Form form)
         {
             List<TextBox>  textBoxes = RetornaTodosComponentesDoForm<TextBox>(form, typeof(TextBox));
@@ -57,6 +58,14 @@ namespace BancoDeDados.Servicos
             }
         }
 
+        public static Regex ValidarEmail()
+        {
+            string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+                + @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+                + @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
+
+            return new Regex(pattern, RegexOptions.IgnoreCase);
+        }
         public string FormataValor(decimal valor)
         {
             return valor.ToString("F2", CultureInfo.InvariantCulture);

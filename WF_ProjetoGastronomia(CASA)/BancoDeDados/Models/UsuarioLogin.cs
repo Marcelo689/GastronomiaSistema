@@ -16,7 +16,7 @@ namespace BancoDeDados.Models
             Administrador = 1,
             Operador = 2
         }
-        public int Id { get; set; }
+        public override int Id { get; set; }
         public string Nome { get; set; }
         public string Senha { get; set; }
         public NivelAcesso PermissaoAcesso { get; set; }

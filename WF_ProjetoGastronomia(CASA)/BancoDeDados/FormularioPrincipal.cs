@@ -61,5 +61,15 @@ namespace BancoDeDados
         {
             _servico.AbrirTela(new GerenciarReceitas());
         }
+
+        private void tipoReceitaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarTipoReceita());
+        }
+
+        private void gerenciarEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarEmpresas());
+        }
     }
 }

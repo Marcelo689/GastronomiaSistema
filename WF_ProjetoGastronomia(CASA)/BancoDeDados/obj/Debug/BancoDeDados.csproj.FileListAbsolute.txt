@@ -160,3 +160,5 @@ C:\ProjetoSecreto\GastronomiaSistema\GastronomiaSistema\WF_ProjetoGastronomia(CA
 C:\ProjetoSecreto\GastronomiaSistema\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.csproj.CopyComplete
 C:\ProjetoSecreto\GastronomiaSistema\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.exe
 C:\ProjetoSecreto\GastronomiaSistema\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.pdb
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Controller.Telas.GerenciarTipoReceita.resources
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Controller.Telas.GerenciarEmpresas.resources
