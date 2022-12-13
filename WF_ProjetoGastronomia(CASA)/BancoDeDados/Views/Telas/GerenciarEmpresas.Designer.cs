@@ -295,7 +295,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(651, 358);
+            this.btnLimpar.Location = new System.Drawing.Point(651, 352);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(137, 23);
             this.btnLimpar.TabIndex = 24;
@@ -315,7 +315,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(651, 399);
+            this.btnCadastrar.Location = new System.Drawing.Point(651, 394);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(137, 23);
             this.btnCadastrar.TabIndex = 22;

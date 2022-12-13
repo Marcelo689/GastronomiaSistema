@@ -18,6 +18,8 @@ namespace BancoDeDados.Contexto
         public double PercentualGastoGas { get; set; }  
         public decimal PrecoCusto { get; set; }
         public TipoReceita TipoReceita { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
     }
 
 }

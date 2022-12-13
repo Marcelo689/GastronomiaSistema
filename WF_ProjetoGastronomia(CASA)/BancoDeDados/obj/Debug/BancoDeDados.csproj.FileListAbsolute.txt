@@ -70,7 +70,6 @@ C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoD
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Controller.Telas.GerenciarProdutos.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Controller.Telas.GerenciarUnidadeMedida.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.FormularioPrincipal.resources
-C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Form1.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Login.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Properties.Resources.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.csproj.GenerateResource.cache

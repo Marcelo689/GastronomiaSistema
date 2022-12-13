@@ -157,20 +157,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroUsuario.cs">
+    <Compile Include="Views\Telas\CadastroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CadastroUsuario.Designer.cs">
+    <Compile Include="Views\Telas\CadastroUsuario.Designer.cs">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Contexto\BDContexto.cs" />
-    <Compile Include="Controller\FormBase.cs">
+    <Compile Include="Migrations\20221213112127_empresaId.cs" />
+    <Compile Include="Migrations\20221213112127_empresaId.designer.cs">
+      <DependentUpon>20221213112127_empresaId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarTipoReceita.cs">
+    <Compile Include="Views\Telas\GerenciarTipoReceita.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarTipoReceita.Designer.cs">
+    <Compile Include="Views\Telas\GerenciarTipoReceita.Designer.cs">
       <DependentUpon>GerenciarTipoReceita.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\20221212171903_completa.cs" />
@@ -184,39 +188,39 @@
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Models\ClassesRelacionadas\GastoReceita.cs" />
     <Compile Include="Models\Gasto.cs" />
-    <Compile Include="Controller\Telas\GerenciarEmpresas.cs">
+    <Compile Include="Views\Telas\GerenciarEmpresas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarEmpresas.Designer.cs">
+    <Compile Include="Views\Telas\GerenciarEmpresas.Designer.cs">
       <DependentUpon>GerenciarEmpresas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarReceitas.cs">
+    <Compile Include="Views\Telas\GerenciarReceitas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarReceitas.Designer.cs">
+    <Compile Include="Views\Telas\GerenciarReceitas.Designer.cs">
       <DependentUpon>GerenciarReceitas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Servicos\ComboBoxMetodos\ComboBoxFunc.cs" />
-    <Compile Include="Servicos\ListVIewMetodos\ListViewFunc.cs" />
-    <Compile Include="Servicos\ListVIewMetodos\ProdutoListView.cs" />
-    <Compile Include="Servicos\ListVIewMetodos\ReceitaListView.cs" />
-    <Compile Include="Servicos\OperacoesBanco.cs" />
-    <Compile Include="Controller\Telas\GerenciarProdutos.cs">
+    <Compile Include="Controller\Servicos\ComboBoxMetodos\ComboBoxFunc.cs" />
+    <Compile Include="Controller\Servicos\ListVIewMetodos\ListViewFunc.cs" />
+    <Compile Include="Controller\Servicos\ListVIewMetodos\ProdutoListView.cs" />
+    <Compile Include="Controller\Servicos\ListVIewMetodos\ReceitaListView.cs" />
+    <Compile Include="Controller\Servicos\OperacoesBanco.cs" />
+    <Compile Include="Views\Telas\GerenciarProdutos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarProdutos.Designer.cs">
+    <Compile Include="Views\Telas\GerenciarProdutos.Designer.cs">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarUnidadesMedida.cs">
+    <Compile Include="Views\Telas\GerenciarUnidadesMedida.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Controller\Telas\GerenciarUnidadesMedida.Designer.cs">
+    <Compile Include="Views\Telas\GerenciarUnidadesMedida.Designer.cs">
       <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormularioPrincipal.cs">
+    <Compile Include="Views\FormularioPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormularioPrincipal.Designer.cs">
+    <Compile Include="Views\FormularioPrincipal.Designer.cs">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassesRelacionadas\PedidosConcluidos.cs" />
@@ -230,52 +234,40 @@
     <Compile Include="Models\Receita.cs" />
     <Compile Include="Models\TipoReceita.cs" />
     <Compile Include="Models\UnidadeMedida.cs" />
-    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\UsuarioLogin.cs" />
-    <Compile Include="ModelTeste\BancoTeste.cs" />
-    <Compile Include="Rascunhos\Form1.cs">
+    <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Rascunhos\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Views\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rascunhos\Rascunhos.cs" />
-    <Compile Include="Servicos\BaseDB.cs" />
-    <Compile Include="Servicos\Servico.cs" />
-    <Compile Include="Servicos\TextBoxMetodos\TextBoxFunc.cs" />
-    <EmbeddedResource Include="CadastroUsuario.resx">
+    <Compile Include="Controller\Servicos\BaseDB.cs" />
+    <Compile Include="Controller\Servicos\Servico.cs" />
+    <Compile Include="Controller\Servicos\TextBoxMetodos\TextBoxFunc.cs" />
+    <EmbeddedResource Include="Views\Telas\CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\Telas\GerenciarEmpresas.resx">
+    <EmbeddedResource Include="Views\Telas\GerenciarEmpresas.resx">
       <DependentUpon>GerenciarEmpresas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\Telas\GerenciarProdutos.resx">
+    <EmbeddedResource Include="Views\Telas\GerenciarProdutos.resx">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\Telas\GerenciarReceitas.resx">
+    <EmbeddedResource Include="Views\Telas\GerenciarReceitas.resx">
       <DependentUpon>GerenciarReceitas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\Telas\GerenciarTipoReceita.resx">
+    <EmbeddedResource Include="Views\Telas\GerenciarTipoReceita.resx">
       <DependentUpon>GerenciarTipoReceita.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controller\Telas\GerenciarUnidadesMedida.resx">
+    <EmbeddedResource Include="Views\Telas\GerenciarUnidadesMedida.resx">
       <DependentUpon>GerenciarUnidadesMedida.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormularioPrincipal.resx">
+    <EmbeddedResource Include="Views\FormularioPrincipal.resx">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Rascunhos\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

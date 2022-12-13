@@ -23,6 +23,8 @@ namespace BancoDeDados.Models
         public bool ManterLogin { get; set; }
         public bool UsuarioAtivo { get; set; }
         public byte[] Imagem { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
         public static bool ValidaUsuario(string usuario, string senha, bool usuarioExiste = false)
         {   
             if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(senha))

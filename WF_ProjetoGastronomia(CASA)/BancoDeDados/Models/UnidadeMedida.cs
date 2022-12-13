@@ -1,4 +1,5 @@
-﻿using BancoDeDados.Servicos.ComboBoxMetodos;
+﻿using BancoDeDados.Contexto;
+using BancoDeDados.Servicos.ComboBoxMetodos;
 
 namespace BancoDeDados.Models
 {
@@ -7,5 +8,7 @@ namespace BancoDeDados.Models
         //public int Id { get; set; }
         public override string Descricao { get; set; }
         public override string Sigla { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
     }
 }

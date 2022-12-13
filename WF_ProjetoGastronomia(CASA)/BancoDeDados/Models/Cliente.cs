@@ -18,5 +18,7 @@ namespace BancoDeDados.Contexto
         public long Celular { get; set; }
         public List<PedidoConcluido> PedidosConcluidos { get; set; }
         public List<PedidoPendente> PedidosPendentes { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
     }
 }

@@ -39,12 +39,14 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxManterLogin = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogar
             // 
-            this.btnLogar.Location = new System.Drawing.Point(479, 352);
+            this.btnLogar.Location = new System.Drawing.Point(311, 221);
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(75, 23);
             this.btnLogar.TabIndex = 0;
@@ -54,14 +56,14 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(282, 239);
+            this.textBoxUser.Location = new System.Drawing.Point(114, 108);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 1;
             // 
             // mTextBoxSenha
             // 
-            this.mTextBoxSenha.Location = new System.Drawing.Point(282, 282);
+            this.mTextBoxSenha.Location = new System.Drawing.Point(114, 151);
             this.mTextBoxSenha.Name = "mTextBoxSenha";
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
@@ -71,7 +73,7 @@
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(355, 165);
+            this.lblTitulo.Location = new System.Drawing.Point(187, 34);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(96, 37);
             this.lblTitulo.TabIndex = 3;
@@ -83,7 +85,7 @@
             this.menuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(524, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -105,7 +107,7 @@
             // checkBoxManterLogin
             // 
             this.checkBoxManterLogin.AutoSize = true;
-            this.checkBoxManterLogin.Location = new System.Drawing.Point(282, 320);
+            this.checkBoxManterLogin.Location = new System.Drawing.Point(114, 225);
             this.checkBoxManterLogin.Name = "checkBoxManterLogin";
             this.checkBoxManterLogin.Size = new System.Drawing.Size(88, 17);
             this.checkBoxManterLogin.TabIndex = 6;
@@ -114,7 +116,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(376, 351);
+            this.btnCancelar.Location = new System.Drawing.Point(208, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 24);
             this.btnCancelar.TabIndex = 7;
@@ -122,11 +124,30 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // comboBoxEmpresas
+            // 
+            this.comboBoxEmpresas.FormattingEnabled = true;
+            this.comboBoxEmpresas.Location = new System.Drawing.Point(165, 187);
+            this.comboBoxEmpresas.Name = "comboBoxEmpresas";
+            this.comboBoxEmpresas.Size = new System.Drawing.Size(221, 21);
+            this.comboBoxEmpresas.TabIndex = 8;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(111, 190);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Empresa";
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(524, 318);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.comboBoxEmpresas);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.checkBoxManterLogin);
             this.Controls.Add(this.lblTitulo);
@@ -157,5 +178,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.CheckBox checkBoxManterLogin;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.ComboBox comboBoxEmpresas;
+        private System.Windows.Forms.Label label1;
     }
 }

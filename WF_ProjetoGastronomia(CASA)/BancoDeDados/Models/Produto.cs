@@ -23,6 +23,8 @@ namespace BancoDeDados.Contexto
         public decimal PrecoPorQuantidade { get; set; }
         public decimal QuantidadeUnidade{ get; set; }
         public UnidadeMedida UnidadeMedida { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
         public IEnumerator GetEnumerator()
         {
             throw new System.NotImplementedException();

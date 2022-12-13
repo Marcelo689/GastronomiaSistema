@@ -1,7 +1,6 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Telas;
 using BancoDeDados.Models;
-using BancoDeDados.ModelTeste;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Windows.Forms;

@@ -18,6 +18,8 @@ namespace BancoDeDados.Contexto
         public DateTime? DataEntregaRealizada { get; set; }
         public Cliente Cliente{ get; set; }
         public decimal PrecoVenda { get; set; }
+        public Empresa Empresa { get; set; }
+        public int EmpresaId { get; set; }
 
         //public decimal GetPrecoVenda(BDContexto contexto)
         //{
