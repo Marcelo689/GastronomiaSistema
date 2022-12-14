@@ -1,25 +1,17 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Controller;
-using BancoDeDados.Models;
+using BancoDeDados.Controller.Model;
+using BancoDeDados.Controller.Telas;
 using BancoDeDados.Servicos;
-using NPOI.SS.Formula.Functions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BancoDeDados
 {
-    public partial class Login : Form
+    public partial class Login : FormBase
     {
-        private BDContexto _contexto;
-        private OperacoesBanco _banco;
-        private Servico _servico;
         public Login()
         {
             InitializeComponent();
@@ -30,6 +22,7 @@ namespace BancoDeDados
         
         private void menuItemCadastrarUsuario_Click(object sender, EventArgs e)
         {
+            
             if (_servico.ExisteAdministrador())
             {
                 MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir esta tela!");
@@ -48,6 +41,12 @@ namespace BancoDeDados
         }
         private void btnLogar_Click(object sender, EventArgs e)
         {
+            if (comboBoxEmpresas.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecione uma empresa, caso não exista cadastre uma!");
+                return;
+            }
+            var empresa = comboBoxFunc.RetornaItemComboSelecionado<Empresa>(comboBoxEmpresas);
             var usuario = textBoxUser.Text.ToString();
             var senha   = mTextBoxSenha.Text.ToString();
             var retorno = _contexto.Usuarios.Where(u => u.Nome == usuario && u.Senha == senha && u.UsuarioAtivo).FirstOrDefault();
@@ -65,6 +64,9 @@ namespace BancoDeDados
                 }
                 else
                     retorno.ManterLogin = false;
+
+                retorno.Empresa = empresa;
+                retorno.EmpresaId = empresa.Id;
                 _contexto.SaveChanges();
                 _contexto.Logar(retorno);
                 MessageBox.Show("Usuário logado com sucesso!");
@@ -90,11 +92,18 @@ namespace BancoDeDados
                     checkBoxManterLogin.Checked = true;
             }
 
+            comboBoxFunc.PreencheComboBox<Empresa>(comboBoxEmpresas, "NomeEmpresa");
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void cadastroEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarEmpresas());
+            comboBoxFunc.PreencheComboBox<Empresa>(comboBoxEmpresas, "NomeEmpresa");
         }
     }
 }

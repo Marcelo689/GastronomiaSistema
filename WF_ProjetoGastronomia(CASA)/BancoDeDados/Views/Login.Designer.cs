@@ -41,6 +41,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.cadastroEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +93,8 @@
             // menuItem
             // 
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuItemCadastrarUsuario});
+            this.menuItemCadastrarUsuario,
+            this.cadastroEmpresaToolStripMenuItem});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
@@ -141,6 +143,13 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Empresa";
             // 
+            // cadastroEmpresaToolStripMenuItem
+            // 
+            this.cadastroEmpresaToolStripMenuItem.Name = "cadastroEmpresaToolStripMenuItem";
+            this.cadastroEmpresaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroEmpresaToolStripMenuItem.Text = "Cadastro Empresa";
+            this.cadastroEmpresaToolStripMenuItem.Click += new System.EventHandler(this.cadastroEmpresaToolStripMenuItem_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,5 +189,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox comboBoxEmpresas;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem cadastroEmpresaToolStripMenuItem;
     }
 }

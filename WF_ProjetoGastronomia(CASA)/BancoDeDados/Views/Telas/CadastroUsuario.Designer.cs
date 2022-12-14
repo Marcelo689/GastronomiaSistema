@@ -42,13 +42,15 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(80, 19);
+            this.lblTitulo.Location = new System.Drawing.Point(24, 33);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(279, 37);
             this.lblTitulo.TabIndex = 7;
@@ -56,7 +58,7 @@
             // 
             // mTextBoxSenha
             // 
-            this.mTextBoxSenha.Location = new System.Drawing.Point(87, 133);
+            this.mTextBoxSenha.Location = new System.Drawing.Point(31, 147);
             this.mTextBoxSenha.Name = "mTextBoxSenha";
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
@@ -64,14 +66,14 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(87, 85);
+            this.textBoxUser.Location = new System.Drawing.Point(31, 99);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 5;
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(284, 224);
+            this.btnCadastrar.Location = new System.Drawing.Point(228, 274);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 4;
@@ -82,7 +84,7 @@
             // checkBoxIsAdministrador
             // 
             this.checkBoxIsAdministrador.AutoSize = true;
-            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(87, 179);
+            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(31, 222);
             this.checkBoxIsAdministrador.Name = "checkBoxIsAdministrador";
             this.checkBoxIsAdministrador.Size = new System.Drawing.Size(89, 17);
             this.checkBoxIsAdministrador.TabIndex = 8;
@@ -92,7 +94,7 @@
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(87, 224);
+            this.btnDeletar.Location = new System.Drawing.Point(31, 274);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletar.TabIndex = 9;
@@ -103,7 +105,7 @@
             // checkBoxUsuarioAtivo
             // 
             this.checkBoxUsuarioAtivo.AutoSize = true;
-            this.checkBoxUsuarioAtivo.Location = new System.Drawing.Point(241, 179);
+            this.checkBoxUsuarioAtivo.Location = new System.Drawing.Point(216, 232);
             this.checkBoxUsuarioAtivo.Name = "checkBoxUsuarioAtivo";
             this.checkBoxUsuarioAtivo.Size = new System.Drawing.Size(50, 17);
             this.checkBoxUsuarioAtivo.TabIndex = 10;
@@ -118,9 +120,9 @@
             this.headerAcesso});
             this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(389, 33);
+            this.listView1.Location = new System.Drawing.Point(403, 12);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(385, 214);
+            this.listView1.Size = new System.Drawing.Size(385, 285);
             this.listView1.TabIndex = 11;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -143,7 +145,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(187, 224);
+            this.btnLimpar.Location = new System.Drawing.Point(130, 274);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 12;
@@ -154,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(87, 60);
+            this.label1.Location = new System.Drawing.Point(31, 74);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 13;
@@ -163,17 +165,36 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(87, 117);
+            this.label2.Location = new System.Drawing.Point(31, 131);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 14;
             this.label2.Text = "Senha";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 188);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Empresa";
+            // 
+            // comboBoxEmpresas
+            // 
+            this.comboBoxEmpresas.FormattingEnabled = true;
+            this.comboBoxEmpresas.Location = new System.Drawing.Point(82, 185);
+            this.comboBoxEmpresas.Name = "comboBoxEmpresas";
+            this.comboBoxEmpresas.Size = new System.Drawing.Size(221, 21);
+            this.comboBoxEmpresas.TabIndex = 15;
+            // 
             // CadastroUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 278);
+            this.ClientSize = new System.Drawing.Size(800, 309);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxEmpresas);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLimpar);
@@ -209,5 +230,7 @@
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxEmpresas;
     }
 }

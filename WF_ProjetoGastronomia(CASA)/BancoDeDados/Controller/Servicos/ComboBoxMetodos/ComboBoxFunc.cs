@@ -70,7 +70,7 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
 
             //var _lista = (from u in lista select new { Id = u.Id, Descricao = u.Sigla }).ToList();
             //var _lista = (from u in lista select idEDescricao).ToList();
-            
+            combo.DataSource = null;
             combo.Items.Clear();
             combo.SelectedIndex = -1;
             combo.DataSource = lista;

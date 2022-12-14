@@ -1,4 +1,5 @@
-﻿using BancoDeDados.Controller.Model;
+﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
@@ -17,6 +18,8 @@ namespace BancoDeDados
         {
             if (listViewFunc.ExisteLinhaSelecionada(listView1)) // é um update
                 return true;
+
+            var empresaSelecionada = comboBoxFunc.RetornaItemComboSelecionado<Empresa>(comboBoxEmpresas);
             var usuario = textBoxUser.Text.ToString();
             var senha = mTextBoxSenha.Text.ToString();
             
@@ -26,6 +29,7 @@ namespace BancoDeDados
                 e.UsuarioAtivo == checkBoxUsuarioAtivo.Checked &&
                 e.PermissaoAcesso == UsuarioLogin.NivelAcesso.Administrador
             ).Any();
+
             var valido = UsuarioLogin.ValidaUsuario(usuario, senha, usuarioJaExiste);
             if (valido == false)
                 return false;
@@ -43,7 +47,9 @@ namespace BancoDeDados
                 Nome = usuario,
                 Senha = senha,
                 PermissaoAcesso = acesso,
-                UsuarioAtivo = ativo
+                UsuarioAtivo = ativo,
+                Empresa = empresaSelecionada,
+                EmpresaId = empresaSelecionada.Id
             };
 
             var retorno  = _banco.Cadastrar<UsuarioLogin>(login);
@@ -65,6 +71,8 @@ namespace BancoDeDados
                 usuarioExistente.Nome = textBoxUser.Text;
                 usuarioExistente.Senha = mTextBoxSenha.Text;
                 usuarioExistente.UsuarioAtivo = checkBoxUsuarioAtivo.Checked;
+                usuarioExistente.Empresa = _contexto.Login.Empresa;
+                usuarioExistente.EmpresaId = _contexto.Login.EmpresaId;
                 usuarioExistente.PermissaoAcesso = checkBoxIsAdministrador.Checked ? UsuarioLogin.NivelAcesso.Administrador : UsuarioLogin.NivelAcesso.Operador;
 
                 var atualizou = _banco.Atualizar<UsuarioLogin>(usuarioExistente);
@@ -100,7 +108,7 @@ namespace BancoDeDados
         private void CadastroUsuario_Load(object sender, EventArgs e)
         {
             DesabilitaCheckBoxesCasoNecessario();
-
+            comboBoxFunc.PreencheComboBox<Empresa>(comboBoxEmpresas, "NomeEmpresa");
             CarregarLista();
         }
         private void PreencheTelaCadastro(string nome, string senha,UsuarioLogin.NivelAcesso acesso,bool ativo)
