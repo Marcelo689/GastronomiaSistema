@@ -55,6 +55,8 @@ namespace BancoDeDados.Controller.Telas
             if (existeItemSelecionado)
             {
                 var ItemSelecionado = listViewFunc.RetornaItemLinhaSelecionada<UnidadeMedida>(listView1);
+                ItemSelecionado.Empresa = _contexto.Login.Empresa;
+                ItemSelecionado.EmpresaId = _contexto.Login.EmpresaId;
                 ItemSelecionado.Descricao = nomeUnidadeMedida;
                 ItemSelecionado.Sigla = siglaUnidadeMedida;
                 _banco.Atualizar<UnidadeMedida>(ItemSelecionado);
@@ -72,7 +74,9 @@ namespace BancoDeDados.Controller.Telas
                 var ItemSelecionado = new UnidadeMedida()
                 {
                     Descricao = nomeUnidadeMedida,
-                    Sigla = siglaUnidadeMedida,
+                    Sigla     = siglaUnidadeMedida,
+                    Empresa   = _contexto.Login.Empresa,
+                    EmpresaId = _contexto.Login.EmpresaId
                 };
                 _banco.Cadastrar<UnidadeMedida>(ItemSelecionado);
                 CarregarLista();

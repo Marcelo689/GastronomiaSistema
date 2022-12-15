@@ -40,7 +40,6 @@
             this.textBoxPotenciaKwh = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tempoDePreparo = new System.Windows.Forms.DateTimePicker();
             this.textBoxQuantidadeProduto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxTipoReceita = new System.Windows.Forms.ComboBox();
@@ -62,6 +61,8 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.textBoxNomeReceita = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
+            this.textBoxTempoPreparo = new System.Windows.Forms.MaskedTextBox();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // btnDeletarLinha
@@ -169,13 +170,6 @@
             this.label6.TabIndex = 45;
             this.label6.Text = "Tempo de preparo";
             // 
-            // tempoDePreparo
-            // 
-            this.tempoDePreparo.Location = new System.Drawing.Point(418, 125);
-            this.tempoDePreparo.Name = "tempoDePreparo";
-            this.tempoDePreparo.Size = new System.Drawing.Size(132, 20);
-            this.tempoDePreparo.TabIndex = 44;
-            // 
             // textBoxQuantidadeProduto
             // 
             this.textBoxQuantidadeProduto.Location = new System.Drawing.Point(208, 182);
@@ -205,7 +199,8 @@
             // 
             this.listViewProdutos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ProdutosNomes,
-            this.ProdutosCustos});
+            this.ProdutosCustos,
+            this.columnHeader3});
             this.listViewProdutos.FullRowSelect = true;
             this.listViewProdutos.HideSelection = false;
             this.listViewProdutos.Location = new System.Drawing.Point(23, 222);
@@ -219,12 +214,12 @@
             // ProdutosNomes
             // 
             this.ProdutosNomes.Text = "Nome";
-            this.ProdutosNomes.Width = 186;
+            this.ProdutosNomes.Width = 132;
             // 
             // ProdutosCustos
             // 
             this.ProdutosCustos.Text = "Custo";
-            this.ProdutosCustos.Width = 98;
+            this.ProdutosCustos.Width = 84;
             // 
             // btnAdicionarProduto
             // 
@@ -360,11 +355,26 @@
             this.btnCadastrar.UseVisualStyleBackColor = true;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
+            // textBoxTempoPreparo
+            // 
+            this.textBoxTempoPreparo.Location = new System.Drawing.Point(419, 127);
+            this.textBoxTempoPreparo.Mask = "00:00:00";
+            this.textBoxTempoPreparo.Name = "textBoxTempoPreparo";
+            this.textBoxTempoPreparo.Size = new System.Drawing.Size(131, 20);
+            this.textBoxTempoPreparo.TabIndex = 55;
+            this.textBoxTempoPreparo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTempoPreparo_KeyPress);
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Quantidade";
+            this.columnHeader3.Width = 69;
+            // 
             // GerenciarReceitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBoxTempoPreparo);
             this.Controls.Add(this.btnDeletarLinha);
             this.Controls.Add(this.listViewGastos);
             this.Controls.Add(this.label9);
@@ -375,7 +385,6 @@
             this.Controls.Add(this.textBoxPotenciaKwh);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.tempoDePreparo);
             this.Controls.Add(this.textBoxQuantidadeProduto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.comboBoxTipoReceita);
@@ -423,7 +432,6 @@
         private System.Windows.Forms.ComboBox comboBoxTipoReceita;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxQuantidadeProduto;
-        private System.Windows.Forms.DateTimePicker tempoDePreparo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxPotenciaKwh;
         private System.Windows.Forms.Label label7;
@@ -437,5 +445,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button btnDeletarLinha;
+        private System.Windows.Forms.MaskedTextBox textBoxTempoPreparo;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

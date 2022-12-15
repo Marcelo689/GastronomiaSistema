@@ -23,6 +23,7 @@ namespace BancoDeDados.Controller.Telas
                 textBoxNomeProduto.Text = produtoSelecionado.Nome;
                 textBoxPreco.Text = _servico.FormataValor(produtoSelecionado.PrecoPorQuantidade);
                 var indiceCombo = comboBoxUnidadesMedida.FindStringExact(produtoSelecionado.UnidadeMedida.Sigla);
+                textBoxQuantidadeUnidade.Text = _servico.FormataValor(produtoSelecionado.QuantidadeUnidade);
                 comboBoxUnidadesMedida.SelectedIndex = indiceCombo;
                 btnDeletar.Enabled = true;
             }

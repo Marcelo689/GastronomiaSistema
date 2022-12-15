@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Models;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using System.Collections;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -25,6 +26,8 @@ namespace BancoDeDados.Contexto
         public UnidadeMedida UnidadeMedida { get; set; }
         public Empresa Empresa { get; set; }
         public int EmpresaId { get; set; }
+        [NotMapped]
+        public string QuantidadeProduto { get; set; }
         public IEnumerator GetEnumerator()
         {
             throw new System.NotImplementedException();
@@ -56,7 +59,7 @@ namespace BancoDeDados.Contexto
         public decimal PrecoPorQuantidade { get; set; }
         //public TipoUnidade ProdutoTipoUnidade { get; set; }
         public UnidadeMedida UnidadeMedida { get; set; }
-
+        public string QuantidadeProduto { get; set; }
 
         public IEnumerator GetEnumerator()
         {

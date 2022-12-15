@@ -9,6 +9,18 @@ namespace BancoDeDados.Servicos.TextBoxMetodos
         {
             return cnpj.Replace("/", "").Replace("-", "").Replace("_", "");
         }
+        public void FormataTempoPreparo(object sender, KeyPressEventArgs e, string tempo)
+        {
+            //var texto = (sender as TextBox).Text.Length;
+            if (
+                    !char.IsControl(e.KeyChar) &&
+                    !char.IsDigit(e.KeyChar) 
+                )
+            {
+                e.Handled = true;
+            }
+
+        }
         internal void FormatoTextBoxDinheiro(object sender, KeyPressEventArgs e)
         {
             if (

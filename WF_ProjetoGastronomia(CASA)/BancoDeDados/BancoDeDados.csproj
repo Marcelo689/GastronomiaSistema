@@ -157,6 +157,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\20221215181731_mudando campos para decimal onde eram inteiros.cs" />
+    <Compile Include="Migrations\20221215181731_mudando campos para decimal onde eram inteiros.designer.cs">
+      <DependentUpon>20221215181731_mudando campos para decimal onde eram inteiros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Telas\CadastroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>

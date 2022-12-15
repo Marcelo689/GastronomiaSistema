@@ -1,4 +1,6 @@
-﻿using BancoDeDados.Controller.Model;
+﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller.Model;
+using BancoDeDados.Migrations;
 using BancoDeDados.Models;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
@@ -58,7 +60,9 @@ namespace BancoDeDados.Controller.Telas
             {
                 var tipoReceita = new TipoReceita()
                 {
-                    Descricao = textBoxTipoReceita.Text
+                    Descricao = textBoxTipoReceita.Text,
+                    Empresa = _contexto.Login.Empresa,
+                    EmpresaId = _contexto.Login.EmpresaId,  
                 };
 
                 _banco.Cadastrar<TipoReceita>(tipoReceita);
@@ -68,6 +72,8 @@ namespace BancoDeDados.Controller.Telas
             {
                 var tipoReceitaSelecionado = listViewFunc.RetornaItemLinhaSelecionada<TipoReceita>(listViewReceita);
 
+                tipoReceitaSelecionado.Empresa   = _contexto.Login.Empresa;
+                tipoReceitaSelecionado.EmpresaId = _contexto.Login.EmpresaId; 
                 tipoReceitaSelecionado.Descricao = textBoxTipoReceita.Text;
                 _banco.Atualizar<TipoReceita>(tipoReceitaSelecionado);
                 PreencherListView();

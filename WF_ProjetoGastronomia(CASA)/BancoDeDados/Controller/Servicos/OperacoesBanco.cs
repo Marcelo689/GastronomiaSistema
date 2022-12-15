@@ -1,7 +1,9 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Telas;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -35,8 +37,21 @@ namespace BancoDeDados.Controller
             if(idReceita == 0)  
                 return new List<Produto>();
             var idsProdutos = _contexto.ProdutosReceita.Where(x => x.ReceitaId == idReceita).Select( e => e.ProdutoId).ToList();
-                        
-            return _contexto.Produtos.Where(e => idsProdutos.Contains(e.Id)).ToList();
+            var lista = _contexto.Produtos.Where(e => idsProdutos.Contains(e.Id)).ToList();
+            
+            foreach (var item in lista)
+            {
+                var quantidade = RetornaQuantidadeProdutoNaReceita(idReceita, item.Id);
+                var total = quantidade * item.PrecoPorQuantidade;
+                item.QuantidadeProduto = quantidade.ToString("F2", CultureInfo.InvariantCulture);
+            }
+            return lista;
+        }
+
+        public decimal RetornaQuantidadeProdutoNaReceita(int idReceita, int idProduto)
+        {
+            var quantidade = _contexto.ProdutosReceita.Where(x => x.ReceitaId == idReceita && idProduto == x.ProdutoId).Select(e => e.QuantidadeProduto).First();
+            return quantidade;
         }
         public List<T> RetornarLista<T>(int? id = null) where T : TEntity
         {

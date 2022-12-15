@@ -14,7 +14,7 @@ namespace BancoDeDados.Contexto
         public int QuantidadeProduto { get; set; }
         // hh:mm:ss
         public string TempoDePreparo { get; set; }
-        public int PotenciaKwh { get; set; }
+        public decimal PotenciaKwh { get; set; }
         public double PercentualGastoGas { get; set; }  
         public decimal PrecoCusto { get; set; }
         public TipoReceita TipoReceita { get; set; }
