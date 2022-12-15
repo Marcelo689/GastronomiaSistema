@@ -1,9 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
-using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
-using BancoDeDados.Servicos.TextBoxMetodos;
 using System;
 using System.Data;
 using System.Linq;
@@ -64,6 +62,8 @@ namespace BancoDeDados.Controller.Telas
                 produtoSelecionado.PrecoPorQuantidade = preco;
                 produtoSelecionado.QuantidadeUnidade = quantidadeUnidade;
                 produtoSelecionado.UnidadeMedida = RetornaUnidadeMedidaSelecionado();
+                produtoSelecionado.Empresa = _contexto.Login.Empresa;
+                produtoSelecionado.EmpresaId = _contexto.Login.EmpresaId;
                 _banco.Atualizar<Produto>(produtoSelecionado);
 
                 PreencheListView();
@@ -77,7 +77,9 @@ namespace BancoDeDados.Controller.Telas
                         Nome = nomeProduto,
                         PrecoPorQuantidade = preco,
                         UnidadeMedida = unidadeMedidaEntity,
-                        QuantidadeUnidade = quantidadeUnidade
+                        QuantidadeUnidade = quantidadeUnidade,
+                        Empresa = _contexto.Login.Empresa,
+                        EmpresaId = _contexto.Login.EmpresaId,
                     }
                 );
                 PreencheListView();

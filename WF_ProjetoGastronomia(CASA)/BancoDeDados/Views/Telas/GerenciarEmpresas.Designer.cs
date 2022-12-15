@@ -66,7 +66,7 @@
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Location = new System.Drawing.Point(12, 61);
+            this.pictureBoxLogo.Location = new System.Drawing.Point(21, 61);
             this.pictureBoxLogo.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
             this.pictureBoxLogo.Size = new System.Drawing.Size(74, 63);
@@ -76,7 +76,7 @@
             // 
             // btnAnexarLogo
             // 
-            this.btnAnexarLogo.Location = new System.Drawing.Point(11, 130);
+            this.btnAnexarLogo.Location = new System.Drawing.Point(20, 128);
             this.btnAnexarLogo.Name = "btnAnexarLogo";
             this.btnAnexarLogo.Size = new System.Drawing.Size(75, 23);
             this.btnAnexarLogo.TabIndex = 1;

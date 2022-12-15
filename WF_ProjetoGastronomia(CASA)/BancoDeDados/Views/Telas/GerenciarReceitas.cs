@@ -229,13 +229,23 @@ namespace BancoDeDados.Controller.Telas
             int.TryParse(textBoxPotenciaKwh.Text, out potenciaKwh);
             var tipoReceita = comboBoxFunc.RetornaItemComboSelecionado<TipoReceita>(comboBoxTipoReceita);
 
+            if(listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
+            {
+                var receitaAtualizar         = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+                receitaAtualizar.TipoReceita = tipoReceita;
+                receitaAtualizar.Empresa     = _contexto.Login.Empresa;
+                receitaAtualizar.EmpresaId   = _contexto.Login.EmpresaId;
+                receitaAtualizar.PrecoCusto  = precoVenda;
+                receitaAtualizar.PotenciaKwh = potenciaKwh;
+            }
             var receita = new Receita()
             {
                 NomeReceita = nomeReceita,
-                PrecoCusto = precoVenda,
+                PrecoCusto  = precoVenda,
                 PotenciaKwh = potenciaKwh,
                 TipoReceita = tipoReceita,
-
+                Empresa     = _contexto.Login.Empresa,
+                EmpresaId   = _contexto.Login.EmpresaId
             };
             _banco.Cadastrar<Receita>(receita);
             PreencheListViews();
