@@ -67,6 +67,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -316,7 +317,8 @@
             // 
             this.listViewReceitas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.headerNome,
-            this.headerPrecoUnidade});
+            this.headerPrecoUnidade,
+            this.columnHeader5});
             this.listViewReceitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewReceitas.FullRowSelect = true;
             this.listViewReceitas.HideSelection = false;
@@ -331,12 +333,12 @@
             // headerNome
             // 
             this.headerNome.Text = "Nome";
-            this.headerNome.Width = 269;
+            this.headerNome.Width = 183;
             // 
             // headerPrecoUnidade
             // 
-            this.headerPrecoUnidade.Text = "Preço";
-            this.headerPrecoUnidade.Width = 163;
+            this.headerPrecoUnidade.Text = "Preço de Venda";
+            this.headerPrecoUnidade.Width = 147;
             // 
             // btnDeletar
             // 
@@ -460,6 +462,12 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Items Dentro da Receita";
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Lucro";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader5.Width = 99;
+            // 
             // GerenciarReceitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -528,5 +536,6 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

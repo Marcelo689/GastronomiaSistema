@@ -13,13 +13,20 @@ namespace BancoDeDados.Contexto
         public List<Produto> Produto { get; set; }
         public int QuantidadeProduto { get; set; }
         // hh:mm:ss
+        public decimal PrecoCusto { get; set; }
         public string TempoDePreparo { get; set; }
         public decimal PotenciaKwh { get; set; }
         public double PercentualGastoGas { get; set; }  
-        public decimal PrecoCusto { get; set; }
+        public decimal PrecoVenda { get; set; }
         public TipoReceita TipoReceita { get; set; }
         public Empresa Empresa { get; set; }
         public int EmpresaId { get; set; }
+        public decimal Lucro { 
+            get 
+            {
+                return PrecoVenda - PrecoCusto;
+            } 
+        } 
     }
 
 }

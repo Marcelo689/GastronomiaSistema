@@ -85,7 +85,7 @@ namespace BancoDeDados.Controller.Telas
                 lista,   
                 new string[]
                     {
-                        "Id","NomeReceita","PrecoCusto"
+                        "Id","NomeReceita","PrecoVenda","Lucro"
                     }
                 );
         }
@@ -174,10 +174,10 @@ namespace BancoDeDados.Controller.Telas
         }
         private void listViewProdutos_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            listViewFunc.DesSelecionionaListView(listViewGastos);
             if (listViewFunc.ExisteLinhaSelecionada(listViewProdutos))
             {
                 btnDeletarLinha.Enabled = true;
-                listViewFunc.DesSelecionionaListView(listViewGastos);
             }
             else
                 btnDeletarLinha.Enabled = false;
@@ -216,7 +216,7 @@ namespace BancoDeDados.Controller.Telas
         {
             textBoxNomeReceita.Text = receita.NomeReceita;
             textBoxPotenciaKwh.Text = _servico.FormataValor(receita.PotenciaKwh);
-            textBoxPrecoReceita.Text = _servico.FormataValor(receita.PrecoCusto);
+            textBoxPrecoReceita.Text = _servico.FormataValor(receita.PrecoVenda);
 
             comboBoxTipoReceita.SelectedIndex = comboBoxTipoReceita.FindStringExact( receita.TipoReceita.Descricao);
             textBoxTempoPreparo.Text = receita.TempoDePreparo;
@@ -251,8 +251,12 @@ namespace BancoDeDados.Controller.Telas
             }
             foreach (var gasto in _gastos)
             {
-                total -= _servico.FormataDinheiro(gasto.Valor.ToString("F2",CultureInfo.InvariantCulture));
+                total += _servico.FormataDinheiro(gasto.Valor.ToString("F2",CultureInfo.InvariantCulture));
             }
+
+            var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+            if(receitaSelecionada != null)
+                receitaSelecionada.PrecoCusto = total;
 
             lblPrecoCusto.Text = _servico.FormataValor(total);
         }
@@ -281,7 +285,7 @@ namespace BancoDeDados.Controller.Telas
 
                 if (gastoSelecionado.Id > 0)
                 {
-                    var GastoNaReceita = _banco.RetornarLista<GastoReceita>(gastoSelecionado.Id);
+                    var GastoNaReceita = _banco.RetornarLista<GastoReceita>().Where( gr => gr.ReceitaId == receitaSelecionada.Id && gr.GastoId == gastoSelecionado.Id);
                     
                     if (GastoNaReceita.Any() && GastoNaReceita.First().GastoId == gastoSelecionado.Id)
                     {//atualizar
@@ -324,7 +328,7 @@ namespace BancoDeDados.Controller.Telas
                 receitaAtualizar.TipoReceita    = tipoReceita;
                 receitaAtualizar.Empresa        = _contexto.Login.Empresa;
                 receitaAtualizar.EmpresaId      = _contexto.Login.EmpresaId;
-                receitaAtualizar.PrecoCusto     = _servico.FormataDinheiro(precoVenda);
+                receitaAtualizar.PrecoVenda     = _servico.FormataDinheiro(precoVenda);
                 receitaAtualizar.PotenciaKwh    = _servico.FormataDinheiro(potenciaKwh);
                 receitaAtualizar.TempoDePreparo = textBoxTempoPreparo.Text;
                 _banco.Atualizar<Receita>(receitaAtualizar);
@@ -335,7 +339,7 @@ namespace BancoDeDados.Controller.Telas
                 var receita = new Receita()
                 {
                     NomeReceita = nomeReceita,
-                    PrecoCusto  = _servico.FormataDinheiro(precoVenda),
+                    PrecoVenda  = _servico.FormataDinheiro(precoVenda),
                     PotenciaKwh = _servico.FormataDinheiro(potenciaKwh),
                     TipoReceita = tipoReceita,
                     Empresa     = _contexto.Login.Empresa,

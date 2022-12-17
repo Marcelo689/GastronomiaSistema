@@ -191,7 +191,7 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
                 var listItem = new ListViewItem(
                     new string[]{
                         item.NomeReceita,
-                        item.PrecoCusto.ToString("F2"),
+                        item.PrecoVenda.ToString("F2"),
                         //item.TempoDePreparo.ToString()
                     }
                 );

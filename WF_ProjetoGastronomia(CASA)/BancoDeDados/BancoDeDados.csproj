@@ -161,6 +161,10 @@
     <Compile Include="Migrations\20221216222605_completo.designer.cs">
       <DependentUpon>20221216222605_completo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221217034614_Adiciona preco venda.cs" />
+    <Compile Include="Migrations\20221217034614_Adiciona preco venda.designer.cs">
+      <DependentUpon>20221217034614_Adiciona preco venda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Telas\CadastroUsuario.cs">
       <SubType>Form</SubType>
