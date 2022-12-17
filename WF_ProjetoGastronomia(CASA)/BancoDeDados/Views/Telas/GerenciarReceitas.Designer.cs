@@ -46,8 +46,9 @@
             this.listViewProdutos = new System.Windows.Forms.ListView();
             this.ProdutosNomes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProdutosCustos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdicionarProduto = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxPrecoReceita = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxProdutos = new System.Windows.Forms.ComboBox();
@@ -62,17 +63,27 @@
             this.textBoxNomeReceita = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.textBoxTempoPreparo = new System.Windows.Forms.MaskedTextBox();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnDeletarLinha
             // 
-            this.btnDeletarLinha.Location = new System.Drawing.Point(321, 388);
+            this.btnDeletarLinha.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDeletarLinha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletarLinha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletarLinha.Location = new System.Drawing.Point(366, 149);
             this.btnDeletarLinha.Name = "btnDeletarLinha";
-            this.btnDeletarLinha.Size = new System.Drawing.Size(114, 21);
+            this.btnDeletarLinha.Size = new System.Drawing.Size(163, 21);
             this.btnDeletarLinha.TabIndex = 54;
             this.btnDeletarLinha.Text = "Deletar Linha";
-            this.btnDeletarLinha.UseVisualStyleBackColor = true;
+            this.btnDeletarLinha.UseVisualStyleBackColor = false;
             this.btnDeletarLinha.Click += new System.EventHandler(this.btnDeletarLinha_Click);
             // 
             // listViewGastos
@@ -82,12 +93,13 @@
             this.columnHeader2});
             this.listViewGastos.FullRowSelect = true;
             this.listViewGastos.HideSelection = false;
-            this.listViewGastos.Location = new System.Drawing.Point(321, 222);
+            this.listViewGastos.Location = new System.Drawing.Point(6, 48);
             this.listViewGastos.Name = "listViewGastos";
-            this.listViewGastos.Size = new System.Drawing.Size(229, 160);
+            this.listViewGastos.Size = new System.Drawing.Size(229, 103);
             this.listViewGastos.TabIndex = 53;
             this.listViewGastos.UseCompatibleStateImageBehavior = false;
             this.listViewGastos.View = System.Windows.Forms.View.Details;
+            this.listViewGastos.SelectedIndexChanged += new System.EventHandler(this.listViewGastos_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -102,33 +114,36 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(441, 392);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(381, 33);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 13);
+            this.label9.Size = new System.Drawing.Size(94, 13);
             this.label9.TabIndex = 52;
             this.label9.Text = "Preço de Custo";
             // 
             // lblPrecoCusto
             // 
             this.lblPrecoCusto.AutoSize = true;
-            this.lblPrecoCusto.Location = new System.Drawing.Point(540, 392);
+            this.lblPrecoCusto.Location = new System.Drawing.Point(481, 34);
             this.lblPrecoCusto.Name = "lblPrecoCusto";
             this.lblPrecoCusto.Size = new System.Drawing.Size(28, 13);
             this.lblPrecoCusto.TabIndex = 51;
             this.lblPrecoCusto.Text = "0.00";
+            this.lblPrecoCusto.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(318, 190);
+            this.label8.Location = new System.Drawing.Point(5, 22);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 50;
             this.label8.Text = "Gastos";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // btnAdicionarGasto
             // 
-            this.btnAdicionarGasto.Location = new System.Drawing.Point(527, 185);
+            this.btnAdicionarGasto.Location = new System.Drawing.Point(212, 17);
             this.btnAdicionarGasto.Name = "btnAdicionarGasto";
             this.btnAdicionarGasto.Size = new System.Drawing.Size(23, 23);
             this.btnAdicionarGasto.TabIndex = 49;
@@ -139,40 +154,40 @@
             // comboBoxGastos
             // 
             this.comboBoxGastos.FormattingEnabled = true;
-            this.comboBoxGastos.Location = new System.Drawing.Point(364, 187);
+            this.comboBoxGastos.Location = new System.Drawing.Point(51, 19);
             this.comboBoxGastos.Name = "comboBoxGastos";
             this.comboBoxGastos.Size = new System.Drawing.Size(157, 21);
             this.comboBoxGastos.TabIndex = 48;
             // 
             // textBoxPotenciaKwh
             // 
-            this.textBoxPotenciaKwh.Location = new System.Drawing.Point(131, 153);
+            this.textBoxPotenciaKwh.Location = new System.Drawing.Point(135, 78);
             this.textBoxPotenciaKwh.Name = "textBoxPotenciaKwh";
-            this.textBoxPotenciaKwh.Size = new System.Drawing.Size(167, 20);
+            this.textBoxPotenciaKwh.Size = new System.Drawing.Size(178, 21);
             this.textBoxPotenciaKwh.TabIndex = 47;
             this.textBoxPotenciaKwh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPotenciaKwh_KeyPress);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(23, 159);
+            this.label7.Location = new System.Drawing.Point(10, 81);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 13);
+            this.label7.Size = new System.Drawing.Size(118, 15);
             this.label7.TabIndex = 46;
             this.label7.Text = "Potência em Kwh";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(318, 127);
+            this.label6.Location = new System.Drawing.Point(6, 133);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(94, 13);
+            this.label6.Size = new System.Drawing.Size(125, 15);
             this.label6.TabIndex = 45;
             this.label6.Text = "Tempo de preparo";
             // 
             // textBoxQuantidadeProduto
             // 
-            this.textBoxQuantidadeProduto.Location = new System.Drawing.Point(208, 182);
+            this.textBoxQuantidadeProduto.Location = new System.Drawing.Point(240, 17);
             this.textBoxQuantidadeProduto.Name = "textBoxQuantidadeProduto";
             this.textBoxQuantidadeProduto.Size = new System.Drawing.Size(62, 20);
             this.textBoxQuantidadeProduto.TabIndex = 43;
@@ -181,18 +196,18 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(318, 101);
+            this.label5.Location = new System.Drawing.Point(8, 108);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.Size = new System.Drawing.Size(108, 15);
             this.label5.TabIndex = 42;
             this.label5.Text = "Tipo da Receita";
             // 
             // comboBoxTipoReceita
             // 
             this.comboBoxTipoReceita.FormattingEnabled = true;
-            this.comboBoxTipoReceita.Location = new System.Drawing.Point(418, 98);
+            this.comboBoxTipoReceita.Location = new System.Drawing.Point(135, 105);
             this.comboBoxTipoReceita.Name = "comboBoxTipoReceita";
-            this.comboBoxTipoReceita.Size = new System.Drawing.Size(132, 21);
+            this.comboBoxTipoReceita.Size = new System.Drawing.Size(178, 23);
             this.comboBoxTipoReceita.TabIndex = 41;
             // 
             // listViewProdutos
@@ -200,12 +215,13 @@
             this.listViewProdutos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ProdutosNomes,
             this.ProdutosCustos,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listViewProdutos.FullRowSelect = true;
             this.listViewProdutos.HideSelection = false;
-            this.listViewProdutos.Location = new System.Drawing.Point(23, 222);
+            this.listViewProdutos.Location = new System.Drawing.Point(9, 39);
             this.listViewProdutos.Name = "listViewProdutos";
-            this.listViewProdutos.Size = new System.Drawing.Size(289, 187);
+            this.listViewProdutos.Size = new System.Drawing.Size(329, 112);
             this.listViewProdutos.TabIndex = 40;
             this.listViewProdutos.UseCompatibleStateImageBehavior = false;
             this.listViewProdutos.View = System.Windows.Forms.View.Details;
@@ -214,16 +230,25 @@
             // ProdutosNomes
             // 
             this.ProdutosNomes.Text = "Nome";
-            this.ProdutosNomes.Width = 132;
+            this.ProdutosNomes.Width = 150;
             // 
             // ProdutosCustos
             // 
             this.ProdutosCustos.Text = "Custo";
-            this.ProdutosCustos.Width = 84;
+            this.ProdutosCustos.Width = 93;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Quantidade";
+            this.columnHeader3.Width = 82;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Total";
             // 
             // btnAdicionarProduto
             // 
-            this.btnAdicionarProduto.Location = new System.Drawing.Point(271, 180);
+            this.btnAdicionarProduto.Location = new System.Drawing.Point(311, 14);
             this.btnAdicionarProduto.Name = "btnAdicionarProduto";
             this.btnAdicionarProduto.Size = new System.Drawing.Size(27, 23);
             this.btnAdicionarProduto.TabIndex = 39;
@@ -231,66 +256,60 @@
             this.btnAdicionarProduto.UseVisualStyleBackColor = true;
             this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(115, 206);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 13);
-            this.label4.TabIndex = 38;
-            this.label4.Text = "Produtos na Receita";
-            // 
             // textBoxPrecoReceita
             // 
-            this.textBoxPrecoReceita.Location = new System.Drawing.Point(131, 127);
+            this.textBoxPrecoReceita.Location = new System.Drawing.Point(135, 54);
             this.textBoxPrecoReceita.Name = "textBoxPrecoReceita";
-            this.textBoxPrecoReceita.Size = new System.Drawing.Size(167, 20);
+            this.textBoxPrecoReceita.Size = new System.Drawing.Size(178, 21);
             this.textBoxPrecoReceita.TabIndex = 37;
             this.textBoxPrecoReceita.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPrecoReceita_KeyPress);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 187);
+            this.label3.Location = new System.Drawing.Point(11, 23);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 36;
             this.label3.Text = "Produtos";
             // 
             // comboBoxProdutos
             // 
             this.comboBoxProdutos.FormattingEnabled = true;
-            this.comboBoxProdutos.Location = new System.Drawing.Point(78, 181);
+            this.comboBoxProdutos.Location = new System.Drawing.Point(66, 16);
             this.comboBoxProdutos.Name = "comboBoxProdutos";
-            this.comboBoxProdutos.Size = new System.Drawing.Size(124, 21);
+            this.comboBoxProdutos.Size = new System.Drawing.Size(168, 21);
             this.comboBoxProdutos.TabIndex = 35;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 134);
+            this.label2.Location = new System.Drawing.Point(10, 57);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.Size = new System.Drawing.Size(112, 15);
             this.label2.TabIndex = 34;
             this.label2.Text = "Preço de Venda:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 85);
+            this.label1.Location = new System.Drawing.Point(10, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(45, 15);
             this.label1.TabIndex = 33;
             this.label1.Text = "Nome";
             // 
             // btnLimpar
             // 
-            this.btnLimpar.Location = new System.Drawing.Point(225, 415);
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpar.Location = new System.Drawing.Point(354, 415);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(152, 23);
             this.btnLimpar.TabIndex = 32;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // listViewReceitas
@@ -298,11 +317,12 @@
             this.listViewReceitas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.headerNome,
             this.headerPrecoUnidade});
+            this.listViewReceitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewReceitas.FullRowSelect = true;
             this.listViewReceitas.HideSelection = false;
-            this.listViewReceitas.Location = new System.Drawing.Point(574, 32);
+            this.listViewReceitas.Location = new System.Drawing.Point(322, 20);
             this.listViewReceitas.Name = "listViewReceitas";
-            this.listViewReceitas.Size = new System.Drawing.Size(214, 406);
+            this.listViewReceitas.Size = new System.Drawing.Size(436, 134);
             this.listViewReceitas.TabIndex = 31;
             this.listViewReceitas.UseCompatibleStateImageBehavior = false;
             this.listViewReceitas.View = System.Windows.Forms.View.Details;
@@ -311,28 +331,31 @@
             // headerNome
             // 
             this.headerNome.Text = "Nome";
-            this.headerNome.Width = 98;
+            this.headerNome.Width = 269;
             // 
             // headerPrecoUnidade
             // 
             this.headerPrecoUnidade.Text = "Preço";
-            this.headerPrecoUnidade.Width = 109;
+            this.headerPrecoUnidade.Width = 163;
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(23, 415);
+            this.btnDeletar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDeletar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletar.Location = new System.Drawing.Point(60, 415);
             this.btnDeletar.Name = "btnDeletar";
-            this.btnDeletar.Size = new System.Drawing.Size(196, 23);
+            this.btnDeletar.Size = new System.Drawing.Size(202, 23);
             this.btnDeletar.TabIndex = 30;
-            this.btnDeletar.Text = "Deletar";
-            this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Text = "Deletar Receita";
+            this.btnDeletar.UseVisualStyleBackColor = false;
             this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(33, 32);
+            this.lblTitulo.Location = new System.Drawing.Point(233, 9);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(288, 37);
             this.lblTitulo.TabIndex = 29;
@@ -340,71 +363,125 @@
             // 
             // textBoxNomeReceita
             // 
-            this.textBoxNomeReceita.Location = new System.Drawing.Point(26, 101);
+            this.textBoxNomeReceita.Location = new System.Drawing.Point(135, 27);
             this.textBoxNomeReceita.Name = "textBoxNomeReceita";
-            this.textBoxNomeReceita.Size = new System.Drawing.Size(272, 20);
+            this.textBoxNomeReceita.Size = new System.Drawing.Size(178, 21);
             this.textBoxNomeReceita.TabIndex = 28;
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(383, 415);
+            this.btnCadastrar.BackColor = System.Drawing.SystemColors.GrayText;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCadastrar.Location = new System.Drawing.Point(575, 415);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(185, 23);
             this.btnCadastrar.TabIndex = 27;
             this.btnCadastrar.Text = "Cadastrar Receita";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // textBoxTempoPreparo
             // 
-            this.textBoxTempoPreparo.Location = new System.Drawing.Point(419, 127);
+            this.textBoxTempoPreparo.Location = new System.Drawing.Point(135, 133);
             this.textBoxTempoPreparo.Mask = "00:00:00";
             this.textBoxTempoPreparo.Name = "textBoxTempoPreparo";
-            this.textBoxTempoPreparo.Size = new System.Drawing.Size(131, 20);
+            this.textBoxTempoPreparo.Size = new System.Drawing.Size(178, 21);
             this.textBoxTempoPreparo.TabIndex = 55;
             this.textBoxTempoPreparo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTempoPreparo_KeyPress);
             // 
-            // columnHeader3
+            // groupBox1
             // 
-            this.columnHeader3.Text = "Quantidade";
-            this.columnHeader3.Width = 69;
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.Controls.Add(this.textBoxNomeReceita);
+            this.groupBox1.Controls.Add(this.textBoxTempoPreparo);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.textBoxPrecoReceita);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.textBoxPotenciaKwh);
+            this.groupBox1.Controls.Add(this.comboBoxTipoReceita);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.listViewReceitas);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(17, 49);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(771, 165);
+            this.groupBox1.TabIndex = 56;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Receita";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox2.Controls.Add(this.comboBoxGastos);
+            this.groupBox2.Controls.Add(this.btnAdicionarGasto);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.listViewGastos);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(535, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(245, 161);
+            this.groupBox2.TabIndex = 57;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Gastos da Receita";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox3.Controls.Add(this.listViewProdutos);
+            this.groupBox3.Controls.Add(this.comboBoxProdutos);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.btnAdicionarProduto);
+            this.groupBox3.Controls.Add(this.textBoxQuantidadeProduto);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(11, 19);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(344, 161);
+            this.groupBox3.TabIndex = 58;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Produtos da Receita";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupBox4.Controls.Add(this.groupBox2);
+            this.groupBox4.Controls.Add(this.groupBox3);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.lblPrecoCusto);
+            this.groupBox4.Controls.Add(this.btnDeletarLinha);
+            this.groupBox4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.groupBox4.Location = new System.Drawing.Point(17, 220);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(781, 189);
+            this.groupBox4.TabIndex = 56;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Items Dentro da Receita";
             // 
             // GerenciarReceitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBoxTempoPreparo);
-            this.Controls.Add(this.btnDeletarLinha);
-            this.Controls.Add(this.listViewGastos);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.lblPrecoCusto);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.btnAdicionarGasto);
-            this.Controls.Add(this.comboBoxGastos);
-            this.Controls.Add(this.textBoxPotenciaKwh);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBoxQuantidadeProduto);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBoxTipoReceita);
-            this.Controls.Add(this.listViewProdutos);
-            this.Controls.Add(this.btnAdicionarProduto);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxPrecoReceita);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBoxProdutos);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLimpar);
-            this.Controls.Add(this.listViewReceitas);
             this.Controls.Add(this.btnDeletar);
             this.Controls.Add(this.lblTitulo);
-            this.Controls.Add(this.textBoxNomeReceita);
             this.Controls.Add(this.btnCadastrar);
             this.Name = "GerenciarReceitas";
             this.Text = "GerenciarReceitas";
             this.Load += new System.EventHandler(this.GerenciarReceitas_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,7 +502,6 @@
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.TextBox textBoxNomeReceita;
         private System.Windows.Forms.Button btnCadastrar;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAdicionarProduto;
         private System.Windows.Forms.ListView listViewProdutos;
         private System.Windows.Forms.ColumnHeader ProdutosNomes;
@@ -447,5 +523,10 @@
         private System.Windows.Forms.Button btnDeletarLinha;
         private System.Windows.Forms.MaskedTextBox textBoxTempoPreparo;
         private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }

@@ -28,6 +28,8 @@ namespace BancoDeDados.Contexto
         public int EmpresaId { get; set; }
         [NotMapped]
         public string QuantidadeProduto { get; set; }
+        [NotMapped]
+        public string TotalProduto { get; set; }
         public IEnumerator GetEnumerator()
         {
             throw new System.NotImplementedException();

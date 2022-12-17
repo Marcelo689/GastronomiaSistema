@@ -23,7 +23,7 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
         }
         public bool ConfirmaDeletarItemDoList(ListView listview)
         {
-            var quer = MessageBox.Show("Tem certeza que deseja deletar o usuário?", "Deletar!!!", MessageBoxButtons.YesNo);
+            var quer = MessageBox.Show("Tem certeza que deseja deletar o item?", "Deletar!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (quer == DialogResult.Yes)
             {
                 if (ExisteLinhaSelecionada(listview))

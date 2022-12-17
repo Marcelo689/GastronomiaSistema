@@ -26,7 +26,7 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
         {
             if( combo.SelectedIndex == -1)
             {
-                MessageBox.Show("Primeiro você deve selecionar um produto!");
+                MessageBox.Show("Primeiro você deve selecionar um Item!");
                 return false;
             }
             return true;

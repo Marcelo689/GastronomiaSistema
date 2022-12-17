@@ -43,7 +43,23 @@ namespace BancoDeDados.Controller
             {
                 var quantidade = RetornaQuantidadeProdutoNaReceita(idReceita, item.Id);
                 var total = quantidade * item.PrecoPorQuantidade;
+                item.TotalProduto = total.ToString("F2", CultureInfo.InvariantCulture); ;
                 item.QuantidadeProduto = quantidade.ToString("F2", CultureInfo.InvariantCulture);
+            }
+            return lista;
+        }
+        public List<Gasto> RetornaGastosDaReceita(int idReceita)
+        {
+            if (idReceita == 0)
+                return new List<Gasto>();
+            var idsGastos = _contexto.GastosReceita.Where(x => x.ReceitaId == idReceita).Select(e => e.GastoId).ToList();
+            var lista = _contexto.Gastos.Where(e => idsGastos.Contains(e.Id)).ToList();
+
+            foreach (var item in lista)
+            {
+                var quantidade = RetornaQuantidadeGastosNaReceita(idReceita, item.Id);
+                var total = quantidade * item.Valor ;
+                item.QuantidadeGasto = quantidade.ToString("F2", CultureInfo.InvariantCulture);
             }
             return lista;
         }
@@ -51,6 +67,12 @@ namespace BancoDeDados.Controller
         public decimal RetornaQuantidadeProdutoNaReceita(int idReceita, int idProduto)
         {
             var quantidade = _contexto.ProdutosReceita.Where(x => x.ReceitaId == idReceita && idProduto == x.ProdutoId).Select(e => e.QuantidadeProduto).First();
+            return quantidade;
+        }
+
+        public decimal RetornaQuantidadeGastosNaReceita(int idReceita, int idGasto)
+        {
+            var quantidade = _contexto.GastosReceita.Where(x => x.ReceitaId == idReceita && idGasto == x.GastoId).Select(e => e.QuantidadeGasto).First();
             return quantidade;
         }
         public List<T> RetornarLista<T>(int? id = null) where T : TEntity
@@ -63,6 +85,13 @@ namespace BancoDeDados.Controller
             return lista;
         }
 
+        public List<Receita> RetornaReceitas()
+        {
+            var lista = new List<Receita>();
+
+            lista = _contexto.Receitas.ToList();
+            return lista;
+        }
         public List<R> RetornaListaComAlgumasColunas<T,R>(Expression<Func<T,R>> filtro) 
             where T : TEntity 
             where R : TEntity
@@ -93,28 +122,38 @@ namespace BancoDeDados.Controller
             return false;
         }
 
-        public List<GastoReceitaListView> RetornaGastosDaReceita(int idReceita)
-        {
-            if (idReceita == 0)
-                return new List<GastoReceitaListView>();
-            var gastosDaReceita = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId);
-            var idsGastos = gastosDaReceita.Select(e => e.Id).ToArray();
-            var quantidades = gastosDaReceita.Select(e => e.QuantidadeGasto).ToList();
-            var lista =  _contexto.Gastos.Where(e => idsGastos.Contains(e.Id)).ToList();
-            var saidaLista = new List<GastoReceitaListView>();
-            
-            foreach (var item in lista.Select((value, i) => new { i, value }))
-            {
-                saidaLista.Add(new GastoReceitaListView
-                {
-                    Id = item.value.Id,
-                    Nome = item.value.Nome,
-                    QuantidadeGasto = quantidades[item.i]
-                });
-            }
+        //public List<GastoReceitaListView> RetornaGastosDaReceita(int idReceita)
+        //{
+        //    var lista = new List<GastoReceitaListView>();
+        //    if (idReceita == 0)
+        //        return lista;
+        //    var gastosDaReceita = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId).ToList();
 
-            return saidaLista;
-        }
+        //    foreach (var item in gastosDaReceita)
+        //    {
+        //        var gastoDoId = RetornarLista<Gasto>(item.GastoId).First();
+        //        var gasto = new GastoReceitaListView()
+        //        {
+        //            GastoId = gastoDoId.Id,
+        //            QuantidadeGasto = item.QuantidadeGasto,
+        //            Nome = gastoDoId.Nome,
+        //        };
+        //        lista.Add(gasto);
+        //    }
+        //    //var saidaLista = new List<GastoReceitaListView>();
+            
+        //    //foreach (var item in lista.Select((value, i) => new { i, value }))
+        //    //{
+        //    //    saidaLista.Add(new GastoReceitaListView
+        //    //    {
+        //    //        Id = item.value.Id,
+        //    //        Nome = item.value.Nome,
+        //    //        QuantidadeGasto = quantidades[item.i]
+        //    //    });
+        //    //}
+
+        //    return lista;
+        //}
 
         public bool Deletar<T>(params int[] entityIds) where T : TEntity
         {

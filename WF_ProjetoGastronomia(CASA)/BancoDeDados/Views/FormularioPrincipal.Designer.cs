@@ -35,9 +35,10 @@
             this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarReceitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoReceitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarGastosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,12 +56,13 @@
             // menuItem
             // 
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gerenciarEmpresaToolStripMenuItem,
             this.menuItemCadastrarUsuario,
-            this.gerenciarProdutosToolStripMenuItem,
             this.gerenciarUnidadesDeMedidaToolStripMenuItem,
-            this.gerenciarReceitasToolStripMenuItem,
             this.tipoReceitaToolStripMenuItem,
-            this.gerenciarEmpresaToolStripMenuItem});
+            this.gerenciarProdutosToolStripMenuItem,
+            this.gerenciarGastosToolStripMenuItem,
+            this.gerenciarReceitasToolStripMenuItem});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
@@ -100,6 +102,13 @@
             this.tipoReceitaToolStripMenuItem.Text = "Gerenciar Tipo Receita";
             this.tipoReceitaToolStripMenuItem.Click += new System.EventHandler(this.tipoReceitaToolStripMenuItem_Click);
             // 
+            // gerenciarEmpresaToolStripMenuItem
+            // 
+            this.gerenciarEmpresaToolStripMenuItem.Name = "gerenciarEmpresaToolStripMenuItem";
+            this.gerenciarEmpresaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarEmpresaToolStripMenuItem.Text = "Gerenciar Empresa";
+            this.gerenciarEmpresaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarEmpresaToolStripMenuItem_Click);
+            // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -115,12 +124,12 @@
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             this.deslogarToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
             // 
-            // gerenciarEmpresaToolStripMenuItem
+            // gerenciarGastosToolStripMenuItem
             // 
-            this.gerenciarEmpresaToolStripMenuItem.Name = "gerenciarEmpresaToolStripMenuItem";
-            this.gerenciarEmpresaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarEmpresaToolStripMenuItem.Text = "Gerenciar Empresa";
-            this.gerenciarEmpresaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarEmpresaToolStripMenuItem_Click);
+            this.gerenciarGastosToolStripMenuItem.Name = "gerenciarGastosToolStripMenuItem";
+            this.gerenciarGastosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarGastosToolStripMenuItem.Text = "Gerenciar Gastos";
+            this.gerenciarGastosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarGastosToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -150,5 +159,6 @@
         private System.Windows.Forms.ToolStripMenuItem gerenciarReceitasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tipoReceitaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarEmpresaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarGastosToolStripMenuItem;
     }
 }

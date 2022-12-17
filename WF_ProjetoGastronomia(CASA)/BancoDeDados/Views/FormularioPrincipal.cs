@@ -4,6 +4,7 @@ using BancoDeDados.Controller.Model;
 using BancoDeDados.Controller.Telas;
 using BancoDeDados.Models;
 using BancoDeDados.Servicos;
+using BancoDeDados.Views.Telas;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,6 +71,11 @@ namespace BancoDeDados
         private void gerenciarEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _servico.AbrirTela(new GerenciarEmpresas());
+        }
+
+        private void gerenciarGastosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarGastos());
         }
     }
 }

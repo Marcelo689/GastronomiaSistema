@@ -157,10 +157,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\20221215181731_mudando campos para decimal onde eram inteiros.cs" />
-    <Compile Include="Migrations\20221215181731_mudando campos para decimal onde eram inteiros.designer.cs">
-      <DependentUpon>20221215181731_mudando campos para decimal onde eram inteiros.cs</DependentUpon>
+    <Compile Include="Migrations\20221216222605_completo.cs" />
+    <Compile Include="Migrations\20221216222605_completo.designer.cs">
+      <DependentUpon>20221216222605_completo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Telas\CadastroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,12 +169,14 @@
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Contexto\BDContexto.cs" />
-    <Compile Include="Migrations\20221213112127_empresaId.cs" />
-    <Compile Include="Migrations\20221213112127_empresaId.designer.cs">
-      <DependentUpon>20221213112127_empresaId.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\FormBase.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarGastos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarGastos.Designer.cs">
+      <DependentUpon>GerenciarGastos.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Telas\GerenciarTipoReceita.cs">
       <SubType>Form</SubType>
@@ -181,15 +184,6 @@
     <Compile Include="Views\Telas\GerenciarTipoReceita.Designer.cs">
       <DependentUpon>GerenciarTipoReceita.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\20221212171903_completa.cs" />
-    <Compile Include="Migrations\20221212171903_completa.designer.cs">
-      <DependentUpon>20221212171903_completa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\20221212174516_adiciona-quantidade-unidade-produto.cs" />
-    <Compile Include="Migrations\20221212174516_adiciona-quantidade-unidade-produto.designer.cs">
-      <DependentUpon>20221212174516_adiciona-quantidade-unidade-produto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Models\ClassesRelacionadas\GastoReceita.cs" />
     <Compile Include="Models\Gasto.cs" />
     <Compile Include="Views\Telas\GerenciarEmpresas.cs">
@@ -255,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\GerenciarEmpresas.resx">
       <DependentUpon>GerenciarEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telas\GerenciarGastos.resx">
+      <DependentUpon>GerenciarGastos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\GerenciarProdutos.resx">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>

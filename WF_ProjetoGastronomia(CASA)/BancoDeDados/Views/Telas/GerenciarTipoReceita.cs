@@ -1,10 +1,5 @@
-﻿using BancoDeDados.Contexto;
-using BancoDeDados.Controller.Model;
-using BancoDeDados.Migrations;
+﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
-using BancoDeDados.Servicos.ComboBoxMetodos;
-using BancoDeDados.Servicos.ListVIewMetodos;
-using BancoDeDados.Servicos.TextBoxMetodos;
 using System;
 using System.Windows.Forms;
 

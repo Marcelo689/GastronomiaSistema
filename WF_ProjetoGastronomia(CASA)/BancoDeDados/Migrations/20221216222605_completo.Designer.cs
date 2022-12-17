@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    [Migration("20221212174516_adiciona-quantidade-unidade-produto")]
-    partial class adicionaquantidadeunidadeproduto
+    [Migration("20221216222605_completo")]
+    partial class completo
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,9 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("EnderecoNumero")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -149,6 +152,8 @@ namespace BancoDeDados.Migrations
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Clientes");
                 });
@@ -212,6 +217,9 @@ namespace BancoDeDados.Migrations
                     b.Property<DateTime>("DataParaEntrega")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("FoiEntregue")
                         .HasColumnType("tinyint(1)");
 
@@ -228,6 +236,8 @@ namespace BancoDeDados.Migrations
 
                     b.HasIndex("ClienteId");
 
+                    b.HasIndex("EmpresaId");
+
                     b.ToTable("Pedidos");
                 });
 
@@ -235,6 +245,9 @@ namespace BancoDeDados.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -254,6 +267,8 @@ namespace BancoDeDados.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmpresaId");
+
                     b.HasIndex("ReceitaId");
 
                     b.HasIndex("UnidadeMedidaId");
@@ -265,6 +280,9 @@ namespace BancoDeDados.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("NomeReceita")
@@ -279,8 +297,8 @@ namespace BancoDeDados.Migrations
                     b.Property<double>("PerdaPorReceita")
                         .HasColumnType("double");
 
-                    b.Property<int>("PotenciaKwh")
-                        .HasColumnType("int");
+                    b.Property<decimal>("PotenciaKwh")
+                        .HasColumnType("decimal(65,30)");
 
                     b.Property<decimal>("PrecoCusto")
                         .HasColumnType("decimal(65,30)");
@@ -299,6 +317,8 @@ namespace BancoDeDados.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmpresaId");
+
                     b.HasIndex("PedidoId");
 
                     b.HasIndex("TipoReceitaId");
@@ -312,6 +332,9 @@ namespace BancoDeDados.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -319,6 +342,8 @@ namespace BancoDeDados.Migrations
                         .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Gastos");
                 });
@@ -356,7 +381,12 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("TipoReceita");
                 });
@@ -370,10 +400,15 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("Descricao")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Sigla")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("UnidadesMedida");
                 });
@@ -382,6 +417,9 @@ namespace BancoDeDados.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
                     b.Property<byte[]>("Imagem")
@@ -403,6 +441,8 @@ namespace BancoDeDados.Migrations
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Usuarios");
                 });
@@ -467,15 +507,36 @@ namespace BancoDeDados.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("BancoDeDados.Contexto.Cliente", b =>
+                {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("BancoDeDados.Contexto.Pedido", b =>
                 {
                     b.HasOne("BancoDeDados.Contexto.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId");
+
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BancoDeDados.Contexto.Produto", b =>
                 {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BancoDeDados.Contexto.Receita", null)
                         .WithMany("Produto")
                         .HasForeignKey("ReceitaId");
@@ -487,6 +548,12 @@ namespace BancoDeDados.Migrations
 
             modelBuilder.Entity("BancoDeDados.Contexto.Receita", b =>
                 {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BancoDeDados.Contexto.Pedido", null)
                         .WithMany("ReceitasDoPedido")
                         .HasForeignKey("PedidoId");
@@ -494,6 +561,15 @@ namespace BancoDeDados.Migrations
                     b.HasOne("BancoDeDados.Models.TipoReceita", "TipoReceita")
                         .WithMany()
                         .HasForeignKey("TipoReceitaId");
+                });
+
+            modelBuilder.Entity("BancoDeDados.Controller.Telas.Gasto", b =>
+                {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BancoDeDados.Controller.Telas.GastoReceita", b =>
@@ -507,6 +583,33 @@ namespace BancoDeDados.Migrations
                     b.HasOne("BancoDeDados.Contexto.Receita", "Receita")
                         .WithMany()
                         .HasForeignKey("ReceitaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BancoDeDados.Models.TipoReceita", b =>
+                {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BancoDeDados.Models.UnidadeMedida", b =>
+                {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BancoDeDados.Models.UsuarioLogin", b =>
+                {
+                    b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

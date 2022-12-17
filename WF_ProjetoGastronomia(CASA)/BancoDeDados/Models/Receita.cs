@@ -1,5 +1,4 @@
-﻿using BancoDeDados.Contexto.ClassesRelacionadas;
-using BancoDeDados.Models;
+﻿using BancoDeDados.Models;
 using System.Collections.Generic;
 using static BancoDeDados.Controller.OperacoesBanco;
 
@@ -7,6 +6,7 @@ namespace BancoDeDados.Contexto
 {
     public class Receita : TEntity
     {
+        public override int Id { get; set; }
         public string NomeReceita { get; set; }
         public double PerdaPorReceita { get; set; }
         public int ProdutoId { get; set; }

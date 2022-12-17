@@ -2,10 +2,10 @@
 using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
-using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
-using BancoDeDados.Servicos.TextBoxMetodos;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -13,6 +13,8 @@ namespace BancoDeDados.Controller.Telas
 {
     public partial class GerenciarReceitas : FormBase
     {
+        public List<Produto> _produtos = new List<Produto>();
+        public List<Gasto>   _gastos   = new List<Gasto>();
         public GerenciarReceitas()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace BancoDeDados.Controller.Telas
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
                 var produtoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Produto>(comboBoxProdutos);
                 var quantidade = decimal.Parse(textBoxQuantidadeProduto.Text);
-                for(var i = 0; i < quantidade; i++)
+                for (var i = 0; i < quantidade; i++)
                 {
                     if (produtoSelecionado != null)
                     {
@@ -46,13 +48,7 @@ namespace BancoDeDados.Controller.Telas
                             var produtoReceitaAtualizar = ProdutoReceitaList.First();
                             produtoReceitaAtualizar.QuantidadeProduto = quantidade;
                             _banco.Atualizar<ProdutoReceita>(produtoReceitaAtualizar);
-                            var listaProdutos = _banco.RetornaProdutosDaReceita(receitaSelecionada.Id);
-                            listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
-                            listaProdutos,
-                            new string[]
-                            {
-                                "Id","Nome","PrecoPorQuantidade","QuantidadeProduto"
-                            });
+                            PreencheListProdutos(receitaSelecionada.Id);
                         }
                         else
                         {
@@ -65,46 +61,38 @@ namespace BancoDeDados.Controller.Telas
                                 QuantidadeProduto = quantidade
                             };
                             _banco.Cadastrar<ProdutoReceita>(produtoReceita);
-                            var lista = _banco.RetornaProdutosDaReceita(receitaSelecionada.Id);
-                            listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
-                            lista,
-                            new string[]
-                            {
-                            "Id","Nome","PrecoPorQuantidade","QuantidadeProduto"
-                            });
+                            PreencheListProdutos(receitaSelecionada.Id);
                         }
- 
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Primeiro Selecione a receita que deseja adicionar");
             }
         }
         private void PreencheListViews(int id = 0)
         {
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
-               new string[]
-               {
-                    "Id","NomeReceita","PrecoCusto"
-               }
-            );
-            var listaProdutos = _banco.RetornaProdutosDaReceita(id);
-            listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
-                listaProdutos,
-                new string[]
-                {
-                    "Id","Nome","PrecoPorQuantidade","QuantidadeProduto"
-                });
-            var listaGastos = _banco.RetornaGastosDaReceita(id);
-            listViewFunc.PreencheListView<GastoReceitaListView, GastoReceitaListView>(listViewGastos,
-                listaGastos,
-                new string[]
-                {
-                    "Id","Nome","Valor"
-                }      
-            );
+            PreencheListReceita();
+            PreencheListProdutos(id);
+            PreencheListGastos(id);
         }
+
+        private void PreencheListReceita()
+        {
+            var lista = _banco.RetornarLista<Receita>();
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
+                lista,   
+                new string[]
+                    {
+                        "Id","NomeReceita","PrecoCusto"
+                    }
+                );
+        }
+
         private void GerenciarReceitas_Load(object sender, System.EventArgs e)
         {
-            textBoxTempoPreparo.Text = "01:30:40";
+            textBoxTempoPreparo.Text = "00:00:00";
             PreencheListViews();
             PreencheComboBoxes();
             btnDeletarLinha.Enabled = false;
@@ -142,15 +130,31 @@ namespace BancoDeDados.Controller.Telas
 
         private void btnDeletarLinha_Click(object sender, System.EventArgs e)
         {
-            if (listViewFunc.ConfirmaDeletarItemDoList(listViewProdutos))
+            if (listViewFunc.ExisteLinhaSelecionada(listViewProdutos) && listViewFunc.ConfirmaDeletarItemDoList(listViewProdutos))
             {//PRODUTOS
+                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
                 var produtoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Produto>(listViewProdutos);
-                _banco.Deletar(produtoSelecionado);
+                var produtoReceitaSelecionado = _contexto.ProdutosReceita.Where(pr => pr.ReceitaId == receitaSelecionada.Id && pr.ProdutoId == produtoSelecionado.Id);
+
+                if (produtoReceitaSelecionado.Any())
+                {
+                    _banco.Deletar<ProdutoReceita>(produtoReceitaSelecionado.First().Id);
+                    PreencheListProdutos(receitaSelecionada.Id);
+                }
             }
-            else if (listViewFunc.ConfirmaDeletarItemDoList(listViewGastos))
+            else if (listViewFunc.ExisteLinhaSelecionada(listViewGastos) && listViewFunc.ConfirmaDeletarItemDoList(listViewGastos))
             {// Gastos
+                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
                 var gastoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Gasto>(listViewGastos);
-                _banco.Deletar(gastoSelecionado);
+                var gastoReceitaSelecionado = _contexto.GastosReceita.Where(pr => pr.ReceitaId == receitaSelecionada.Id && pr.GastoId == gastoSelecionado.Id);
+
+                if (gastoReceitaSelecionado.Any())
+                {
+                    var gasto = gastoReceitaSelecionado.First();
+                    _banco.Deletar<GastoReceita>(gasto.Id);
+                    listViewFunc.DesSelecionionaListView(listViewGastos);
+                    PreencheListGastos(receitaSelecionada.Id);
+                }
             }
         }
         private void Limpar()
@@ -165,6 +169,7 @@ namespace BancoDeDados.Controller.Telas
             comboBoxProdutos.SelectedIndex = -1;
             comboBoxTipoReceita.SelectedIndex = -1;
             textBoxTempoPreparo.Text = "";
+            lblPrecoCusto.Text = "";
 
         }
         private void listViewProdutos_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -172,12 +177,11 @@ namespace BancoDeDados.Controller.Telas
             if (listViewFunc.ExisteLinhaSelecionada(listViewProdutos))
             {
                 btnDeletarLinha.Enabled = true;
+                listViewFunc.DesSelecionionaListView(listViewGastos);
             }
             else
-            if (listViewFunc.ExisteLinhaSelecionada(listViewGastos))
-            {
-                btnDeletarLinha.Enabled = true;
-            }
+                btnDeletarLinha.Enabled = false;
+            
         }
 
         private void btnLimpar_Click(object sender, System.EventArgs e)
@@ -203,6 +207,8 @@ namespace BancoDeDados.Controller.Telas
                 listViewGastos.Enabled = false;
                 listViewProdutos.Enabled = false;
                 btnDeletarLinha.Enabled = false;
+                listViewProdutos.Items.Clear();
+                listViewGastos.Items.Clear();
             }
         }
 
@@ -218,21 +224,50 @@ namespace BancoDeDados.Controller.Telas
 
         private void PreencheListViewsDaReceita(int id)
         {
-            var listaProdutos = _banco.RetornaProdutosDaReceita(id);
+            PreencheListProdutos(id);
+            PreencheListGastos(id);
+        }
+
+        private void PreencheListGastos(int id)
+        {
+            var listaGastos = _gastos = _banco.RetornaGastosDaReceita(id);
+            listViewFunc.PreencheListView<Gasto, GastoReceitaListView>(listViewGastos,
+                listaGastos,
+                new string[]
+                {
+                    "Id","Nome","Valor" //,"QuantidadeGasto","TotalGasto"
+                }
+            );
+            PreencheTotal();
+        }
+
+        private void PreencheTotal()
+        {
+            lblPrecoCusto.Text = "";
+            var total = _servico.FormataDinheiro(lblPrecoCusto.Text);
+            foreach (var gasto in _produtos)
+            {
+                total += _servico.FormataDinheiro(gasto.TotalProduto);
+            }
+            foreach (var gasto in _gastos)
+            {
+                total -= _servico.FormataDinheiro(gasto.Valor.ToString("F2",CultureInfo.InvariantCulture));
+            }
+
+            lblPrecoCusto.Text = _servico.FormataValor(total);
+        }
+
+        private void PreencheListProdutos(int idReceita)
+        {
+            var listaProdutos = _produtos = _banco.RetornaProdutosDaReceita(idReceita);
             listViewFunc.PreencheListView<Produto, Produto>(listViewProdutos,
                 listaProdutos,
                 new string[]
                 {
-                    "Id","Nome","PrecoPorQuantidade","QuantidadeProduto"
+                    "Id","Nome","PrecoPorQuantidade","QuantidadeProduto","TotalProduto"
                 });
-            var listaGastos = _banco.RetornaGastosDaReceita(id);
-            listViewFunc.PreencheListView<GastoReceitaListView, GastoReceitaListView>(listViewGastos,
-                listaGastos,
-                new string[]
-                {
-                    "Id","Nome","Valor"
-                }
-            );
+
+            PreencheTotal();
         }
 
         private void btnAdicionarGasto_Click(object sender, System.EventArgs e)
@@ -241,27 +276,43 @@ namespace BancoDeDados.Controller.Telas
             if (receitaJaFoiCriada)
             {
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
-                var gastoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Gasto>(comboBoxProdutos);
 
-                if (gastoSelecionado != null)
+                var gastoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Gasto>(comboBoxGastos);
+
+                if (gastoSelecionado.Id > 0)
                 {
-                    var gastoReceita = new GastoReceita()
+                    var GastoNaReceita = _banco.RetornarLista<GastoReceita>(gastoSelecionado.Id);
+                    
+                    if (GastoNaReceita.Any() && GastoNaReceita.First().GastoId == gastoSelecionado.Id)
+                    {//atualizar
+                        MessageBox.Show("O item selecionado já foi adicionado!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    else
                     {
-                        Gasto = gastoSelecionado,
-                        GastoId = gastoSelecionado.Id,
-                        Receita = receitaSelecionada,
-                        ReceitaId = receitaSelecionada.Id,
-                    };
-                    _banco.Cadastrar<GastoReceita>(gastoReceita);
-                    listViewFunc.PreencheListViewGastos(listViewGastos);
+                        var gastoReceita = new GastoReceita()
+                        {
+                            Gasto = gastoSelecionado,
+                            GastoId = gastoSelecionado.Id,
+                            Receita = receitaSelecionada,
+                            ReceitaId = receitaSelecionada.Id,
+                        };
+                        _banco.Cadastrar<GastoReceita>(gastoReceita);
+
+                        PreencheListGastos(receitaSelecionada.Id);
+                    }
+                    
                 }
+            }
+            else
+            {
+                MessageBox.Show("Primeiro Selecione a receita que deseja adicionar");
             }
         }
 
         private void btnCadastrar_Click(object sender, System.EventArgs e)
         {
             var nomeReceita = textBoxNomeReceita.Text;
-            var precoVenda = textBoxPrecoReceita.Text;
+            var precoVenda  = textBoxPrecoReceita.Text;
             var potenciaKwh = textBoxPotenciaKwh.Text;
             var tipoReceita = comboBoxFunc.RetornaItemComboSelecionado<TipoReceita>(comboBoxTipoReceita);
 
@@ -269,12 +320,12 @@ namespace BancoDeDados.Controller.Telas
                 return;
             if(listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
-                var receitaAtualizar         = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
-                receitaAtualizar.TipoReceita = tipoReceita;
-                receitaAtualizar.Empresa     = _contexto.Login.Empresa;
-                receitaAtualizar.EmpresaId   = _contexto.Login.EmpresaId;
-                receitaAtualizar.PrecoCusto  = _servico.FormataDinheiro(precoVenda);
-                receitaAtualizar.PotenciaKwh = _servico.FormataDinheiro(potenciaKwh);
+                var receitaAtualizar            = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+                receitaAtualizar.TipoReceita    = tipoReceita;
+                receitaAtualizar.Empresa        = _contexto.Login.Empresa;
+                receitaAtualizar.EmpresaId      = _contexto.Login.EmpresaId;
+                receitaAtualizar.PrecoCusto     = _servico.FormataDinheiro(precoVenda);
+                receitaAtualizar.PotenciaKwh    = _servico.FormataDinheiro(potenciaKwh);
                 receitaAtualizar.TempoDePreparo = textBoxTempoPreparo.Text;
                 _banco.Atualizar<Receita>(receitaAtualizar);
                 Limpar();
@@ -306,7 +357,7 @@ namespace BancoDeDados.Controller.Telas
             }
             else if (tipoReceita.Id == 0)
             {
-                MessageBox.Show("Preencha o campo Tipo Receita, caso não exista cadastro, cadastre!");
+                //mensagem exibida no proprio retornaitemCombo
             }
             else
                 valido = true;
@@ -317,6 +368,28 @@ namespace BancoDeDados.Controller.Telas
         private void textBoxTempoPreparo_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBoxFunc.FormataTempoPreparo(sender,e , textBoxTempoPreparo.Text);
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewGastos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewFunc.ExisteLinhaSelecionada(listViewGastos))
+            {
+                btnDeletarLinha.Enabled = true;
+                listViewFunc.DesSelecionionaListView(listViewProdutos);
+            }
+            else
+                btnDeletarLinha.Enabled = false;
+            
         }
     }
 }

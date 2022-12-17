@@ -4,31 +4,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BancoDeDados.Migrations
 {
-    public partial class completa : Migration
+    public partial class completo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Clientes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    CPF = table.Column<long>(nullable: false),
-                    Foto = table.Column<byte[]>(nullable: true),
-                    NomeCompleto = table.Column<string>(nullable: true),
-                    Rua = table.Column<string>(nullable: true),
-                    Bairro = table.Column<string>(nullable: true),
-                    EnderecoNumero = table.Column<string>(nullable: true),
-                    Complemento = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Celular = table.Column<long>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clientes", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Empresas",
                 columns: table => new
@@ -53,17 +32,52 @@ namespace BancoDeDados.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Clientes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CPF = table.Column<long>(nullable: false),
+                    Foto = table.Column<byte[]>(nullable: true),
+                    NomeCompleto = table.Column<string>(nullable: true),
+                    Rua = table.Column<string>(nullable: true),
+                    Bairro = table.Column<string>(nullable: true),
+                    EnderecoNumero = table.Column<string>(nullable: true),
+                    Complemento = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Celular = table.Column<long>(nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clientes_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Gastos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: true),
-                    Valor = table.Column<decimal>(nullable: false)
+                    Valor = table.Column<decimal>(nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Gastos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Gastos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,11 +86,18 @@ namespace BancoDeDados.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Descricao = table.Column<string>(nullable: true)
+                    Descricao = table.Column<string>(nullable: true),
+                    EmpresaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TipoReceita", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TipoReceita_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,11 +107,18 @@ namespace BancoDeDados.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Descricao = table.Column<string>(nullable: true),
-                    Sigla = table.Column<string>(nullable: true)
+                    Sigla = table.Column<string>(nullable: true),
+                    EmpresaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UnidadesMedida", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UnidadesMedida_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,11 +132,18 @@ namespace BancoDeDados.Migrations
                     PermissaoAcesso = table.Column<int>(nullable: false),
                     ManterLogin = table.Column<bool>(nullable: false),
                     UsuarioAtivo = table.Column<bool>(nullable: false),
-                    Imagem = table.Column<byte[]>(nullable: true)
+                    Imagem = table.Column<byte[]>(nullable: true),
+                    EmpresaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Usuarios_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -123,7 +158,8 @@ namespace BancoDeDados.Migrations
                     DataParaEntrega = table.Column<DateTime>(nullable: false),
                     DataEntregaRealizada = table.Column<DateTime>(nullable: true),
                     ClienteId = table.Column<int>(nullable: true),
-                    PrecoVenda = table.Column<decimal>(nullable: false)
+                    PrecoVenda = table.Column<decimal>(nullable: false),
+                    EmpresaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -134,6 +170,12 @@ namespace BancoDeDados.Migrations
                         principalTable: "Clientes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Pedidos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,15 +244,22 @@ namespace BancoDeDados.Migrations
                     ProdutoId = table.Column<int>(nullable: false),
                     QuantidadeProduto = table.Column<int>(nullable: false),
                     TempoDePreparo = table.Column<string>(nullable: true),
-                    PotenciaKwh = table.Column<int>(nullable: false),
+                    PotenciaKwh = table.Column<decimal>(nullable: false),
                     PercentualGastoGas = table.Column<double>(nullable: false),
                     PrecoCusto = table.Column<decimal>(nullable: false),
                     TipoReceitaId = table.Column<int>(nullable: true),
+                    EmpresaId = table.Column<int>(nullable: false),
                     PedidoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Receitas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Receitas_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Receitas_Pedidos_PedidoId",
                         column: x => x.PedidoId,
@@ -260,12 +309,20 @@ namespace BancoDeDados.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Nome = table.Column<string>(nullable: true),
                     PrecoPorQuantidade = table.Column<decimal>(nullable: false),
+                    QuantidadeUnidade = table.Column<decimal>(nullable: false),
                     UnidadeMedidaId = table.Column<int>(nullable: true),
+                    EmpresaId = table.Column<int>(nullable: false),
                     ReceitaId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Produtos", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Produtos_Empresas_EmpresaId",
+                        column: x => x.EmpresaId,
+                        principalTable: "Empresas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Produtos_Receitas_ReceitaId",
                         column: x => x.ReceitaId,
@@ -334,6 +391,16 @@ namespace BancoDeDados.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Clientes_EmpresaId",
+                table: "Clientes",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Gastos_EmpresaId",
+                table: "Gastos",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_GastosReceita_GastoId",
                 table: "GastosReceita",
                 column: "GastoId");
@@ -347,6 +414,11 @@ namespace BancoDeDados.Migrations
                 name: "IX_Pedidos_ClienteId",
                 table: "Pedidos",
                 column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Pedidos_EmpresaId",
+                table: "Pedidos",
+                column: "EmpresaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PedidosConcluidos_ClienteId",
@@ -369,6 +441,11 @@ namespace BancoDeDados.Migrations
                 column: "PedidoId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Produtos_EmpresaId",
+                table: "Produtos",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Produtos_ReceitaId",
                 table: "Produtos",
                 column: "ReceitaId");
@@ -389,6 +466,11 @@ namespace BancoDeDados.Migrations
                 column: "ReceitaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Receitas_EmpresaId",
+                table: "Receitas",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Receitas_PedidoId",
                 table: "Receitas",
                 column: "PedidoId");
@@ -407,13 +489,25 @@ namespace BancoDeDados.Migrations
                 name: "IX_ReceitasDoPedido_ReceitaId",
                 table: "ReceitasDoPedido",
                 column: "ReceitaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TipoReceita_EmpresaId",
+                table: "TipoReceita",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UnidadesMedida_EmpresaId",
+                table: "UnidadesMedida",
+                column: "EmpresaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuarios_EmpresaId",
+                table: "Usuarios",
+                column: "EmpresaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Empresas");
-
             migrationBuilder.DropTable(
                 name: "GastosReceita");
 
@@ -452,6 +546,9 @@ namespace BancoDeDados.Migrations
 
             migrationBuilder.DropTable(
                 name: "Clientes");
+
+            migrationBuilder.DropTable(
+                name: "Empresas");
         }
     }
 }
