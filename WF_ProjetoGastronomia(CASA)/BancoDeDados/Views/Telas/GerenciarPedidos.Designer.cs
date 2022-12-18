@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listViewReceitas = new System.Windows.Forms.ListView();
+            this.headerNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.headerPrecoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,15 +42,11 @@
             this.btnDeletarPedido = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnAdicionarReceita = new System.Windows.Forms.Button();
-            this.listViewReceitas = new System.Windows.Forms.ListView();
-            this.headerNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.headerPrecoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewPedidos = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnAdicionarReceita = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -69,6 +69,38 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pedidos";
+            // 
+            // listViewReceitas
+            // 
+            this.listViewReceitas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.headerNome,
+            this.headerPrecoUnidade,
+            this.columnHeader5});
+            this.listViewReceitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listViewReceitas.FullRowSelect = true;
+            this.listViewReceitas.HideSelection = false;
+            this.listViewReceitas.Location = new System.Drawing.Point(6, 251);
+            this.listViewReceitas.Name = "listViewReceitas";
+            this.listViewReceitas.Size = new System.Drawing.Size(436, 134);
+            this.listViewReceitas.TabIndex = 31;
+            this.listViewReceitas.UseCompatibleStateImageBehavior = false;
+            this.listViewReceitas.View = System.Windows.Forms.View.Details;
+            // 
+            // headerNome
+            // 
+            this.headerNome.Text = "Nome";
+            this.headerNome.Width = 185;
+            // 
+            // headerPrecoUnidade
+            // 
+            this.headerPrecoUnidade.Text = "Preço de Venda";
+            this.headerPrecoUnidade.Width = 147;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Lucro";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader5.Width = 99;
             // 
             // label4
             // 
@@ -150,52 +182,10 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(6, 19);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(679, 188);
+            this.groupBox2.Size = new System.Drawing.Size(731, 188);
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Receita";
-            // 
-            // btnAdicionarReceita
-            // 
-            this.btnAdicionarReceita.Location = new System.Drawing.Point(360, 9);
-            this.btnAdicionarReceita.Name = "btnAdicionarReceita";
-            this.btnAdicionarReceita.Size = new System.Drawing.Size(296, 23);
-            this.btnAdicionarReceita.TabIndex = 32;
-            this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
-            this.btnAdicionarReceita.UseVisualStyleBackColor = true;
-            this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
-            // 
-            // listViewReceitas
-            // 
-            this.listViewReceitas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.headerNome,
-            this.headerPrecoUnidade,
-            this.columnHeader5});
-            this.listViewReceitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listViewReceitas.FullRowSelect = true;
-            this.listViewReceitas.HideSelection = false;
-            this.listViewReceitas.Location = new System.Drawing.Point(6, 251);
-            this.listViewReceitas.Name = "listViewReceitas";
-            this.listViewReceitas.Size = new System.Drawing.Size(436, 134);
-            this.listViewReceitas.TabIndex = 31;
-            this.listViewReceitas.UseCompatibleStateImageBehavior = false;
-            this.listViewReceitas.View = System.Windows.Forms.View.Details;
-            // 
-            // headerNome
-            // 
-            this.headerNome.Text = "Nome";
-            this.headerNome.Width = 185;
-            // 
-            // headerPrecoUnidade
-            // 
-            this.headerPrecoUnidade.Text = "Preço de Venda";
-            this.headerPrecoUnidade.Width = 147;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Lucro";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader5.Width = 99;
             // 
             // listViewPedidos
             // 
@@ -208,7 +198,7 @@
             this.listViewPedidos.HideSelection = false;
             this.listViewPedidos.Location = new System.Drawing.Point(6, 38);
             this.listViewPedidos.Name = "listViewPedidos";
-            this.listViewPedidos.Size = new System.Drawing.Size(650, 144);
+            this.listViewPedidos.Size = new System.Drawing.Size(719, 144);
             this.listViewPedidos.TabIndex = 33;
             this.listViewPedidos.UseCompatibleStateImageBehavior = false;
             this.listViewPedidos.View = System.Windows.Forms.View.Details;
@@ -228,6 +218,16 @@
             this.columnHeader7.Text = "Lucro";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader7.Width = 99;
+            // 
+            // btnAdicionarReceita
+            // 
+            this.btnAdicionarReceita.Location = new System.Drawing.Point(429, 9);
+            this.btnAdicionarReceita.Name = "btnAdicionarReceita";
+            this.btnAdicionarReceita.Size = new System.Drawing.Size(296, 23);
+            this.btnAdicionarReceita.TabIndex = 32;
+            this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
+            this.btnAdicionarReceita.UseVisualStyleBackColor = true;
+            this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
             // 
             // GerenciarPedidos
             // 

@@ -32,39 +32,41 @@ namespace BancoDeDados.Controller.Telas
             {
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
                 var produtoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Produto>(comboBoxProdutos);
-                var quantidade = decimal.Parse(textBoxQuantidadeProduto.Text);
-                for (var i = 0; i < quantidade; i++)
+                var quantidade = _servico.FormataDinheiro(textBoxQuantidadeProduto.Text);
+                
+                if (produtoSelecionado != null)
                 {
-                    if (produtoSelecionado != null)
+                    var ProdutoReceitaList = _banco.RetornarLista<ProdutoReceita>().Where(
+                        pr => pr.ProdutoId == produtoSelecionado.Id && pr.ReceitaId == receitaSelecionada.Id
+                    );
+
+                    var existeProdutoReceitaList = ProdutoReceitaList.Any();
+
+                    if (existeProdutoReceitaList)
                     {
-                        var ProdutoReceitaList = _banco.RetornarLista<ProdutoReceita>().Where(
-                            pr => pr.ProdutoId == produtoSelecionado.Id && pr.ReceitaId == receitaSelecionada.Id
-                        );
-
-                        var existeProdutoReceitaList = ProdutoReceitaList.Any();
-
-                        if (existeProdutoReceitaList)
+                        var produtoReceitaAtualizar = ProdutoReceitaList.First();
+                        if(produtoReceitaAtualizar.QuantidadeProduto != quantidade)
                         {
-                            var produtoReceitaAtualizar = ProdutoReceitaList.First();
                             produtoReceitaAtualizar.QuantidadeProduto = quantidade;
                             _banco.Atualizar<ProdutoReceita>(produtoReceitaAtualizar);
                             PreencheListProdutos(receitaSelecionada.Id);
                         }
-                        else
+                    }
+                    else
+                    {
+                        var produtoReceita = new ProdutoReceita()
                         {
-                            var produtoReceita = new ProdutoReceita()
-                            {
-                                Produto = produtoSelecionado,
-                                ProdutoId = produtoSelecionado.Id,
-                                Receita = receitaSelecionada,
-                                ReceitaId = receitaSelecionada.Id,
-                                QuantidadeProduto = quantidade
-                            };
-                            _banco.Cadastrar<ProdutoReceita>(produtoReceita);
-                            PreencheListProdutos(receitaSelecionada.Id);
-                        }
+                            Produto = produtoSelecionado,
+                            ProdutoId = produtoSelecionado.Id,
+                            Receita = receitaSelecionada,
+                            ReceitaId = receitaSelecionada.Id,
+                            QuantidadeProduto = quantidade
+                        };
+                        _banco.Cadastrar<ProdutoReceita>(produtoReceita);
+                        PreencheListProdutos(receitaSelecionada.Id);
                     }
                 }
+                
             }
             else
             {
