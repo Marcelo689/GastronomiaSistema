@@ -1,5 +1,6 @@
 ﻿using BancoDeDados.Models;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto
@@ -13,6 +14,8 @@ namespace BancoDeDados.Contexto
         public List<Produto> Produto { get; set; }
         public int QuantidadeProduto { get; set; }
         // hh:mm:ss
+        [NotMapped]
+        public decimal QuantidadeReceita { get; set; }
         public decimal PrecoCusto { get; set; }
         public string TempoDePreparo { get; set; }
         public decimal PotenciaKwh { get; set; }

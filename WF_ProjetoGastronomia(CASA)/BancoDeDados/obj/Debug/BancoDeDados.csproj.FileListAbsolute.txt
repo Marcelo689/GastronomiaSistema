@@ -244,3 +244,4 @@ C:\ProjetoSecreto\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\ob
 C:\ProjetoSecreto\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.exe
 C:\ProjetoSecreto\GastronomiaSistema\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.pdb
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Views.Telas.GerenciarGastos.resources
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Views.Telas.GerenciarPedidos.resources

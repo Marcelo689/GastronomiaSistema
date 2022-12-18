@@ -77,5 +77,10 @@ namespace BancoDeDados
         {
             _servico.AbrirTela(new GerenciarGastos());
         }
+
+        private void gerenciarPedidosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarPedidos());
+        }
     }
 }

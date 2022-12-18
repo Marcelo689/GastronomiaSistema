@@ -27,6 +27,14 @@ namespace BancoDeDados.Controller
                     (sb, pair) => sb.AppendLine($"{pair.Name}: {pair.Value}"),
                     sb => sb.ToString());
         }
+
+        public List<Receita> RetornaReceitasDoPedido(int pedidoId)
+        {
+            var idsReceitaDoPedido = _contexto.ReceitasDoPedido.Where(e => e.PedidoId == pedidoId).Select( e=> e.ReceitaId).ToList();
+
+            return _contexto.Receitas.Where(e => idsReceitaDoPedido.Contains(e.Id)).ToList();
+        }
+
         public OperacoesBanco()
         {
             _contexto = new BDContexto().getInstancia();

@@ -30,15 +30,16 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarReceitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tipoReceitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoReceitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarGastosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarReceitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarGastosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,10 +63,18 @@
             this.tipoReceitaToolStripMenuItem,
             this.gerenciarProdutosToolStripMenuItem,
             this.gerenciarGastosToolStripMenuItem,
-            this.gerenciarReceitasToolStripMenuItem});
+            this.gerenciarReceitasToolStripMenuItem,
+            this.gerenciarPedidosToolStripMenuItem});
             this.menuItem.Name = "menuItem";
             this.menuItem.Size = new System.Drawing.Size(50, 20);
             this.menuItem.Text = "Menu";
+            // 
+            // gerenciarEmpresaToolStripMenuItem
+            // 
+            this.gerenciarEmpresaToolStripMenuItem.Name = "gerenciarEmpresaToolStripMenuItem";
+            this.gerenciarEmpresaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarEmpresaToolStripMenuItem.Text = "Gerenciar Empresa";
+            this.gerenciarEmpresaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarEmpresaToolStripMenuItem_Click);
             // 
             // menuItemCadastrarUsuario
             // 
@@ -74,26 +83,12 @@
             this.menuItemCadastrarUsuario.Text = "Gerenciar Usuários";
             this.menuItemCadastrarUsuario.Click += new System.EventHandler(this.menuItemCadastrarUsuario_Click);
             // 
-            // gerenciarProdutosToolStripMenuItem
-            // 
-            this.gerenciarProdutosToolStripMenuItem.Name = "gerenciarProdutosToolStripMenuItem";
-            this.gerenciarProdutosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarProdutosToolStripMenuItem.Text = "Gerenciar Produtos";
-            this.gerenciarProdutosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarProdutosToolStripMenuItem_Click);
-            // 
             // gerenciarUnidadesDeMedidaToolStripMenuItem
             // 
             this.gerenciarUnidadesDeMedidaToolStripMenuItem.Name = "gerenciarUnidadesDeMedidaToolStripMenuItem";
             this.gerenciarUnidadesDeMedidaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.gerenciarUnidadesDeMedidaToolStripMenuItem.Text = "Gerenciar Unidades de Medida";
             this.gerenciarUnidadesDeMedidaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarUnidadesDeMedidaToolStripMenuItem_Click);
-            // 
-            // gerenciarReceitasToolStripMenuItem
-            // 
-            this.gerenciarReceitasToolStripMenuItem.Name = "gerenciarReceitasToolStripMenuItem";
-            this.gerenciarReceitasToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarReceitasToolStripMenuItem.Text = "Gerenciar Receitas";
-            this.gerenciarReceitasToolStripMenuItem.Click += new System.EventHandler(this.gerenciarReceitasToolStripMenuItem_Click);
             // 
             // tipoReceitaToolStripMenuItem
             // 
@@ -102,12 +97,26 @@
             this.tipoReceitaToolStripMenuItem.Text = "Gerenciar Tipo Receita";
             this.tipoReceitaToolStripMenuItem.Click += new System.EventHandler(this.tipoReceitaToolStripMenuItem_Click);
             // 
-            // gerenciarEmpresaToolStripMenuItem
+            // gerenciarProdutosToolStripMenuItem
             // 
-            this.gerenciarEmpresaToolStripMenuItem.Name = "gerenciarEmpresaToolStripMenuItem";
-            this.gerenciarEmpresaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarEmpresaToolStripMenuItem.Text = "Gerenciar Empresa";
-            this.gerenciarEmpresaToolStripMenuItem.Click += new System.EventHandler(this.gerenciarEmpresaToolStripMenuItem_Click);
+            this.gerenciarProdutosToolStripMenuItem.Name = "gerenciarProdutosToolStripMenuItem";
+            this.gerenciarProdutosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarProdutosToolStripMenuItem.Text = "Gerenciar Produtos";
+            this.gerenciarProdutosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarProdutosToolStripMenuItem_Click);
+            // 
+            // gerenciarGastosToolStripMenuItem
+            // 
+            this.gerenciarGastosToolStripMenuItem.Name = "gerenciarGastosToolStripMenuItem";
+            this.gerenciarGastosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarGastosToolStripMenuItem.Text = "Gerenciar Gastos";
+            this.gerenciarGastosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarGastosToolStripMenuItem_Click);
+            // 
+            // gerenciarReceitasToolStripMenuItem
+            // 
+            this.gerenciarReceitasToolStripMenuItem.Name = "gerenciarReceitasToolStripMenuItem";
+            this.gerenciarReceitasToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarReceitasToolStripMenuItem.Text = "Gerenciar Receitas";
+            this.gerenciarReceitasToolStripMenuItem.Click += new System.EventHandler(this.gerenciarReceitasToolStripMenuItem_Click);
             // 
             // loginToolStripMenuItem
             // 
@@ -124,12 +133,12 @@
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             this.deslogarToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
             // 
-            // gerenciarGastosToolStripMenuItem
+            // gerenciarPedidosToolStripMenuItem
             // 
-            this.gerenciarGastosToolStripMenuItem.Name = "gerenciarGastosToolStripMenuItem";
-            this.gerenciarGastosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarGastosToolStripMenuItem.Text = "Gerenciar Gastos";
-            this.gerenciarGastosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarGastosToolStripMenuItem_Click);
+            this.gerenciarPedidosToolStripMenuItem.Name = "gerenciarPedidosToolStripMenuItem";
+            this.gerenciarPedidosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarPedidosToolStripMenuItem.Text = "Gerenciar Pedidos";
+            this.gerenciarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarPedidosToolStripMenuItem_Click);
             // 
             // FormularioPrincipal
             // 
@@ -160,5 +169,6 @@
         private System.Windows.Forms.ToolStripMenuItem tipoReceitaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarEmpresaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarGastosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarPedidosToolStripMenuItem;
     }
 }

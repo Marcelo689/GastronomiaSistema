@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
+using BancoDeDados.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,9 @@ namespace BancoDeDados.Contexto
         public bool FoiEntregue { get; set; }
         public DateTime DataParaEntrega { get; set; }
         public DateTime? DataEntregaRealizada { get; set; }
+        public DateTime DataCadastroPedido { get; set; }
+        public UsuarioLogin UsuarioLogin { get; set; }
+        public int UsuarioLoginId{ get; set; }
         public Cliente Cliente{ get; set; }
         public decimal PrecoVenda { get; set; }
         public Empresa Empresa { get; set; }

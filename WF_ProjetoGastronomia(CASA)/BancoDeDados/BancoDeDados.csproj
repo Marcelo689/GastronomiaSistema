@@ -166,6 +166,12 @@
       <DependentUpon>20221217034614_Adiciona preco venda.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
+    <Compile Include="Views\Buscar\BuscarReceita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Buscar\BuscarReceita.Designer.cs">
+      <DependentUpon>BuscarReceita.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Telas\CadastroUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,12 @@
     </Compile>
     <Compile Include="Views\Telas\GerenciarGastos.Designer.cs">
       <DependentUpon>GerenciarGastos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarPedidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarPedidos.Designer.cs">
+      <DependentUpon>GerenciarPedidos.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Telas\GerenciarTipoReceita.cs">
       <SubType>Form</SubType>
@@ -248,6 +260,9 @@
     <Compile Include="Controller\Servicos\BaseDB.cs" />
     <Compile Include="Controller\Servicos\Servico.cs" />
     <Compile Include="Controller\Servicos\TextBoxMetodos\TextBoxFunc.cs" />
+    <EmbeddedResource Include="Views\Buscar\BuscarReceita.resx">
+      <DependentUpon>BuscarReceita.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -256,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\GerenciarGastos.resx">
       <DependentUpon>GerenciarGastos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telas\GerenciarPedidos.resx">
+      <DependentUpon>GerenciarPedidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\GerenciarProdutos.resx">
       <DependentUpon>GerenciarProdutos.cs</DependentUpon>
