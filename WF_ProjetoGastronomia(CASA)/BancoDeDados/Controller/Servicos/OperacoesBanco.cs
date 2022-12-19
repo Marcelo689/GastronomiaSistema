@@ -32,7 +32,8 @@ namespace BancoDeDados.Controller
         {
             var idsReceitaDoPedido = _contexto.ReceitasDoPedido.Where(e => e.PedidoId == pedidoId).Select( e=> e.ReceitaId).ToList();
 
-            return _contexto.Receitas.Where(e => idsReceitaDoPedido.Contains(e.Id)).ToList();
+            var lista = _contexto.Receitas.Where(e => idsReceitaDoPedido.Contains(e.Id)).ToList();
+            return lista;
         }
 
         public OperacoesBanco()
@@ -129,39 +130,6 @@ namespace BancoDeDados.Controller
             }
             return false;
         }
-
-        //public List<GastoReceitaListView> RetornaGastosDaReceita(int idReceita)
-        //{
-        //    var lista = new List<GastoReceitaListView>();
-        //    if (idReceita == 0)
-        //        return lista;
-        //    var gastosDaReceita = _contexto.GastosReceita.Where(e => idReceita == e.ReceitaId).ToList();
-
-        //    foreach (var item in gastosDaReceita)
-        //    {
-        //        var gastoDoId = RetornarLista<Gasto>(item.GastoId).First();
-        //        var gasto = new GastoReceitaListView()
-        //        {
-        //            GastoId = gastoDoId.Id,
-        //            QuantidadeGasto = item.QuantidadeGasto,
-        //            Nome = gastoDoId.Nome,
-        //        };
-        //        lista.Add(gasto);
-        //    }
-        //    //var saidaLista = new List<GastoReceitaListView>();
-            
-        //    //foreach (var item in lista.Select((value, i) => new { i, value }))
-        //    //{
-        //    //    saidaLista.Add(new GastoReceitaListView
-        //    //    {
-        //    //        Id = item.value.Id,
-        //    //        Nome = item.value.Nome,
-        //    //        QuantidadeGasto = quantidades[item.i]
-        //    //    });
-        //    //}
-
-        //    return lista;
-        //}
 
         public bool Deletar<T>(params int[] entityIds) where T : TEntity
         {

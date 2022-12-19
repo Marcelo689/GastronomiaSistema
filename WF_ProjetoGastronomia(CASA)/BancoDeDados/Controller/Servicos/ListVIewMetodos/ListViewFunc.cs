@@ -83,19 +83,27 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
             foreach (var lin in propriedades)
             {
                 var nome = lin.Name;
-                //var teste = propriedadesSelecionadas.ToArray();
                 if (!propriedadesSelecionadas.Contains(nome))
                     continue;
                 if (nome == "Id")
                     continue;
-                var Tipo = lin.PropertyType;
                 var valor = lin.GetValue(item);
+                var Tipo = lin.PropertyType;
+
+                if (nome == "ClienteId")
+                {
+                    var teste = lin.GetValue(item);
+                    int idCliente = int.Parse(teste.ToString());
+                    var clienteNome = _banco.RetornarLista<Cliente>(idCliente).First().NomeCompleto;
+                    valor = clienteNome;
+                }
+                else
                 if (Tipo == typeof(decimal))
                     valor = decimal.Parse(lin.GetValue(item).ToString()).ToString("F2");
                 else
                 if (Tipo == typeof(UnidadeMedida))
                     valor = (lin.GetValue(item) as UnidadeMedida).Descricao;
-
+                
                 if (valor != null)
                     colunasStrings.Add(valor.ToString());
                 else

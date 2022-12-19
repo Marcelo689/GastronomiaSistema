@@ -42,8 +42,8 @@
             this.btnDeletar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxQuantidadeReceita = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.textBoxQuantidadeReceita = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -86,6 +86,7 @@
             this.textBoxPesquisa.Name = "textBoxPesquisa";
             this.textBoxPesquisa.Size = new System.Drawing.Size(380, 20);
             this.textBoxPesquisa.TabIndex = 33;
+            this.textBoxPesquisa.TextChanged += new System.EventHandler(this.textBoxPesquisa_TextChanged);
             this.textBoxPesquisa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPesquisa_KeyPress);
             // 
             // label1
@@ -173,14 +174,6 @@
             this.groupBox2.Text = "Selecione itens e clique em adicionar";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // textBoxQuantidadeReceita
-            // 
-            this.textBoxQuantidadeReceita.Location = new System.Drawing.Point(590, 133);
-            this.textBoxQuantidadeReceita.Name = "textBoxQuantidadeReceita";
-            this.textBoxQuantidadeReceita.Size = new System.Drawing.Size(169, 20);
-            this.textBoxQuantidadeReceita.TabIndex = 37;
-            this.textBoxQuantidadeReceita.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxQuantidadeReceita_KeyPress);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -189,6 +182,14 @@
             this.label2.Size = new System.Drawing.Size(62, 13);
             this.label2.TabIndex = 38;
             this.label2.Text = "Quantidade";
+            // 
+            // textBoxQuantidadeReceita
+            // 
+            this.textBoxQuantidadeReceita.Location = new System.Drawing.Point(590, 133);
+            this.textBoxQuantidadeReceita.Name = "textBoxQuantidadeReceita";
+            this.textBoxQuantidadeReceita.Size = new System.Drawing.Size(169, 20);
+            this.textBoxQuantidadeReceita.TabIndex = 37;
+            this.textBoxQuantidadeReceita.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxQuantidadeReceita_KeyPress);
             // 
             // BuscarReceita
             // 

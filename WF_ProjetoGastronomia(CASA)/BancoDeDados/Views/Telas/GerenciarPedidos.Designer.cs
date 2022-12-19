@@ -34,7 +34,7 @@
             this.headerPrecoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxCliente = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataEntregaRealizada = new System.Windows.Forms.DateTimePicker();
@@ -47,6 +47,12 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdicionarReceita = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxCustoTotal = new System.Windows.Forms.TextBox();
+            this.textBoxLucroTotal = new System.Windows.Forms.TextBox();
+            this.textBoxValorVendaTotal = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +61,7 @@
             // 
             this.groupBox1.Controls.Add(this.listViewReceitas);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.comboBoxCliente);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dataEntregaRealizada);
@@ -79,7 +85,7 @@
             this.listViewReceitas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewReceitas.FullRowSelect = true;
             this.listViewReceitas.HideSelection = false;
-            this.listViewReceitas.Location = new System.Drawing.Point(6, 251);
+            this.listViewReceitas.Location = new System.Drawing.Point(23, 251);
             this.listViewReceitas.Name = "listViewReceitas";
             this.listViewReceitas.Size = new System.Drawing.Size(436, 134);
             this.listViewReceitas.TabIndex = 31;
@@ -112,13 +118,13 @@
             this.label4.TabIndex = 64;
             this.label4.Text = "Cliente";
             // 
-            // comboBox1
+            // comboBoxCliente
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(498, 335);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(239, 21);
-            this.comboBox1.TabIndex = 63;
+            this.comboBoxCliente.FormattingEnabled = true;
+            this.comboBoxCliente.Location = new System.Drawing.Point(498, 335);
+            this.comboBoxCliente.Name = "comboBoxCliente";
+            this.comboBoxCliente.Size = new System.Drawing.Size(239, 21);
+            this.comboBoxCliente.TabIndex = 63;
             // 
             // label3
             // 
@@ -177,6 +183,12 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.textBoxValorVendaTotal);
+            this.groupBox2.Controls.Add(this.textBoxLucroTotal);
+            this.groupBox2.Controls.Add(this.textBoxCustoTotal);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.listViewPedidos);
             this.groupBox2.Controls.Add(this.btnAdicionarReceita);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -198,36 +210,88 @@
             this.listViewPedidos.HideSelection = false;
             this.listViewPedidos.Location = new System.Drawing.Point(6, 38);
             this.listViewPedidos.Name = "listViewPedidos";
-            this.listViewPedidos.Size = new System.Drawing.Size(719, 144);
+            this.listViewPedidos.Size = new System.Drawing.Size(441, 144);
             this.listViewPedidos.TabIndex = 33;
             this.listViewPedidos.UseCompatibleStateImageBehavior = false;
             this.listViewPedidos.View = System.Windows.Forms.View.Details;
+            this.listViewPedidos.SelectedIndexChanged += new System.EventHandler(this.listViewPedidos_SelectedIndexChanged);
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "Nome";
+            this.columnHeader4.Text = "Chave Pedido";
             this.columnHeader4.Width = 185;
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Preço de Venda";
+            this.columnHeader6.Text = "Cliente";
             this.columnHeader6.Width = 147;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Lucro";
+            this.columnHeader7.Text = "Valor de Venda";
             this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeader7.Width = 99;
             // 
             // btnAdicionarReceita
             // 
-            this.btnAdicionarReceita.Location = new System.Drawing.Point(429, 9);
+            this.btnAdicionarReceita.Location = new System.Drawing.Point(151, 9);
             this.btnAdicionarReceita.Name = "btnAdicionarReceita";
             this.btnAdicionarReceita.Size = new System.Drawing.Size(296, 23);
             this.btnAdicionarReceita.TabIndex = 32;
             this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
             this.btnAdicionarReceita.UseVisualStyleBackColor = true;
             this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(454, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 15);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Custo Total";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(454, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 15);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Lucro Total";
+            // 
+            // textBoxCustoTotal
+            // 
+            this.textBoxCustoTotal.Enabled = false;
+            this.textBoxCustoTotal.Location = new System.Drawing.Point(540, 38);
+            this.textBoxCustoTotal.Name = "textBoxCustoTotal";
+            this.textBoxCustoTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxCustoTotal.TabIndex = 36;
+            // 
+            // textBoxLucroTotal
+            // 
+            this.textBoxLucroTotal.Enabled = false;
+            this.textBoxLucroTotal.Location = new System.Drawing.Point(540, 74);
+            this.textBoxLucroTotal.Name = "textBoxLucroTotal";
+            this.textBoxLucroTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxLucroTotal.TabIndex = 37;
+            // 
+            // textBoxValorVendaTotal
+            // 
+            this.textBoxValorVendaTotal.Enabled = false;
+            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 137);
+            this.textBoxValorVendaTotal.Name = "textBoxValorVendaTotal";
+            this.textBoxValorVendaTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxValorVendaTotal.TabIndex = 38;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(516, 119);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 15);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "Valor de venda total";
             // 
             // GerenciarPedidos
             // 
@@ -237,9 +301,11 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "GerenciarPedidos";
             this.Text = "Gerenciar Pedidos";
+            this.Load += new System.EventHandler(this.GerenciarPedidos_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -260,10 +326,16 @@
         private System.Windows.Forms.DateTimePicker dataParaEntrega;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxCliente;
         private System.Windows.Forms.ListView listViewPedidos;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxValorVendaTotal;
+        private System.Windows.Forms.TextBox textBoxLucroTotal;
+        private System.Windows.Forms.TextBox textBoxCustoTotal;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

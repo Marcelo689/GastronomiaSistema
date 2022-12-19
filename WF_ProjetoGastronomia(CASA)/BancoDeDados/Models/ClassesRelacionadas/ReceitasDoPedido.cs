@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using static BancoDeDados.Controller.OperacoesBanco;
 
 namespace BancoDeDados.Contexto.ClassesRelacionadas
@@ -17,6 +11,7 @@ namespace BancoDeDados.Contexto.ClassesRelacionadas
         public Receita Receita { get; set; }
         public int PedidoId { get; set; }
         public Pedido Pedido { get; set; }
+        public decimal QuantidadeReceita { get; set; }
 
     }
 }

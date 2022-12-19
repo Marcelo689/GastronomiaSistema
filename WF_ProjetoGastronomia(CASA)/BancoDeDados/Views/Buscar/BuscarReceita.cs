@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
@@ -11,8 +12,9 @@ namespace BancoDeDados.Views.Buscar
     public partial class BuscarReceita : FormBase
     {
         public ListView _listViewReceita;
-        public List<Receita> receitasSaidas;
+        public List<Receita> receitasAdicionados;
         public int _pedidoId;
+        public Pedido _pedido;
         public BuscarReceita()
         {
             InitializeComponent();
@@ -20,7 +22,9 @@ namespace BancoDeDados.Views.Buscar
 
         public BuscarReceita(ListView listview, int pedidoId)
         {
+            InitializeComponent();
             _pedidoId = pedidoId;
+            _pedido = _banco.RetornarLista<Pedido>(_pedidoId).First();
             _listViewReceita = listview;
         }
         private void PreencheListReceita()
@@ -28,14 +32,14 @@ namespace BancoDeDados.Views.Buscar
             PreencheListaReceitasAdicionadosAoPedido();
             var pesquisa = textBoxPesquisa.Text;
             if (!string.IsNullOrWhiteSpace(pesquisa))
-            {
                 PreencheListReceitasPeloFiltro(pesquisa);
-            }
+            else
+                TodasReceitas();
         }
 
         private void PreencheListReceitasPeloFiltro(string pesquisa)
         {
-            var retonaLista = _banco.RetornarLista<Receita>().Where(e => e.NomeReceita.Contains(pesquisa.Trim())).ToList();
+            var retonaLista = _banco.RetornarLista<Receita>().Where(e => e.NomeReceita.ToLower().Contains(pesquisa.ToLower().Trim())).ToList();
 
             listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
                retonaLista,
@@ -48,7 +52,7 @@ namespace BancoDeDados.Views.Buscar
 
         private void PreencheListaReceitasAdicionadosAoPedido()
         {
-            var receitasDoPedido = _banco.RetornaReceitasDoPedido(_pedidoId);
+            var receitasDoPedido = receitasAdicionados = _banco.RetornaReceitasDoPedido(_pedidoId);
             listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewAdicionados,
                receitasDoPedido,
                new string[]
@@ -60,8 +64,17 @@ namespace BancoDeDados.Views.Buscar
 
         private void BuscarReceita_Load(object sender, System.EventArgs e)
         {
+            PreencheListReceita();
+        }
 
-           PreencheListReceita();
+        private void TodasReceitas()
+        {
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
+               new string[]
+                   {
+                            "Id","NomeReceita","PrecoVenda","Lucro"
+                   }
+            );
         }
 
         private void textBoxPesquisa_KeyPress(object sender, KeyPressEventArgs e)
@@ -77,13 +90,27 @@ namespace BancoDeDados.Views.Buscar
                 var quantidade = _servico.FormataDinheiro(textBoxQuantidadeReceita.Text);
 
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
-                if (receitasSaidas.Contains(receitaSelecionada))
+                if (receitasAdicionados.Contains(receitaSelecionada))
                 {
-                    receitasSaidas.Where(rec => rec.Id == receitaSelecionada.Id).First().QuantidadeReceita = quantidade;
+                    receitasAdicionados.Where(rec => rec.Id == receitaSelecionada.Id).First().QuantidadeReceita = quantidade;
+                    var receitaDoPedido = _banco.RetornarLista<ReceitaDoPedido>().Where(rp => rp.PedidoId == _pedidoId && rp.ReceitaId == receitaSelecionada.Id).First();
+                    receitaDoPedido.QuantidadeReceita = quantidade;
+                    _banco.Atualizar<ReceitaDoPedido>(receitaDoPedido);
                 }
                 else
                 {
-                    receitasSaidas.Add(receitaSelecionada);
+                    receitasAdicionados.Add(receitaSelecionada);
+                    var receitaPedido = new ReceitaDoPedido()
+                    {
+                        Pedido = _pedido,
+                        PedidoId = _pedidoId,
+                        QuantidadeReceita = quantidade,
+                        ReceitaId = receitaSelecionada.Id,
+                        Receita = receitaSelecionada,
+                    };
+
+                    _banco.Cadastrar<ReceitaDoPedido>(receitaPedido);
+                    
                 }
                 PreencheListReceitaAdicionado();
             }
@@ -95,13 +122,22 @@ namespace BancoDeDados.Views.Buscar
 
         private void PreencheListReceitaAdicionado()
         {
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
-               receitasSaidas,
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewAdicionados,
+               receitasAdicionados,
                new string[]
                    {
                             "Id","NomeReceita","PrecoVenda","Lucro"
                    }
             );
+
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(_listViewReceita,
+               receitasAdicionados,
+               new string[]
+                   {
+                            "Id","NomeReceita","PrecoVenda","Lucro"
+                   }
+            );
+            
         }
 
         private void textBoxQuantidadeReceita_KeyPress(object sender, KeyPressEventArgs e)
@@ -112,6 +148,11 @@ namespace BancoDeDados.Views.Buscar
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBoxPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            PreencheListReceita();
         }
     }
 }

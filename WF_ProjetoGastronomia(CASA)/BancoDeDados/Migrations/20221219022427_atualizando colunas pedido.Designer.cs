@@ -3,14 +3,16 @@ using System;
 using BancoDeDados.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    partial class BDContextoModelSnapshot : ModelSnapshot
+    [Migration("20221219022427_atualizando colunas pedido")]
+    partial class atualizandocolunaspedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,9 +102,6 @@ namespace BancoDeDados.Migrations
 
                     b.Property<int>("PedidoId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("QuantidadeReceita")
-                        .HasColumnType("decimal(65,30)");
 
                     b.Property<int>("ReceitaId")
                         .HasColumnType("int");
@@ -209,7 +208,7 @@ namespace BancoDeDados.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataCadastroPedido")
@@ -530,9 +529,7 @@ namespace BancoDeDados.Migrations
                 {
                     b.HasOne("BancoDeDados.Contexto.Cliente", "Cliente")
                         .WithMany()
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
 
                     b.HasOne("BancoDeDados.Contexto.Empresa", "Empresa")
                         .WithMany()

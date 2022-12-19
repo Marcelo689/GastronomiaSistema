@@ -165,6 +165,18 @@
     <Compile Include="Migrations\20221217034614_Adiciona preco venda.designer.cs">
       <DependentUpon>20221217034614_Adiciona preco venda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221219022427_atualizando colunas pedido.cs" />
+    <Compile Include="Migrations\20221219022427_atualizando colunas pedido.designer.cs">
+      <DependentUpon>20221219022427_atualizando colunas pedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221219040204_atualizando colunas pedido1.cs" />
+    <Compile Include="Migrations\20221219040204_atualizando colunas pedido1.designer.cs">
+      <DependentUpon>20221219040204_atualizando colunas pedido1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221219052426_Quantidade-pedido.cs" />
+    <Compile Include="Migrations\20221219052426_Quantidade-pedido.designer.cs">
+      <DependentUpon>20221219052426_Quantidade-pedido.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Buscar\BuscarReceita.cs">
       <SubType>Form</SubType>
