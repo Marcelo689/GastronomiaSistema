@@ -42,17 +42,17 @@
             this.btnDeletarPedido = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxValorVendaTotal = new System.Windows.Forms.TextBox();
+            this.textBoxLucroTotal = new System.Windows.Forms.TextBox();
+            this.textBoxCustoTotal = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.listViewPedidos = new System.Windows.Forms.ListView();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdicionarReceita = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxCustoTotal = new System.Windows.Forms.TextBox();
-            this.textBoxLucroTotal = new System.Windows.Forms.TextBox();
-            this.textBoxValorVendaTotal = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -169,6 +169,7 @@
             this.btnDeletarPedido.TabIndex = 33;
             this.btnDeletarPedido.Text = "Remover Receita do Pedido";
             this.btnDeletarPedido.UseVisualStyleBackColor = true;
+            this.btnDeletarPedido.Click += new System.EventHandler(this.btnDeletarPedido_Click);
             // 
             // label1
             // 
@@ -176,9 +177,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(19, 213);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(79, 24);
+            this.label1.Size = new System.Drawing.Size(174, 24);
             this.label1.TabIndex = 58;
-            this.label1.Text = "Pedidos";
+            this.label1.Text = "Receitas do Pedido";
             // 
             // groupBox2
             // 
@@ -198,6 +199,57 @@
             this.groupBox2.TabIndex = 57;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Receita";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(516, 119);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(134, 15);
+            this.label7.TabIndex = 39;
+            this.label7.Text = "Valor de venda total";
+            // 
+            // textBoxValorVendaTotal
+            // 
+            this.textBoxValorVendaTotal.Enabled = false;
+            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 137);
+            this.textBoxValorVendaTotal.Name = "textBoxValorVendaTotal";
+            this.textBoxValorVendaTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxValorVendaTotal.TabIndex = 38;
+            // 
+            // textBoxLucroTotal
+            // 
+            this.textBoxLucroTotal.Enabled = false;
+            this.textBoxLucroTotal.Location = new System.Drawing.Point(540, 74);
+            this.textBoxLucroTotal.Name = "textBoxLucroTotal";
+            this.textBoxLucroTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxLucroTotal.TabIndex = 37;
+            // 
+            // textBoxCustoTotal
+            // 
+            this.textBoxCustoTotal.Enabled = false;
+            this.textBoxCustoTotal.Location = new System.Drawing.Point(540, 38);
+            this.textBoxCustoTotal.Name = "textBoxCustoTotal";
+            this.textBoxCustoTotal.Size = new System.Drawing.Size(171, 21);
+            this.textBoxCustoTotal.TabIndex = 36;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(454, 77);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(79, 15);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Lucro Total";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(454, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 15);
+            this.label5.TabIndex = 34;
+            this.label5.Text = "Custo Total";
             // 
             // listViewPedidos
             // 
@@ -241,57 +293,6 @@
             this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
             this.btnAdicionarReceita.UseVisualStyleBackColor = true;
             this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(454, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(79, 15);
-            this.label5.TabIndex = 34;
-            this.label5.Text = "Custo Total";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(454, 77);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 15);
-            this.label6.TabIndex = 35;
-            this.label6.Text = "Lucro Total";
-            // 
-            // textBoxCustoTotal
-            // 
-            this.textBoxCustoTotal.Enabled = false;
-            this.textBoxCustoTotal.Location = new System.Drawing.Point(540, 38);
-            this.textBoxCustoTotal.Name = "textBoxCustoTotal";
-            this.textBoxCustoTotal.Size = new System.Drawing.Size(171, 21);
-            this.textBoxCustoTotal.TabIndex = 36;
-            // 
-            // textBoxLucroTotal
-            // 
-            this.textBoxLucroTotal.Enabled = false;
-            this.textBoxLucroTotal.Location = new System.Drawing.Point(540, 74);
-            this.textBoxLucroTotal.Name = "textBoxLucroTotal";
-            this.textBoxLucroTotal.Size = new System.Drawing.Size(171, 21);
-            this.textBoxLucroTotal.TabIndex = 37;
-            // 
-            // textBoxValorVendaTotal
-            // 
-            this.textBoxValorVendaTotal.Enabled = false;
-            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 137);
-            this.textBoxValorVendaTotal.Name = "textBoxValorVendaTotal";
-            this.textBoxValorVendaTotal.Size = new System.Drawing.Size(171, 21);
-            this.textBoxValorVendaTotal.TabIndex = 38;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(516, 119);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(134, 15);
-            this.label7.TabIndex = 39;
-            this.label7.Text = "Valor de venda total";
             // 
             // GerenciarPedidos
             // 

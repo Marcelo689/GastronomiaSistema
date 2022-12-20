@@ -126,7 +126,7 @@ namespace BancoDeDados.Views.Buscar
                receitasAdicionados,
                new string[]
                    {
-                            "Id","NomeReceita","PrecoVenda","Lucro"
+                        "Id","NomeReceita","PrecoVenda","Lucro"
                    }
             );
 
@@ -134,7 +134,7 @@ namespace BancoDeDados.Views.Buscar
                receitasAdicionados,
                new string[]
                    {
-                            "Id","NomeReceita","PrecoVenda","Lucro"
+                        "Id","NomeReceita","PrecoVenda","Lucro"
                    }
             );
             
@@ -153,6 +153,26 @@ namespace BancoDeDados.Views.Buscar
         private void textBoxPesquisa_TextChanged(object sender, EventArgs e)
         {
             PreencheListReceita();
+        }
+
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            if (listViewFunc.ExisteLinhaSelecionada(listViewAdicionados))
+            {
+                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewAdicionados);
+
+                if (listViewFunc.ConfirmaDeletarItemDoList(listViewAdicionados))
+                {
+                    var receitaDoPedido = _banco.RetornarLista<ReceitaDoPedido>().Where(rp =>
+                        rp.PedidoId == _pedidoId &&
+                        rp.ReceitaId == receitaSelecionada.Id
+                    ).First();
+                    _banco.Deletar<ReceitaDoPedido>(receitaDoPedido);
+                    receitasAdicionados.Remove(receitaSelecionada);
+                    PreencheListReceitaAdicionado();
+                }
+
+            }
         }
     }
 }

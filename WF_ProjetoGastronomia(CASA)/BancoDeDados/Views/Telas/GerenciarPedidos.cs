@@ -1,8 +1,10 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Views.Buscar;
 using System;
+using System.Linq;
 
 namespace BancoDeDados.Views.Telas
 {
@@ -53,9 +55,28 @@ namespace BancoDeDados.Views.Telas
                receitasDoPedido,
                new string[]
                    {
-                            "Id","NomeReceita","PrecoVenda","Lucro"
+                        "Id","NomeReceita","PrecoVenda","Lucro"
                    }
             );
+
+            var totalVenda = 0m;
+            var totalCusto = 0m;
+            var totalLucro = 0m;
+
+            foreach (var item in receitasDoPedido)
+            {
+                totalCusto += item.PrecoCusto;
+                totalVenda += item.PrecoVenda;
+                totalLucro += item.Lucro;
+            }
+
+            pedidoSelecionado.TotalLucro = totalCusto;
+            pedidoSelecionado.TotalLucro = totalLucro;
+            pedidoSelecionado.PrecoVenda = totalVenda;
+
+            textBoxCustoTotal.Text = _servico.FormataValor(totalCusto);
+            textBoxLucroTotal.Text = _servico.FormataValor(totalLucro);
+            textBoxValorVendaTotal.Text = _servico.FormataValor(totalVenda);
         }
 
         private void PreencherListViewPedidos()
@@ -64,7 +85,8 @@ namespace BancoDeDados.Views.Telas
                 new string[]
                 {
                     "Id","ChavePedido","ClienteId","PrecoVenda"
-                });
+                }
+            );
         }
 
         private void GerenciarPedidos_Load(object sender, EventArgs e)
@@ -78,7 +100,31 @@ namespace BancoDeDados.Views.Telas
             if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos))
             {
                 var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
+                textBoxValorVendaTotal.Text = _servico.FormataValor(pedidoSelecionado.PrecoVenda);
+                textBoxCustoTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalCusto);
+                textBoxLucroTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalLucro);
                 PreencheReceitasDoPedido(pedidoSelecionado);
+            }
+        }
+
+        private void btnDeletarPedido_Click(object sender, EventArgs e)
+        {
+            if(listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
+            {
+                var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
+                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+
+                if (listViewFunc.ConfirmaDeletarItemDoList(listViewReceitas))
+                {
+                    var receitaDoPedido = _banco.RetornarLista<ReceitaDoPedido>().Where(rp =>
+                        rp.PedidoId  == pedidoSelecionado.Id &&
+                        rp.ReceitaId == receitaSelecionada.Id
+                    ).First();
+
+                    _banco.Deletar<ReceitaDoPedido>(receitaDoPedido); 
+                    PreencheReceitasDoPedido(pedidoSelecionado);
+                }
+
             }
         }
     }

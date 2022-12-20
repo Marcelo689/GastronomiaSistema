@@ -33,6 +33,17 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
             }
             return false;
         }
+
+        public void SelecionaItem(ListView listview,int id)
+        {
+            foreach (ListViewItem item in listview.Items)
+            {
+                if(id.ToString() == item.Tag.ToString())
+                {
+                    item.Selected = true;
+                }
+            }
+        }
         public bool ExisteLinhaSelecionada(ListView listView)
         {
             var linhasSelecionadas = listView.SelectedItems;
