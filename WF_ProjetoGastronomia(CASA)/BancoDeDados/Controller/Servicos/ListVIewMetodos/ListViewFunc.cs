@@ -26,10 +26,7 @@ namespace BancoDeDados.Servicos.ListVIewMetodos
             var quer = MessageBox.Show("Tem certeza que deseja deletar o item?", "Deletar!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (quer == DialogResult.Yes)
             {
-                if (ExisteLinhaSelecionada(listview))
-                    return true;
-                else
-                    return false;
+                return true;
             }
             return false;
         }
