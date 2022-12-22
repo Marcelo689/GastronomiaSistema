@@ -1,8 +1,10 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Controller.Model;
+using BancoDeDados.Models;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BancoDeDados.Controller.Telas
@@ -56,7 +58,7 @@ namespace BancoDeDados.Controller.Telas
                 empresaSelecionada.Cidade = textBoxCidade.Text;
                 empresaSelecionada.Complemento = textBoxComplemento.Text;
                 empresaSelecionada.EnderecoNumero = textBoxNumero.Text;
-
+                empresaSelecionada.CustoKwh = _servico.FormataDinheiro(textBoxCustoKwh.Text);
                 empresaSelecionada.Email = textBoxEmail.Text;
                 empresaSelecionada.Logo = ImageToByte(pictureBoxLogo.Image);
 
@@ -142,7 +144,7 @@ namespace BancoDeDados.Controller.Telas
                 return;
             textBoxNomeEmpresa.Text = empresaSelecionada.NomeEmpresa;
             textBoxCNPJ.Text = empresaSelecionada.CNPJ.ToString();
-           
+            textBoxCustoKwh.Text = _servico.FormataValor(empresaSelecionada.CustoKwh);
             textBoxBairro.Text = empresaSelecionada.Bairro;
             textBoxCidade.Text = empresaSelecionada.Cidade;
             textBoxComplemento.Text = empresaSelecionada.Complemento;
@@ -207,6 +209,20 @@ namespace BancoDeDados.Controller.Telas
         private void textBoxCNPJ_KeyPress(object sender, KeyPressEventArgs e)
         {
             textBoxFunc.FormatoTextBoxDinheiro(sender, e);
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            textBoxFunc.FormatoTextBoxDinheiro(sender, e);
+        }
+
+        private void GerenciarEmpresas_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(_contexto.Login != null)
+            {
+                var usuarioLogado = _contexto.Login.Id;
+                _contexto.Login = _banco.RetornarLista<UsuarioLogin>(usuarioLogado).First();
+            }
         }
     }
 }

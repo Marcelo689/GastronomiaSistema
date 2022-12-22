@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using static BancoDeDados.Controller.OperacoesBanco;
@@ -17,9 +18,9 @@ namespace BancoDeDados.Contexto
         [NotMapped]
         public decimal QuantidadeReceita { get; set; }
         public decimal PrecoCusto { get; set; }
+        public decimal ValorLuz { get; set; }
         public string TempoDePreparo { get; set; }
         public decimal PotenciaKwh { get; set; }
-        public double PercentualGastoGas { get; set; }  
         public decimal PrecoVenda { get; set; }
         public TipoReceita TipoReceita { get; set; }
         public Empresa Empresa { get; set; }
@@ -27,7 +28,7 @@ namespace BancoDeDados.Contexto
         public decimal Lucro { 
             get 
             {
-                return PrecoVenda - PrecoCusto;
+                return PrecoVenda - (PrecoCusto + ValorLuz);
             } 
         } 
     }

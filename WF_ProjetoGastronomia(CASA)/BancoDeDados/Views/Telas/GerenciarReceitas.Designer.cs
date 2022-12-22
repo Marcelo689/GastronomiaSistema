@@ -58,6 +58,7 @@
             this.listViewReceitas = new System.Windows.Forms.ListView();
             this.headerNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.headerPrecoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDeletar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.textBoxNomeReceita = new System.Windows.Forms.TextBox();
@@ -67,7 +68,8 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelCustoLuz = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -340,6 +342,12 @@
             this.headerPrecoUnidade.Text = "Preço de Venda";
             this.headerPrecoUnidade.Width = 147;
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Lucro";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader5.Width = 99;
+            // 
             // btnDeletar
             // 
             this.btnDeletar.BackColor = System.Drawing.Color.OrangeRed;
@@ -449,6 +457,8 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupBox4.Controls.Add(this.label4);
+            this.groupBox4.Controls.Add(this.labelCustoLuz);
             this.groupBox4.Controls.Add(this.groupBox2);
             this.groupBox4.Controls.Add(this.groupBox3);
             this.groupBox4.Controls.Add(this.label9);
@@ -462,11 +472,25 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Items Dentro da Receita";
             // 
-            // columnHeader5
+            // label4
             // 
-            this.columnHeader5.Text = "Lucro";
-            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeader5.Width = 99;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(363, 85);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(152, 13);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Luz consumida na receita";
+            // 
+            // labelCustoLuz
+            // 
+            this.labelCustoLuz.AutoSize = true;
+            this.labelCustoLuz.Location = new System.Drawing.Point(422, 107);
+            this.labelCustoLuz.Name = "labelCustoLuz";
+            this.labelCustoLuz.Size = new System.Drawing.Size(28, 13);
+            this.labelCustoLuz.TabIndex = 59;
+            this.labelCustoLuz.Text = "0.00";
+            this.labelCustoLuz.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // GerenciarReceitas
             // 
@@ -480,7 +504,7 @@
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnCadastrar);
             this.Name = "GerenciarReceitas";
-            this.Text = "GerenciarReceitas";
+            this.Text = "Gerenciar Receitas";
             this.Load += new System.EventHandler(this.GerenciarReceitas_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -537,5 +561,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelCustoLuz;
     }
 }

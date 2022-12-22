@@ -3,14 +3,16 @@ using System;
 using BancoDeDados.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    partial class BDContextoModelSnapshot : ModelSnapshot
+    [Migration("20221222165117_colunas-potencialuz")]
+    partial class colunaspotencialuz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -321,8 +323,8 @@ namespace BancoDeDados.Migrations
                     b.Property<int>("QuantidadeProduto")
                         .HasColumnType("int");
 
-                    b.Property<string>("TempoDePreparo")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<DateTime>("TempoDePreparo")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<int?>("TipoReceitaId")
                         .HasColumnType("int");

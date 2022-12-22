@@ -17,5 +17,6 @@ namespace BancoDeDados.Contexto
         public string Email { get; set; }
         public string Celular { get; set; }
         public string Telefone { get; set; }
+        public decimal CustoKwh { get; set; }
     }
 }

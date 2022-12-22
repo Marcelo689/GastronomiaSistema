@@ -157,6 +157,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Servicos\PictureBoxMetodos\PictureBoxFunc.cs" />
     <Compile Include="Migrations\20221216222605_completo.cs" />
     <Compile Include="Migrations\20221216222605_completo.designer.cs">
       <DependentUpon>20221216222605_completo.cs</DependentUpon>
@@ -177,6 +178,22 @@
     <Compile Include="Migrations\20221219052426_Quantidade-pedido.designer.cs">
       <DependentUpon>20221219052426_Quantidade-pedido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221221185237_custokwh.cs" />
+    <Compile Include="Migrations\20221221185237_custokwh.designer.cs">
+      <DependentUpon>20221221185237_custokwh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221222163228_alterando colunas de luz da receita.cs" />
+    <Compile Include="Migrations\20221222163228_alterando colunas de luz da receita.designer.cs">
+      <DependentUpon>20221222163228_alterando colunas de luz da receita.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221222165117_colunas-potencialuz.cs" />
+    <Compile Include="Migrations\20221222165117_colunas-potencialuz.designer.cs">
+      <DependentUpon>20221222165117_colunas-potencialuz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20221222170238_atualizando novamente colunas luz.cs" />
+    <Compile Include="Migrations\20221222170238_atualizando novamente colunas luz.designer.cs">
+      <DependentUpon>20221222170238_atualizando novamente colunas luz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Buscar\BuscarReceita.cs">
       <SubType>Form</SubType>
@@ -193,6 +210,12 @@
     <Compile Include="Contexto\BDContexto.cs" />
     <Compile Include="Views\FormBase.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Telas\GerenciarClientes.Designer.cs">
+      <DependentUpon>GerenciarClientes.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Telas\GerenciarGastos.cs">
       <SubType>Form</SubType>
@@ -277,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\CadastroUsuario.resx">
       <DependentUpon>CadastroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Telas\GerenciarClientes.resx">
+      <DependentUpon>GerenciarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Telas\GerenciarEmpresas.resx">
       <DependentUpon>GerenciarEmpresas.cs</DependentUpon>

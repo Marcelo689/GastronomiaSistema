@@ -31,9 +31,9 @@ namespace BancoDeDados.Controller.Telas
             if (_receitaSelecionada != null)
             {
                 var produtoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Produto>(comboBoxProdutos);
-                var quantidade = _servico.FormataDinheiro(textBoxQuantidadeProduto.Text);
+                var quantidade         = _servico.FormataDinheiro(textBoxQuantidadeProduto.Text);
                 
-                if (produtoSelecionado != null)
+                if (produtoSelecionado.Id > 0)
                 {
                     var ProdutoReceitaList = _banco.RetornarLista<ProdutoReceita>().Where(
                         pr => pr.ProdutoId == produtoSelecionado.Id && pr.ReceitaId == _receitaSelecionada.Id
@@ -89,7 +89,7 @@ namespace BancoDeDados.Controller.Telas
 
         private void GerenciarReceitas_Load(object sender, System.EventArgs e)
         {
-            textBoxTempoPreparo.Text = "00:00:00";
+            textBoxTempoPreparo.Text = "";
             PreencheListReceita();
             PreencheComboBoxes(); 
             btnDeletarLinha.Enabled = false;
@@ -182,6 +182,7 @@ namespace BancoDeDados.Controller.Telas
             comboBoxTipoReceita.SelectedIndex = -1;
             textBoxTempoPreparo.Text = "";
             lblPrecoCusto.Text = "";
+            labelCustoLuz.Text = "";
 
         }
         private void listViewProdutos_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -228,9 +229,10 @@ namespace BancoDeDados.Controller.Telas
             textBoxNomeReceita.Text = receita.NomeReceita;
             textBoxPotenciaKwh.Text = _servico.FormataValor(receita.PotenciaKwh);
             textBoxPrecoReceita.Text = _servico.FormataValor(receita.PrecoVenda);
-
+            labelCustoLuz.Text = _servico.FormataValor(receita.ValorLuz);
+            textBoxTempoPreparo.Text = receita.TempoDePreparo;  
             comboBoxTipoReceita.SelectedIndex = comboBoxTipoReceita.FindStringExact( receita.TipoReceita.Descricao);
-            textBoxTempoPreparo.Text = receita.TempoDePreparo;
+            labelCustoLuz.Text = _servico.FormataValor(receita.ValorLuz);
             PreencheTotal();
         }
 
@@ -273,7 +275,7 @@ namespace BancoDeDados.Controller.Telas
                 _receitaSelecionada.PrecoCusto = total;
                 _banco.Atualizar<Receita>(_receitaSelecionada);
             }
-
+            total += _servico.FormataDinheiro(labelCustoLuz.Text);
             lblPrecoCusto.Text = _servico.FormataValor(total);
         }
 
@@ -289,61 +291,80 @@ namespace BancoDeDados.Controller.Telas
 
         }
 
-        /// Adicionar gasto
-        private void btnAdicionarGasto_Click(object sender, System.EventArgs e)
+        private bool ValidarAdicionarGasto(Gasto gastoSelecionado)
         {
             if (_receitaSelecionada != null)
             {
-                var gastoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Gasto>(comboBoxGastos);
-
                 if (gastoSelecionado.Id > 0)
                 {
-                    var GastoNaReceita = _banco.RetornarLista<GastoReceita>().Where( gr => gr.ReceitaId == _receitaSelecionada.Id && gr.GastoId == gastoSelecionado.Id);
-                    
+                    var GastoNaReceita = _banco.RetornarLista<GastoReceita>().Where(gr => gr.ReceitaId == _receitaSelecionada.Id && gr.GastoId == gastoSelecionado.Id);
+
                     if (GastoNaReceita.Any() && GastoNaReceita.First().GastoId == gastoSelecionado.Id)
-                    {//atualizar
                         MessageBox.Show("O item selecionado já foi adicionado!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
                     else
-                    {
-                        var gastoReceita = new GastoReceita()
-                        {
-                            Gasto = gastoSelecionado,
-                            GastoId = gastoSelecionado.Id,
-                            Receita = _receitaSelecionada,
-                            ReceitaId = _receitaSelecionada.Id,
-                        };
-                        _banco.Cadastrar<GastoReceita>(gastoReceita);
-                        PreencheListViewsDaReceita(_receitaSelecionada.Id);
-                        PreencheListReceita();
-                    }
-                    
+                        return true;
                 }
             }
             else
-            {
                 MessageBox.Show("Primeiro Selecione a receita que deseja adicionar");
+            return false;
+        }
+        /// Adicionar gasto
+        private void btnAdicionarGasto_Click(object sender, System.EventArgs e)
+        {
+            var gastoSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Gasto>(comboBoxGastos);
+
+            if (ValidarAdicionarGasto(gastoSelecionado))
+            {
+                AdicionarGastoReceita(gastoSelecionado);
             }
         }
 
+        private void AdicionarGastoReceita(Gasto gastoSelecionado)
+        {
+            var gastoReceita = new GastoReceita()
+            {
+                Gasto = gastoSelecionado,
+                GastoId = gastoSelecionado.Id,
+                Receita = _receitaSelecionada,
+                ReceitaId = _receitaSelecionada.Id,
+            };
+            _banco.Cadastrar<GastoReceita>(gastoReceita);
+            PreencheListViewsDaReceita(_receitaSelecionada.Id);
+            PreencheListReceita();
+        }
+
+        private decimal HorasDeConsumo(string tempoDePreparo)
+        {
+            var tempoPreparo = DateTime.Parse(tempoDePreparo).TimeOfDay.TotalHours;
+            var horasConsumo = _servico.FormataDinheiro(tempoPreparo.ToString("F2", CultureInfo.InvariantCulture));
+            return horasConsumo;    
+        }
         private void btnCadastrar_Click(object sender, System.EventArgs e)
         {
             var nomeReceita = textBoxNomeReceita.Text;
             var precoVenda  = textBoxPrecoReceita.Text;
-            var potenciaKwh = textBoxPotenciaKwh.Text;
             var tipoReceita = comboBoxFunc.RetornaItemComboSelecionado<TipoReceita>(comboBoxTipoReceita);
 
+            // proximo passo calcular valor da luz
+            var potenciaKwh =  _servico.FormataDinheiro(textBoxPotenciaKwh.Text);
+            var horasConsumo = HorasDeConsumo(textBoxTempoPreparo.Text);
+            var consumoEletrico = (potenciaKwh/ 1000.0m) * horasConsumo;
+            var custoPorKlw = _contexto.Login.Empresa.CustoKwh;
+            var custoLuz = consumoEletrico * custoPorKlw;
+            
             if (!ValidaReceita(nomeReceita, tipoReceita))
                 return;
             if(_receitaSelecionada != null)
             {
-                //var receitaAtualizar            = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+                _receitaSelecionada.PotenciaKwh = potenciaKwh;
+                _receitaSelecionada.TempoDePreparo = textBoxTempoPreparo.Text;
+                _receitaSelecionada.ValorLuz       = custoLuz;
+
                 _receitaSelecionada.TipoReceita    = tipoReceita;
                 _receitaSelecionada.Empresa        = _contexto.Login.Empresa;
                 _receitaSelecionada.EmpresaId      = _contexto.Login.EmpresaId;
                 _receitaSelecionada.PrecoVenda     = _servico.FormataDinheiro(precoVenda);
-                _receitaSelecionada.PotenciaKwh    = _servico.FormataDinheiro(potenciaKwh);
-                _receitaSelecionada.TempoDePreparo = textBoxTempoPreparo.Text;
                 _banco.Atualizar<Receita>(_receitaSelecionada);
                 PreencheListViewsDaReceita(_receitaSelecionada.Id);
                 Limpar();
@@ -354,10 +375,12 @@ namespace BancoDeDados.Controller.Telas
                 {
                     NomeReceita = nomeReceita,
                     PrecoVenda  = _servico.FormataDinheiro(precoVenda),
-                    PotenciaKwh = _servico.FormataDinheiro(potenciaKwh),
+                    ValorLuz = custoLuz,
+                    PotenciaKwh = potenciaKwh,
+                    TempoDePreparo = textBoxTempoPreparo.Text,
                     TipoReceita = tipoReceita,
                     Empresa     = _contexto.Login.Empresa,
-                    EmpresaId   = _contexto.Login.EmpresaId
+                    EmpresaId   = _contexto.Login.EmpresaId,
                 };
                 _banco.Cadastrar<Receita>(receita);
                 PreencheListReceita();

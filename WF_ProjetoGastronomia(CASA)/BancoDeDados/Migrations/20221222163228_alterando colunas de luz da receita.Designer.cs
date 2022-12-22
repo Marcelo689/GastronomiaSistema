@@ -3,14 +3,16 @@ using System;
 using BancoDeDados.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    partial class BDContextoModelSnapshot : ModelSnapshot
+    [Migration("20221222163228_alterando colunas de luz da receita")]
+    partial class alterandocolunasdeluzdareceita
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -306,9 +308,6 @@ namespace BancoDeDados.Migrations
                     b.Property<double>("PerdaPorReceita")
                         .HasColumnType("double");
 
-                    b.Property<decimal>("PotenciaKwh")
-                        .HasColumnType("decimal(65,30)");
-
                     b.Property<decimal>("PrecoCusto")
                         .HasColumnType("decimal(65,30)");
 
@@ -320,9 +319,6 @@ namespace BancoDeDados.Migrations
 
                     b.Property<int>("QuantidadeProduto")
                         .HasColumnType("int");
-
-                    b.Property<string>("TempoDePreparo")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int?>("TipoReceitaId")
                         .HasColumnType("int");

@@ -37,10 +37,13 @@
             this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarGastosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarReceitasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gerenciarPedidosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBoxLogoEmpresa = new System.Windows.Forms.PictureBox();
+            this.labelEmpresaNome = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogoEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -118,6 +121,13 @@
             this.gerenciarReceitasToolStripMenuItem.Text = "Gerenciar Receitas";
             this.gerenciarReceitasToolStripMenuItem.Click += new System.EventHandler(this.gerenciarReceitasToolStripMenuItem_Click);
             // 
+            // gerenciarPedidosToolStripMenuItem
+            // 
+            this.gerenciarPedidosToolStripMenuItem.Name = "gerenciarPedidosToolStripMenuItem";
+            this.gerenciarPedidosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarPedidosToolStripMenuItem.Text = "Gerenciar Pedidos";
+            this.gerenciarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarPedidosToolStripMenuItem_Click);
+            // 
             // loginToolStripMenuItem
             // 
             this.loginToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -133,24 +143,39 @@
             this.deslogarToolStripMenuItem.Text = "Deslogar";
             this.deslogarToolStripMenuItem.Click += new System.EventHandler(this.deslogarToolStripMenuItem_Click);
             // 
-            // gerenciarPedidosToolStripMenuItem
+            // pictureBoxLogoEmpresa
             // 
-            this.gerenciarPedidosToolStripMenuItem.Name = "gerenciarPedidosToolStripMenuItem";
-            this.gerenciarPedidosToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarPedidosToolStripMenuItem.Text = "Gerenciar Pedidos";
-            this.gerenciarPedidosToolStripMenuItem.Click += new System.EventHandler(this.gerenciarPedidosToolStripMenuItem_Click);
+            this.pictureBoxLogoEmpresa.Location = new System.Drawing.Point(112, 122);
+            this.pictureBoxLogoEmpresa.Name = "pictureBoxLogoEmpresa";
+            this.pictureBoxLogoEmpresa.Size = new System.Drawing.Size(502, 243);
+            this.pictureBoxLogoEmpresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLogoEmpresa.TabIndex = 6;
+            this.pictureBoxLogoEmpresa.TabStop = false;
+            // 
+            // labelEmpresaNome
+            // 
+            this.labelEmpresaNome.AutoSize = true;
+            this.labelEmpresaNome.Location = new System.Drawing.Point(316, 75);
+            this.labelEmpresaNome.Name = "labelEmpresaNome";
+            this.labelEmpresaNome.Size = new System.Drawing.Size(0, 13);
+            this.labelEmpresaNome.TabIndex = 7;
             // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelEmpresaNome);
+            this.Controls.Add(this.pictureBoxLogoEmpresa);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormularioPrincipal";
             this.Text = "Tela Principal";
+            this.Activated += new System.EventHandler(this.FormularioPrincipal_Activated);
+            this.Load += new System.EventHandler(this.FormularioPrincipal_Load);
             this.Shown += new System.EventHandler(this.FormularioPrincipal_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogoEmpresa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +195,7 @@
         private System.Windows.Forms.ToolStripMenuItem gerenciarEmpresaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarGastosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gerenciarPedidosToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBoxLogoEmpresa;
+        private System.Windows.Forms.Label labelEmpresaNome;
     }
 }

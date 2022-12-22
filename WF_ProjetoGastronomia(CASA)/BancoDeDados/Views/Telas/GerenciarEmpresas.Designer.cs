@@ -59,6 +59,8 @@
             this.listViewEmpresa = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxCustoKwh = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.groupBoxEndereco.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -99,7 +101,7 @@
             this.textBoxCNPJ.Location = new System.Drawing.Point(210, 87);
             this.textBoxCNPJ.Mask = "00000000/0000-00";
             this.textBoxCNPJ.Name = "textBoxCNPJ";
-            this.textBoxCNPJ.Size = new System.Drawing.Size(109, 20);
+            this.textBoxCNPJ.Size = new System.Drawing.Size(117, 20);
             this.textBoxCNPJ.TabIndex = 3;
             this.textBoxCNPJ.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.textBoxCNPJ.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCNPJ_KeyPress);
@@ -347,11 +349,30 @@
             this.columnHeader2.Text = "CNPJ";
             this.columnHeader2.Width = 314;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(111, 133);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(58, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Custo Kwh";
+            // 
+            // textBoxCustoKwh
+            // 
+            this.textBoxCustoKwh.Location = new System.Drawing.Point(210, 131);
+            this.textBoxCustoKwh.Name = "textBoxCustoKwh";
+            this.textBoxCustoKwh.Size = new System.Drawing.Size(117, 20);
+            this.textBoxCustoKwh.TabIndex = 27;
+            this.textBoxCustoKwh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
             // GerenciarEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.textBoxCustoKwh);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.listViewEmpresa);
             this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnDeletar);
@@ -367,6 +388,7 @@
             this.Controls.Add(this.pictureBoxLogo);
             this.Name = "GerenciarEmpresas";
             this.Text = "Gerenciar_Empresas";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GerenciarEmpresas_FormClosing);
             this.Load += new System.EventHandler(this.GerenciarEmpresas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.groupBoxEndereco.ResumeLayout(false);
@@ -411,5 +433,7 @@
         private System.Windows.Forms.ListView listViewEmpresa;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxCustoKwh;
     }
 }

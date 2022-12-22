@@ -1,18 +1,9 @@
-﻿using BancoDeDados.Contexto;
-using BancoDeDados.Controller;
-using BancoDeDados.Controller.Model;
+﻿using BancoDeDados.Controller.Model;
 using BancoDeDados.Controller.Telas;
-using BancoDeDados.Models;
-using BancoDeDados.Servicos;
 using BancoDeDados.Views.Telas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace BancoDeDados
@@ -39,13 +30,13 @@ namespace BancoDeDados
 
         private void FormularioPrincipal_Shown(object sender, EventArgs e)
         {
-            _servico.AbrirTela(new Login());      
+            _servico.AbrirTela(new Login(pictureBoxLogoEmpresa, labelEmpresaNome));      
         }
 
         private void deslogarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _contexto.Login = null;
-            _servico.AbrirTela(new Login());
+            _servico.AbrirTela(new Login(pictureBoxLogoEmpresa, labelEmpresaNome));
         }
 
         private void gerenciarProdutosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,6 +72,26 @@ namespace BancoDeDados
         private void gerenciarPedidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _servico.AbrirTela(new GerenciarPedidos());
+        }
+        private void RetornaImagemParaPictureBox(byte[] image, PictureBox pictureBox)
+        {
+            int ArraySize = image.GetUpperBound(0);
+
+            MemoryStream ms = new MemoryStream(image, 0, ArraySize);
+            pictureBox.Image = Image.FromStream(ms);
+        }
+        private void FormularioPrincipal_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void FormularioPrincipal_Activated(object sender, EventArgs e)
+        {
+            if (_contexto.Login != null)
+            {
+                RetornaImagemParaPictureBox(_contexto.Login.Empresa.Logo, pictureBoxLogoEmpresa);
+                labelEmpresaNome.Text = _contexto.Login.Empresa.NomeEmpresa;
+            }
         }
     }
 }

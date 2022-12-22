@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto;
+using BancoDeDados.Controller.Servicos.PictureBoxMetodos;
 using BancoDeDados.Servicos;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
@@ -12,10 +13,10 @@ namespace BancoDeDados.Controller.Model
         protected BDContexto _contexto { get; set; }
         protected OperacoesBanco _banco { get; set; }
         protected Servico _servico { get; set; }
-
         protected ListViewFunc listViewFunc { get; set; }
         protected ComboBoxFunc comboBoxFunc { get; set; }
         protected TextBoxFunc textBoxFunc { get; set; }
+        protected PictureBoxFunc pictureBoxFunc { get; set; }   
         public FormBase() 
         {
             bool isInFormsDesignerMode = (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
@@ -33,6 +34,8 @@ namespace BancoDeDados.Controller.Model
                 comboBoxFunc = new ComboBoxFunc();
             if(textBoxFunc == null)
                 textBoxFunc = new TextBoxFunc();
+            if(pictureBoxFunc == null)  
+                pictureBoxFunc = new PictureBoxFunc();  
 
         }
     }

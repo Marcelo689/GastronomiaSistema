@@ -3,14 +3,16 @@ using System;
 using BancoDeDados.Contexto;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BancoDeDados.Migrations
 {
     [DbContext(typeof(BDContexto))]
-    partial class BDContextoModelSnapshot : ModelSnapshot
+    [Migration("20221221185237_custokwh")]
+    partial class custokwh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,6 +305,9 @@ namespace BancoDeDados.Migrations
                     b.Property<string>("NomeReceita")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<double>("PercentualGastoGas")
+                        .HasColumnType("double");
+
                     b.Property<double>("PerdaPorReceita")
                         .HasColumnType("double");
 
@@ -326,9 +331,6 @@ namespace BancoDeDados.Migrations
 
                     b.Property<int?>("TipoReceitaId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("ValorLuz")
-                        .HasColumnType("decimal(65,30)");
 
                     b.HasKey("Id");
 

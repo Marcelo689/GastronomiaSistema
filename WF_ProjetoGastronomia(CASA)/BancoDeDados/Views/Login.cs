@@ -5,6 +5,8 @@ using BancoDeDados.Controller.Telas;
 using BancoDeDados.Servicos;
 using System;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,6 +14,9 @@ namespace BancoDeDados
 {
     public partial class Login : FormBase
     {
+        private PictureBox pictureBoxLogoEmpresa;
+        private Label labelEmpresaNome;
+
         public Login()
         {
             InitializeComponent();
@@ -19,7 +24,17 @@ namespace BancoDeDados
             _banco = new OperacoesBanco();
             _servico = new Servico();
         }
-        
+
+        public Login(PictureBox pictureBoxLogoEmpresa, Label labelEmpresaNome)
+        {
+            this.pictureBoxLogoEmpresa = pictureBoxLogoEmpresa;
+            this.labelEmpresaNome = labelEmpresaNome; 
+            InitializeComponent();
+            _contexto = new BDContexto().getInstancia();
+            _banco = new OperacoesBanco();
+            _servico = new Servico();
+        }
+
         private void menuItemCadastrarUsuario_Click(object sender, EventArgs e)
         {
             
@@ -68,14 +83,25 @@ namespace BancoDeDados
                 retorno.Empresa = empresa;
                 retorno.EmpresaId = empresa.Id;
                 _contexto.SaveChanges();
-                _contexto.Logar(retorno);
+                _contexto.Logar(retorno); 
                 MessageBox.Show("Usuário logado com sucesso!");
+                labelEmpresaNome.Text = empresa.NomeEmpresa;
+                RetornaImagemParaPictureBox(empresa.Logo, pictureBoxLogoEmpresa);
+
                 this.Close();
             }
             else
             {
                 MessageBox.Show("Erro ao logar!");
             }
+        }
+
+        private void RetornaImagemParaPictureBox(byte[] image, PictureBox pictureBox)
+        {
+            int ArraySize = image.GetUpperBound(0);
+
+            MemoryStream ms = new MemoryStream(image, 0, ArraySize);
+            pictureBox.Image = Image.FromStream(ms);
         }
         private void Login_Load(object sender, EventArgs e)
         {
