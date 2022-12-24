@@ -194,6 +194,10 @@
     <Compile Include="Migrations\20221222170238_atualizando novamente colunas luz.designer.cs">
       <DependentUpon>20221222170238_atualizando novamente colunas luz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221223225406_cliente-cidade.cs" />
+    <Compile Include="Migrations\20221223225406_cliente-cidade.designer.cs">
+      <DependentUpon>20221223225406_cliente-cidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Buscar\BuscarReceita.cs">
       <SubType>Form</SubType>

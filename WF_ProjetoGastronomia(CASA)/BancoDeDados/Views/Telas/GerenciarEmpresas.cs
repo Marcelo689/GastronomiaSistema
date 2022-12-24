@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Controller.Model;
 using BancoDeDados.Models;
+using BancoDeDados.Servicos;
 using System;
 using System.Drawing;
 using System.IO;
@@ -37,7 +38,7 @@ namespace BancoDeDados.Controller.Telas
         }
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            if (Servicos.Servico.ValidarEmail().IsMatch(textBoxEmail.Text) != true)
+            if (Servico.ValidarEmail().IsMatch(textBoxEmail.Text) != true)
             {
                 MessageBox.Show("Email Inválido!", "Inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 textBoxEmail.Focus();

@@ -120,7 +120,7 @@
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.textBoxCelular);
             this.groupBox1.Controls.Add(this.textBoxEmail);
-            this.groupBox1.Location = new System.Drawing.Point(12, 181);
+            this.groupBox1.Location = new System.Drawing.Point(12, 192);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(454, 96);
             this.groupBox1.TabIndex = 36;
@@ -260,7 +260,7 @@
             // 
             // textBoxNomeCliente
             // 
-            this.textBoxNomeCliente.Location = new System.Drawing.Point(210, 63);
+            this.textBoxNomeCliente.Location = new System.Drawing.Point(210, 66);
             this.textBoxNomeCliente.Name = "textBoxNomeCliente";
             this.textBoxNomeCliente.Size = new System.Drawing.Size(256, 20);
             this.textBoxNomeCliente.TabIndex = 34;
@@ -285,7 +285,7 @@
             // 
             // textBoxCPF
             // 
-            this.textBoxCPF.Location = new System.Drawing.Point(210, 89);
+            this.textBoxCPF.Location = new System.Drawing.Point(210, 92);
             this.textBoxCPF.Mask = "000000000-00";
             this.textBoxCPF.Name = "textBoxCPF";
             this.textBoxCPF.Size = new System.Drawing.Size(117, 20);

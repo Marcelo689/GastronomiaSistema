@@ -93,5 +93,10 @@ namespace BancoDeDados
                 labelEmpresaNome.Text = _contexto.Login.Empresa.NomeEmpresa;
             }
         }
+
+        private void gerenciarClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _servico.AbrirTela(new GerenciarClientes());
+        }
     }
 }

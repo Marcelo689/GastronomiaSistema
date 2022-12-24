@@ -42,6 +42,7 @@
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.labelEmpresaNome = new System.Windows.Forms.Label();
+            this.gerenciarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogoEmpresa)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +63,7 @@
             this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gerenciarEmpresaToolStripMenuItem,
             this.menuItemCadastrarUsuario,
+            this.gerenciarClientesToolStripMenuItem,
             this.gerenciarUnidadesDeMedidaToolStripMenuItem,
             this.tipoReceitaToolStripMenuItem,
             this.gerenciarProdutosToolStripMenuItem,
@@ -160,6 +162,13 @@
             this.labelEmpresaNome.Size = new System.Drawing.Size(0, 13);
             this.labelEmpresaNome.TabIndex = 7;
             // 
+            // gerenciarClientesToolStripMenuItem
+            // 
+            this.gerenciarClientesToolStripMenuItem.Name = "gerenciarClientesToolStripMenuItem";
+            this.gerenciarClientesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarClientesToolStripMenuItem.Text = "Gerenciar Clientes";
+            this.gerenciarClientesToolStripMenuItem.Click += new System.EventHandler(this.gerenciarClientesToolStripMenuItem_Click);
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,5 +206,6 @@
         private System.Windows.Forms.ToolStripMenuItem gerenciarPedidosToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBoxLogoEmpresa;
         private System.Windows.Forms.Label labelEmpresaNome;
+        private System.Windows.Forms.ToolStripMenuItem gerenciarClientesToolStripMenuItem;
     }
 }

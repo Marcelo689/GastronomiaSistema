@@ -15,8 +15,8 @@ namespace BancoDeDados.Views.Telas
         private void GerenciarClientes_Load(object sender, System.EventArgs e)
         {
             PreencherCamposCliente(null);
+            PreencherListCliente();
         }
-
         private void PreencherCamposCliente(Cliente cliente)
         {
             if(cliente == null)
@@ -32,7 +32,8 @@ namespace BancoDeDados.Views.Telas
                 textBoxComplemento.Text = cliente.Complemento;
                 textBoxNumero.Text      = cliente.EnderecoNumero;
                 textBoxEmail.Text       = cliente.Email;
-                pictureBoxFunc.RetornaImagemParaPictureBox(cliente.Foto, pictureBoxFoto);
+                if(cliente.Foto != null)
+                   pictureBoxFunc.RetornaImagemParaPictureBox(cliente.Foto, pictureBoxFoto);
             }
         }
 
@@ -83,15 +84,24 @@ namespace BancoDeDados.Views.Telas
 
         private void PreencherListCliente()
         {
-            throw new NotImplementedException();
+            listViewFunc.PreencheListView<Cliente, Cliente>(listViemCliente,
+                "Id", "NomeCompleto", "CPF"
+            );
         }
 
         private void listViemCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(listViewFunc.ExisteLinhaSelecionada(listViemCliente))
+            {
                 clienteSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Cliente>(listViemCliente);
+                if(clienteSelecionado != null)  
+                    PreencherCamposCliente(clienteSelecionado);
+            }
             else
+            {
                 clienteSelecionado = null;
+                Limpar();
+            }
         }
     }
 }
