@@ -103,21 +103,9 @@ namespace BancoDeDados.Controller.Telas
         }
         private void btnAnexarLogo_Click(object sender, EventArgs e)
         {
-            OpenFileDialog choofdlog = new OpenFileDialog();
-            choofdlog.Filter = "All Files (*.*)|*.*";
-            choofdlog.FilterIndex = 1;
-            choofdlog.Multiselect = false;
-            string sFileName = "";
-            if (choofdlog.ShowDialog() == DialogResult.OK)
-            {
-                sFileName = choofdlog.FileName;
-                string[] arrAllFiles = choofdlog.FileNames; //used when Multiselect = true           
-            }
-            var imageByte = File.ReadAllBytes(sFileName);
-            int ArraySize = imageByte.GetUpperBound(0);
-            MemoryStream ms = new MemoryStream(imageByte, 0, ArraySize);
-            pictureBoxLogo.Image = Image.FromStream(ms);
+            pictureBoxFunc.PreenchePictureBox(pictureBoxLogo);
         }
+
         private void listViewEmpresa_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listViewFunc.ExisteLinhaSelecionada(listViewEmpresa))

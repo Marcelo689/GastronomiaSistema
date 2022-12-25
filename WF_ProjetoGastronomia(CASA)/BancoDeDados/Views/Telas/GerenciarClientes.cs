@@ -47,6 +47,7 @@ namespace BancoDeDados.Views.Telas
             textBoxComplemento.Text = "";
             textBoxEmail.Text = "";
             pictureBoxFoto.Image = null;
+            listViewFunc.DesSelecionionaListView(listViemCliente);
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -57,9 +58,30 @@ namespace BancoDeDados.Views.Telas
             }
             else //cadastrar
             {
-
+                CadastrarCliente();
             }
 
+        }
+
+        private void CadastrarCliente()
+        {
+            var novoCliente = new Cliente();
+            novoCliente.NomeCompleto = textBoxNomeCliente.Text;
+            novoCliente.CPF          = textBoxCPF.Text;
+            novoCliente.Empresa      = _contexto.Login.Empresa;
+            novoCliente.EmpresaId    = _contexto.Login.EmpresaId;
+            novoCliente.Celular      = textBoxCelular.Text;
+            novoCliente.Email        = textBoxEmail.Text;
+
+            novoCliente.EnderecoNumero  = textBoxNumero.Text;
+            novoCliente.Bairro          = textBoxBairro.Text;
+            novoCliente.Complemento     = textBoxComplemento.Text;
+            novoCliente.Cidade          = textBoxCidade.Text;
+            novoCliente.Foto            = pictureBoxFunc.ImageToByte(pictureBoxFoto.Image);
+
+            _banco.Cadastrar<Cliente>(novoCliente);
+            Limpar();
+            PreencherListCliente();
         }
 
         private void AtualizarCliente()
@@ -93,15 +115,37 @@ namespace BancoDeDados.Views.Telas
         {
             if(listViewFunc.ExisteLinhaSelecionada(listViemCliente))
             {
+                btnDeletar.Enabled = true;
                 clienteSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Cliente>(listViemCliente);
                 if(clienteSelecionado != null)  
                     PreencherCamposCliente(clienteSelecionado);
             }
             else
             {
+                btnDeletar.Enabled = false;
                 clienteSelecionado = null;
                 Limpar();
             }
+        }
+
+        private void btnAnexarFoto_Click(object sender, EventArgs e)
+        {
+              pictureBoxFunc.PreenchePictureBox(pictureBoxFoto);
+        }
+
+        private void btnDeletar_Click(object sender, EventArgs e)
+        {
+            if(clienteSelecionado != null && listViewFunc.ConfirmaDeletarItemDoList(listViemCliente))
+            {
+                _banco.Deletar<Cliente>(clienteSelecionado);
+                Limpar();
+                PreencherListCliente();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            Limpar();
         }
     }
 }

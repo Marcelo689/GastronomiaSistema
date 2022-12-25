@@ -94,6 +94,7 @@
             this.btnLimpar.TabIndex = 39;
             this.btnLimpar.Text = "Limpar";
             this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnDeletar
             // 
@@ -103,6 +104,7 @@
             this.btnDeletar.TabIndex = 38;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // btnCadastrar
             // 
@@ -310,6 +312,7 @@
             this.btnAnexarFoto.TabIndex = 29;
             this.btnAnexarFoto.Text = "Anexar Foto";
             this.btnAnexarFoto.UseVisualStyleBackColor = true;
+            this.btnAnexarFoto.Click += new System.EventHandler(this.btnAnexarFoto_Click);
             // 
             // pictureBoxFoto
             // 

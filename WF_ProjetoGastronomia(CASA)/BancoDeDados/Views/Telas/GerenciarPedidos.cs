@@ -10,6 +10,8 @@ namespace BancoDeDados.Views.Telas
 {
     public partial class GerenciarPedidos : FormBase
     {
+        public Cliente clienteSelecionado;
+        public Pedido pedidoSelecionado;
         public GerenciarPedidos()
         {
             InitializeComponent();
@@ -18,38 +20,54 @@ namespace BancoDeDados.Views.Telas
         private void btnAdicionarReceita_Click(object sender, EventArgs e)
         {
             
-            if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos))
+            if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos) && pedidoSelecionado != null)
             {
-
-                var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
                 _servico.AbrirTela(new BuscarReceita(listViewReceitas, pedidoSelecionado.Id));
-
                 PreencheReceitasDoPedido(pedidoSelecionado);
             }
             else
             {
-                var clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
-                var dataEntrega = Convert.ToDateTime(dataParaEntrega.Text);
-                var novoPedido = new Pedido()
-                {
-                    DataCadastroPedido = DateTime.Now,
-                    Empresa = _contexto.Login.Empresa,
-                    EmpresaId = _contexto.Login.EmpresaId,
-                    FoiEntregue = false,
-                    DataParaEntrega = dataEntrega,
-                    UsuarioLogin = _contexto.Login,
-                    UsuarioLoginId = _contexto.Login.Id,
-                    Cliente =  clienteSelecionado,
-                    
-                };
-
-                _banco.Cadastrar<Pedido>(novoPedido);
-                PreencherListViewPedidos();
+                if (ValidaPedido())
+                    AdicionarPedido();
             }
+        }
+
+        private void AdicionarPedido()
+        {
+            
+            var novoPedido = new Pedido()
+            {
+                DataCadastroPedido = DateTime.Now,
+                Empresa = _contexto.Login.Empresa,
+                EmpresaId = _contexto.Login.EmpresaId,
+                FoiEntregue = false,
+                DataParaEntrega = Convert.ToDateTime(dataParaEntrega.Text),
+                UsuarioLogin = _contexto.Login,
+                UsuarioLoginId = _contexto.Login.Id,
+                Cliente = clienteSelecionado,
+            };
+
+            _banco.Cadastrar<Pedido>(novoPedido);
+            PreencherListViewPedidos();
+        }
+
+        private bool ValidaPedido()
+        {
+            clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
+            if (clienteSelecionado == null)
+                return false;
+            if (dataParaEntrega == null)
+                return false;
+
+            return true;
         }
 
         private void PreencheReceitasDoPedido(Pedido pedidoSelecionado)
         {
+            textBoxValorVendaTotal.Text = _servico.FormataValor(pedidoSelecionado.PrecoVenda);
+            textBoxCustoTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalCusto);
+            textBoxLucroTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalLucro);
+
             var receitasDoPedido = _banco.RetornaReceitasDoPedido(pedidoSelecionado.Id);
             listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
                receitasDoPedido,
@@ -99,11 +117,12 @@ namespace BancoDeDados.Views.Telas
         {
             if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos))
             {
-                var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
-                textBoxValorVendaTotal.Text = _servico.FormataValor(pedidoSelecionado.PrecoVenda);
-                textBoxCustoTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalCusto);
-                textBoxLucroTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalLucro);
+                pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
                 PreencheReceitasDoPedido(pedidoSelecionado);
+            }
+            else
+            {
+                pedidoSelecionado = null;
             }
         }
 
@@ -126,6 +145,16 @@ namespace BancoDeDados.Views.Telas
                 }
 
             }
+        }
+
+        private void comboBoxCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
+        }
+
+        private void listViewReceitas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

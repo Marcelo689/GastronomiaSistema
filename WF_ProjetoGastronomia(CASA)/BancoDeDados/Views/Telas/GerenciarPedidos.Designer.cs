@@ -53,12 +53,16 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdicionarReceita = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.btnDeletaar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDeletaar);
+            this.groupBox1.Controls.Add(this.btnCadastrar);
             this.groupBox1.Controls.Add(this.listViewReceitas);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.comboBoxCliente);
@@ -91,6 +95,7 @@
             this.listViewReceitas.TabIndex = 31;
             this.listViewReceitas.UseCompatibleStateImageBehavior = false;
             this.listViewReceitas.View = System.Windows.Forms.View.Details;
+            this.listViewReceitas.SelectedIndexChanged += new System.EventHandler(this.listViewReceitas_SelectedIndexChanged);
             // 
             // headerNome
             // 
@@ -125,6 +130,7 @@
             this.comboBoxCliente.Name = "comboBoxCliente";
             this.comboBoxCliente.Size = new System.Drawing.Size(239, 21);
             this.comboBoxCliente.TabIndex = 63;
+            this.comboBoxCliente.SelectedIndexChanged += new System.EventHandler(this.comboBoxCliente_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -294,6 +300,24 @@
             this.btnAdicionarReceita.UseVisualStyleBackColor = true;
             this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
             // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Location = new System.Drawing.Point(498, 392);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(239, 23);
+            this.btnCadastrar.TabIndex = 65;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            // 
+            // btnDeletaar
+            // 
+            this.btnDeletaar.Location = new System.Drawing.Point(23, 391);
+            this.btnDeletaar.Name = "btnDeletaar";
+            this.btnDeletaar.Size = new System.Drawing.Size(195, 23);
+            this.btnDeletaar.TabIndex = 66;
+            this.btnDeletaar.Text = "Deletar Pedido";
+            this.btnDeletaar.UseVisualStyleBackColor = true;
+            // 
             // GerenciarPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,5 +362,7 @@
         private System.Windows.Forms.TextBox textBoxCustoTotal;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnDeletaar;
+        private System.Windows.Forms.Button btnCadastrar;
     }
 }
