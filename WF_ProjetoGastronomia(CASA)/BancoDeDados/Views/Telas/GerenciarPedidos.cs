@@ -5,6 +5,7 @@ using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Views.Buscar;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace BancoDeDados.Views.Telas
 {
@@ -16,18 +17,20 @@ namespace BancoDeDados.Views.Telas
         {
             InitializeComponent();
         }
-        //Criar pedido proximo passo!
+
+        //arrumar o selecionar cliente assim que seleciona um pedido
+
         private void btnAdicionarReceita_Click(object sender, EventArgs e)
         {
             
             if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos) && pedidoSelecionado != null)
             {
                 _servico.AbrirTela(new BuscarReceita(listViewReceitas, pedidoSelecionado.Id));
-                PreencheReceitasDoPedido(pedidoSelecionado);
+                PreencheReceitasDoPedido();
             }
             else
             {
-                if (ValidaPedido())
+                if (ValidaPedidoAdicionar())
                     AdicionarPedido();
             }
         }
@@ -51,7 +54,7 @@ namespace BancoDeDados.Views.Telas
             PreencherListViewPedidos();
         }
 
-        private bool ValidaPedido()
+        private bool ValidaPedidoAdicionar()
         {
             clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
             if (clienteSelecionado == null)
@@ -62,11 +65,14 @@ namespace BancoDeDados.Views.Telas
             return true;
         }
 
-        private void PreencheReceitasDoPedido(Pedido pedidoSelecionado)
+        private void PreencheReceitasDoPedido()
         {
             textBoxValorVendaTotal.Text = _servico.FormataValor(pedidoSelecionado.PrecoVenda);
             textBoxCustoTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalCusto);
             textBoxLucroTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalLucro);
+
+            comboBoxFunc.SelecionaPorNome(comboBoxCliente, pedidoSelecionado.Cliente.NomeCompleto);
+            clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
 
             var receitasDoPedido = _banco.RetornaReceitasDoPedido(pedidoSelecionado.Id);
             listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
@@ -117,20 +123,35 @@ namespace BancoDeDados.Views.Telas
         {
             if (listViewFunc.ExisteLinhaSelecionada(listViewPedidos))
             {
-                pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
-                PreencheReceitasDoPedido(pedidoSelecionado);
+                pedidoSelecionado        = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
+
+                PreencheReceitasDoPedido();
+                btnDeletaar.Enabled      = true;
+                btnDeletarPedido.Enabled = true;
             }
             else
             {
-                pedidoSelecionado = null;
+                pedidoSelecionado        = null; 
+                btnDeletaar.Enabled      = false;
+                btnDeletarPedido.Enabled = false;
             }
+        }
+
+        private void PreencheCliente()
+        {
+            if (pedidoSelecionado != null)
+            {
+                clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
+                comboBoxFunc.SelecionaPorNome(comboBoxCliente, clienteSelecionado.NomeCompleto);
+            }
+
         }
 
         private void btnDeletarPedido_Click(object sender, EventArgs e)
         {
             if(listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
-                var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
+                //var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
 
                 if (listViewFunc.ConfirmaDeletarItemDoList(listViewReceitas))
@@ -141,20 +162,65 @@ namespace BancoDeDados.Views.Telas
                     ).First();
 
                     _banco.Deletar<ReceitaDoPedido>(receitaDoPedido); 
-                    PreencheReceitasDoPedido(pedidoSelecionado);
+                    PreencheReceitasDoPedido();
                 }
 
             }
         }
 
         private void comboBoxCliente_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {// por algum motivo isso causa um erro
+
             //clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
         }
 
         private void listViewReceitas_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            if(ValidaAtualizarPedido())
+                AtualizarPedido();
+        }
+
+        private bool ValidaAtualizarPedido()
+        {
+            if (pedidoSelecionado == null)
+            {
+                MessageBox.Show("Não foi selecionado um pedido", "Selecione um pedido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else
+                PreencheCliente();
+
+            if (clienteSelecionado == null)
+            {
+                MessageBox.Show("Não foi selecionado um cliente", "Selecione um cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        private void AtualizarPedido()
+        {
+            pedidoSelecionado.Cliente         = clienteSelecionado;
+            pedidoSelecionado.DataParaEntrega = Convert.ToDateTime(dataParaEntrega.Text);
+            pedidoSelecionado.UsuarioLogin    = _contexto.Login;
+            pedidoSelecionado.UsuarioLoginId  = _contexto.Login.Id;
+
+            _banco.Atualizar<Pedido>(pedidoSelecionado);
+            PreencherListViewPedidos();
+        }
+
+        private void btnDeletaar_Click(object sender, EventArgs e)
+        {
+            if (pedidoSelecionado != null)
+            {
+                _banco.Deletar<Pedido>(pedidoSelecionado);
+                PreencherListViewPedidos();
+            }
         }
     }
 }

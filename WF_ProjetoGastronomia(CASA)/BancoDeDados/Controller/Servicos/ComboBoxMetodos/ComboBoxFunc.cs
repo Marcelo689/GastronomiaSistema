@@ -95,5 +95,10 @@ namespace BancoDeDados.Servicos.ComboBoxMetodos
             return new T();
         }
 
+        internal void SelecionaPorNome(ComboBox combo, string nomeCompleto)
+        {
+            var indice = combo.FindStringExact(nomeCompleto);
+            combo.SelectedIndex = indice;
+        }
     }
 }

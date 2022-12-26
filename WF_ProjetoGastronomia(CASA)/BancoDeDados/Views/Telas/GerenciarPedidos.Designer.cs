@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDeletaar = new System.Windows.Forms.Button();
+            this.btnCadastrar = new System.Windows.Forms.Button();
             this.listViewReceitas = new System.Windows.Forms.ListView();
             this.headerNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.headerPrecoUnidade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,8 +55,6 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnAdicionarReceita = new System.Windows.Forms.Button();
-            this.btnCadastrar = new System.Windows.Forms.Button();
-            this.btnDeletaar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -79,6 +79,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pedidos";
+            // 
+            // btnDeletaar
+            // 
+            this.btnDeletaar.Location = new System.Drawing.Point(23, 391);
+            this.btnDeletaar.Name = "btnDeletaar";
+            this.btnDeletaar.Size = new System.Drawing.Size(195, 23);
+            this.btnDeletaar.TabIndex = 66;
+            this.btnDeletaar.Text = "Deletar Pedido";
+            this.btnDeletaar.UseVisualStyleBackColor = true;
+            this.btnDeletaar.Click += new System.EventHandler(this.btnDeletaar_Click);
+            // 
+            // btnCadastrar
+            // 
+            this.btnCadastrar.Location = new System.Drawing.Point(498, 392);
+            this.btnCadastrar.Name = "btnCadastrar";
+            this.btnCadastrar.Size = new System.Drawing.Size(239, 23);
+            this.btnCadastrar.TabIndex = 65;
+            this.btnCadastrar.Text = "Cadastrar";
+            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // listViewReceitas
             // 
@@ -299,24 +319,6 @@
             this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
             this.btnAdicionarReceita.UseVisualStyleBackColor = true;
             this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
-            // 
-            // btnCadastrar
-            // 
-            this.btnCadastrar.Location = new System.Drawing.Point(498, 392);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(239, 23);
-            this.btnCadastrar.TabIndex = 65;
-            this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
-            // 
-            // btnDeletaar
-            // 
-            this.btnDeletaar.Location = new System.Drawing.Point(23, 391);
-            this.btnDeletaar.Name = "btnDeletaar";
-            this.btnDeletaar.Size = new System.Drawing.Size(195, 23);
-            this.btnDeletaar.TabIndex = 66;
-            this.btnDeletaar.Text = "Deletar Pedido";
-            this.btnDeletaar.UseVisualStyleBackColor = true;
             // 
             // GerenciarPedidos
             // 

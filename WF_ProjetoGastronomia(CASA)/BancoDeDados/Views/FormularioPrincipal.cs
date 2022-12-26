@@ -18,9 +18,9 @@ namespace BancoDeDados
         private void menuItemCadastrarUsuario_Click(object sender, EventArgs e)
         {
             if (
-                 _contexto.ExisteAdmin() && 
+                _contexto.ExisteAdmin() && 
                 !(_contexto.UsuarioLogadoIsAdmin())
-                )
+            )
             {
                 MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!");
                 return;
