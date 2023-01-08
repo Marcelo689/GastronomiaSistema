@@ -36,23 +36,26 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastroEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxManterLogin = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.comboBoxEmpresas = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.cadastroEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnLogar
             // 
+            this.btnLogar.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnLogar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLogar.Location = new System.Drawing.Point(311, 221);
             this.btnLogar.Name = "btnLogar";
             this.btnLogar.Size = new System.Drawing.Size(75, 23);
             this.btnLogar.TabIndex = 0;
             this.btnLogar.Text = "Logar";
-            this.btnLogar.UseVisualStyleBackColor = true;
+            this.btnLogar.UseVisualStyleBackColor = false;
             this.btnLogar.Click += new System.EventHandler(this.btnLogar_Click);
             // 
             // textBoxUser
@@ -73,15 +76,16 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Sylfaen", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(187, 34);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(96, 37);
+            this.lblTitulo.Size = new System.Drawing.Size(94, 42);
             this.lblTitulo.TabIndex = 3;
             this.lblTitulo.Text = "Login";
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -106,6 +110,13 @@
             this.menuItemCadastrarUsuario.Text = "Cadastrar Usuário";
             this.menuItemCadastrarUsuario.Click += new System.EventHandler(this.menuItemCadastrarUsuario_Click);
             // 
+            // cadastroEmpresaToolStripMenuItem
+            // 
+            this.cadastroEmpresaToolStripMenuItem.Name = "cadastroEmpresaToolStripMenuItem";
+            this.cadastroEmpresaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroEmpresaToolStripMenuItem.Text = "Cadastro Empresa";
+            this.cadastroEmpresaToolStripMenuItem.Click += new System.EventHandler(this.cadastroEmpresaToolStripMenuItem_Click);
+            // 
             // checkBoxManterLogin
             // 
             this.checkBoxManterLogin.AutoSize = true;
@@ -118,42 +129,40 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCancelar.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnCancelar.Location = new System.Drawing.Point(208, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 24);
             this.btnCancelar.TabIndex = 7;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // comboBoxEmpresas
             // 
             this.comboBoxEmpresas.FormattingEnabled = true;
-            this.comboBoxEmpresas.Location = new System.Drawing.Point(165, 187);
+            this.comboBoxEmpresas.Location = new System.Drawing.Point(172, 187);
             this.comboBoxEmpresas.Name = "comboBoxEmpresas";
-            this.comboBoxEmpresas.Size = new System.Drawing.Size(221, 21);
+            this.comboBoxEmpresas.Size = new System.Drawing.Size(165, 21);
             this.comboBoxEmpresas.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(111, 190);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 9;
             this.label1.Text = "Empresa";
-            // 
-            // cadastroEmpresaToolStripMenuItem
-            // 
-            this.cadastroEmpresaToolStripMenuItem.Name = "cadastroEmpresaToolStripMenuItem";
-            this.cadastroEmpresaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.cadastroEmpresaToolStripMenuItem.Text = "Cadastro Empresa";
-            this.cadastroEmpresaToolStripMenuItem.Click += new System.EventHandler(this.cadastroEmpresaToolStripMenuItem_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(524, 318);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxEmpresas);

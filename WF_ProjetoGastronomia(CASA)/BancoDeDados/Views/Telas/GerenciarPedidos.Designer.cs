@@ -82,22 +82,26 @@
             // 
             // btnDeletaar
             // 
-            this.btnDeletaar.Location = new System.Drawing.Point(23, 391);
+            this.btnDeletaar.BackColor = System.Drawing.Color.Red;
+            this.btnDeletaar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeletaar.Location = new System.Drawing.Point(140, 391);
             this.btnDeletaar.Name = "btnDeletaar";
             this.btnDeletaar.Size = new System.Drawing.Size(195, 23);
             this.btnDeletaar.TabIndex = 66;
             this.btnDeletaar.Text = "Deletar Pedido";
-            this.btnDeletaar.UseVisualStyleBackColor = true;
+            this.btnDeletaar.UseVisualStyleBackColor = false;
             this.btnDeletaar.Click += new System.EventHandler(this.btnDeletaar_Click);
             // 
             // btnCadastrar
             // 
+            this.btnCadastrar.BackColor = System.Drawing.Color.Lime;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrar.Location = new System.Drawing.Point(498, 392);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(239, 23);
             this.btnCadastrar.TabIndex = 65;
             this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // listViewReceitas
@@ -189,12 +193,14 @@
             // 
             // btnDeletarPedido
             // 
+            this.btnDeletarPedido.BackColor = System.Drawing.Color.Sienna;
+            this.btnDeletarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDeletarPedido.Location = new System.Drawing.Point(498, 362);
             this.btnDeletarPedido.Name = "btnDeletarPedido";
             this.btnDeletarPedido.Size = new System.Drawing.Size(239, 23);
             this.btnDeletarPedido.TabIndex = 33;
             this.btnDeletarPedido.Text = "Remover Receita do Pedido";
-            this.btnDeletarPedido.UseVisualStyleBackColor = true;
+            this.btnDeletarPedido.UseVisualStyleBackColor = false;
             this.btnDeletarPedido.Click += new System.EventHandler(this.btnDeletarPedido_Click);
             // 
             // label1
@@ -229,7 +235,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(516, 119);
+            this.label7.Location = new System.Drawing.Point(516, 106);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 15);
             this.label7.TabIndex = 39;
@@ -238,7 +244,7 @@
             // textBoxValorVendaTotal
             // 
             this.textBoxValorVendaTotal.Enabled = false;
-            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 137);
+            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 124);
             this.textBoxValorVendaTotal.Name = "textBoxValorVendaTotal";
             this.textBoxValorVendaTotal.Size = new System.Drawing.Size(171, 21);
             this.textBoxValorVendaTotal.TabIndex = 38;
@@ -286,9 +292,9 @@
             this.listViewPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listViewPedidos.FullRowSelect = true;
             this.listViewPedidos.HideSelection = false;
-            this.listViewPedidos.Location = new System.Drawing.Point(6, 38);
+            this.listViewPedidos.Location = new System.Drawing.Point(6, 20);
             this.listViewPedidos.Name = "listViewPedidos";
-            this.listViewPedidos.Size = new System.Drawing.Size(441, 144);
+            this.listViewPedidos.Size = new System.Drawing.Size(441, 162);
             this.listViewPedidos.TabIndex = 33;
             this.listViewPedidos.UseCompatibleStateImageBehavior = false;
             this.listViewPedidos.View = System.Windows.Forms.View.Details;
@@ -312,18 +318,21 @@
             // 
             // btnAdicionarReceita
             // 
-            this.btnAdicionarReceita.Location = new System.Drawing.Point(151, 9);
+            this.btnAdicionarReceita.BackColor = System.Drawing.Color.LawnGreen;
+            this.btnAdicionarReceita.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnAdicionarReceita.Location = new System.Drawing.Point(461, 151);
             this.btnAdicionarReceita.Name = "btnAdicionarReceita";
-            this.btnAdicionarReceita.Size = new System.Drawing.Size(296, 23);
+            this.btnAdicionarReceita.Size = new System.Drawing.Size(250, 23);
             this.btnAdicionarReceita.TabIndex = 32;
             this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
-            this.btnAdicionarReceita.UseVisualStyleBackColor = true;
+            this.btnAdicionarReceita.UseVisualStyleBackColor = false;
             this.btnAdicionarReceita.Click += new System.EventHandler(this.btnAdicionarReceita_Click);
             // 
             // GerenciarPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
             this.Name = "GerenciarPedidos";

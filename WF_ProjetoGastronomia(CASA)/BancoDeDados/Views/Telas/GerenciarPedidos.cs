@@ -216,7 +216,7 @@ namespace BancoDeDados.Views.Telas
 
         private void btnDeletaar_Click(object sender, EventArgs e)
         {
-            if (pedidoSelecionado != null)
+            if (pedidoSelecionado != null && listViewFunc.ConfirmaDeletarItemDoList(listViewPedidos))
             {
                 _banco.Deletar<Pedido>(pedidoSelecionado);
                 PreencherListViewPedidos();

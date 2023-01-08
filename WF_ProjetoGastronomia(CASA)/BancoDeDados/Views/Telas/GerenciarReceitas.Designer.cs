@@ -78,12 +78,12 @@
             // 
             // btnDeletarLinha
             // 
-            this.btnDeletarLinha.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDeletarLinha.BackColor = System.Drawing.Color.Red;
             this.btnDeletarLinha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletarLinha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletarLinha.Location = new System.Drawing.Point(366, 149);
             this.btnDeletarLinha.Name = "btnDeletarLinha";
-            this.btnDeletarLinha.Size = new System.Drawing.Size(163, 21);
+            this.btnDeletarLinha.Size = new System.Drawing.Size(138, 21);
             this.btnDeletarLinha.TabIndex = 54;
             this.btnDeletarLinha.Text = "Deletar Linha";
             this.btnDeletarLinha.UseVisualStyleBackColor = false;
@@ -96,7 +96,7 @@
             this.columnHeader2});
             this.listViewGastos.FullRowSelect = true;
             this.listViewGastos.HideSelection = false;
-            this.listViewGastos.Location = new System.Drawing.Point(6, 48);
+            this.listViewGastos.Location = new System.Drawing.Point(6, 52);
             this.listViewGastos.Name = "listViewGastos";
             this.listViewGastos.Size = new System.Drawing.Size(229, 103);
             this.listViewGastos.TabIndex = 53;
@@ -107,7 +107,7 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nome";
-            this.columnHeader1.Width = 142;
+            this.columnHeader1.Width = 135;
             // 
             // columnHeader2
             // 
@@ -146,12 +146,14 @@
             // 
             // btnAdicionarGasto
             // 
+            this.btnAdicionarGasto.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnAdicionarGasto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdicionarGasto.Location = new System.Drawing.Point(212, 17);
             this.btnAdicionarGasto.Name = "btnAdicionarGasto";
             this.btnAdicionarGasto.Size = new System.Drawing.Size(23, 23);
             this.btnAdicionarGasto.TabIndex = 49;
             this.btnAdicionarGasto.Text = "+";
-            this.btnAdicionarGasto.UseVisualStyleBackColor = true;
+            this.btnAdicionarGasto.UseVisualStyleBackColor = false;
             this.btnAdicionarGasto.Click += new System.EventHandler(this.btnAdicionarGasto_Click);
             // 
             // comboBoxGastos
@@ -251,12 +253,14 @@
             // 
             // btnAdicionarProduto
             // 
+            this.btnAdicionarProduto.BackColor = System.Drawing.Color.GreenYellow;
+            this.btnAdicionarProduto.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAdicionarProduto.Location = new System.Drawing.Point(311, 14);
             this.btnAdicionarProduto.Name = "btnAdicionarProduto";
             this.btnAdicionarProduto.Size = new System.Drawing.Size(27, 23);
             this.btnAdicionarProduto.TabIndex = 39;
             this.btnAdicionarProduto.Text = "+";
-            this.btnAdicionarProduto.UseVisualStyleBackColor = true;
+            this.btnAdicionarProduto.UseVisualStyleBackColor = false;
             this.btnAdicionarProduto.Click += new System.EventHandler(this.btnAdicionarProduto_Click);
             // 
             // textBoxPrecoReceita
@@ -304,7 +308,7 @@
             // 
             // btnLimpar
             // 
-            this.btnLimpar.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpar.Location = new System.Drawing.Point(354, 415);
@@ -350,7 +354,7 @@
             // 
             // btnDeletar
             // 
-            this.btnDeletar.BackColor = System.Drawing.Color.OrangeRed;
+            this.btnDeletar.BackColor = System.Drawing.Color.Red;
             this.btnDeletar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeletar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeletar.Location = new System.Drawing.Point(60, 415);
@@ -364,10 +368,10 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Font = new System.Drawing.Font("Yu Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitulo.Location = new System.Drawing.Point(233, 9);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(288, 37);
+            this.lblTitulo.Size = new System.Drawing.Size(299, 42);
             this.lblTitulo.TabIndex = 29;
             this.lblTitulo.Text = "Gerenciar Receitas";
             // 
@@ -380,7 +384,7 @@
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.BackColor = System.Drawing.SystemColors.GrayText;
+            this.btnCadastrar.BackColor = System.Drawing.Color.Lime;
             this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.Location = new System.Drawing.Point(575, 415);
@@ -402,7 +406,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox1.BackColor = System.Drawing.Color.PapayaWhip;
             this.groupBox1.Controls.Add(this.textBoxNomeReceita);
             this.groupBox1.Controls.Add(this.textBoxTempoPreparo);
             this.groupBox1.Controls.Add(this.label1);
@@ -424,13 +428,13 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox2.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.groupBox2.Controls.Add(this.comboBoxGastos);
             this.groupBox2.Controls.Add(this.btnAdicionarGasto);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.listViewGastos);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(535, 19);
+            this.groupBox2.Location = new System.Drawing.Point(521, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(245, 161);
             this.groupBox2.TabIndex = 57;
@@ -439,7 +443,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox3.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.groupBox3.Controls.Add(this.listViewProdutos);
             this.groupBox3.Controls.Add(this.comboBoxProdutos);
             this.groupBox3.Controls.Add(this.label3);
@@ -456,7 +460,7 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.groupBox4.BackColor = System.Drawing.Color.Moccasin;
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.labelCustoLuz);
             this.groupBox4.Controls.Add(this.groupBox2);
@@ -467,7 +471,7 @@
             this.groupBox4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox4.Location = new System.Drawing.Point(17, 220);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(781, 189);
+            this.groupBox4.Size = new System.Drawing.Size(771, 189);
             this.groupBox4.TabIndex = 56;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Items Dentro da Receita";
@@ -496,6 +500,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);

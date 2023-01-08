@@ -49,16 +49,16 @@
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(24, 33);
+            this.lblTitulo.Font = new System.Drawing.Font("Yu Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(44, 22);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(279, 37);
+            this.lblTitulo.Size = new System.Drawing.Size(288, 42);
             this.lblTitulo.TabIndex = 7;
             this.lblTitulo.Text = "Cadastrar Usuário";
             // 
             // mTextBoxSenha
             // 
-            this.mTextBoxSenha.Location = new System.Drawing.Point(31, 147);
+            this.mTextBoxSenha.Location = new System.Drawing.Point(51, 145);
             this.mTextBoxSenha.Name = "mTextBoxSenha";
             this.mTextBoxSenha.PasswordChar = '*';
             this.mTextBoxSenha.Size = new System.Drawing.Size(272, 20);
@@ -66,25 +66,27 @@
             // 
             // textBoxUser
             // 
-            this.textBoxUser.Location = new System.Drawing.Point(31, 99);
+            this.textBoxUser.Location = new System.Drawing.Point(51, 97);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(272, 20);
             this.textBoxUser.TabIndex = 5;
             // 
             // btnCadastrar
             // 
+            this.btnCadastrar.BackColor = System.Drawing.Color.Lime;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCadastrar.Location = new System.Drawing.Point(228, 274);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(75, 23);
             this.btnCadastrar.TabIndex = 4;
             this.btnCadastrar.Text = "Cadastrar Usuário";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // checkBoxIsAdministrador
             // 
             this.checkBoxIsAdministrador.AutoSize = true;
-            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(31, 222);
+            this.checkBoxIsAdministrador.Location = new System.Drawing.Point(53, 231);
             this.checkBoxIsAdministrador.Name = "checkBoxIsAdministrador";
             this.checkBoxIsAdministrador.Size = new System.Drawing.Size(89, 17);
             this.checkBoxIsAdministrador.TabIndex = 8;
@@ -94,18 +96,21 @@
             // 
             // btnDeletar
             // 
+            this.btnDeletar.BackColor = System.Drawing.Color.Red;
+            this.btnDeletar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeletar.ForeColor = System.Drawing.Color.Black;
             this.btnDeletar.Location = new System.Drawing.Point(31, 274);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(75, 23);
             this.btnDeletar.TabIndex = 9;
             this.btnDeletar.Text = "Deletar";
-            this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.UseVisualStyleBackColor = false;
             this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // checkBoxUsuarioAtivo
             // 
             this.checkBoxUsuarioAtivo.AutoSize = true;
-            this.checkBoxUsuarioAtivo.Location = new System.Drawing.Point(216, 232);
+            this.checkBoxUsuarioAtivo.Location = new System.Drawing.Point(177, 231);
             this.checkBoxUsuarioAtivo.Name = "checkBoxUsuarioAtivo";
             this.checkBoxUsuarioAtivo.Size = new System.Drawing.Size(50, 17);
             this.checkBoxUsuarioAtivo.TabIndex = 10;
@@ -145,18 +150,20 @@
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.Color.Snow;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpar.Location = new System.Drawing.Point(130, 274);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpar.TabIndex = 12;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 74);
+            this.label1.Location = new System.Drawing.Point(51, 72);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 13;
@@ -165,7 +172,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 131);
+            this.label2.Location = new System.Drawing.Point(51, 129);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 14;
@@ -174,7 +181,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 188);
+            this.label3.Location = new System.Drawing.Point(50, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 13);
             this.label3.TabIndex = 16;
@@ -183,7 +190,7 @@
             // comboBoxEmpresas
             // 
             this.comboBoxEmpresas.FormattingEnabled = true;
-            this.comboBoxEmpresas.Location = new System.Drawing.Point(82, 185);
+            this.comboBoxEmpresas.Location = new System.Drawing.Point(104, 185);
             this.comboBoxEmpresas.Name = "comboBoxEmpresas";
             this.comboBoxEmpresas.Size = new System.Drawing.Size(221, 21);
             this.comboBoxEmpresas.TabIndex = 15;
@@ -192,6 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 309);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxEmpresas);

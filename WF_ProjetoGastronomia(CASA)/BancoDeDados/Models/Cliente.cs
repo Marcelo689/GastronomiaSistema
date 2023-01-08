@@ -1,4 +1,5 @@
 ﻿using BancoDeDados.Contexto.ClassesRelacionadas;
+using System;
 using System.Collections.Generic;
 using static BancoDeDados.Controller.OperacoesBanco;
 
@@ -17,6 +18,18 @@ namespace BancoDeDados.Contexto
         public string Complemento { get; set; }
         public string Email { get; set; }
         public string Celular { get; set; }
+
+        public bool IsValido()
+        {
+            if (string.IsNullOrWhiteSpace(NomeCompleto))
+                return false;
+            if (string.IsNullOrWhiteSpace(CPF))
+                return false;
+            if (string.IsNullOrWhiteSpace(Celular))
+                return false;
+            return true;
+        }
+
         public List<PedidoConcluido> PedidosConcluidos { get; set; }
         public List<PedidoPendente> PedidosPendentes { get; set; }
         public Empresa Empresa { get; set; }

@@ -90,12 +90,17 @@ namespace BancoDeDados.Views.Buscar
                 var quantidade = _servico.FormataDinheiro(textBoxQuantidadeReceita.Text);
 
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+
+                if(quantidade > 0)
+                {
+                    receitaSelecionada.Lucro      *= quantidade;
+                    receitaSelecionada.PrecoVenda *= quantidade;
+                    receitaSelecionada.PrecoCusto *= quantidade;
+                    receitaSelecionada.ValorLuz   *= quantidade;
+                }
                 if (receitasAdicionados.Contains(receitaSelecionada))
                 {
-                    receitasAdicionados.Where(rec => rec.Id == receitaSelecionada.Id).First().QuantidadeReceita = quantidade;
-                    var receitaDoPedido = _banco.RetornarLista<ReceitaDoPedido>().Where(rp => rp.PedidoId == _pedidoId && rp.ReceitaId == receitaSelecionada.Id).First();
-                    receitaDoPedido.QuantidadeReceita = quantidade;
-                    _banco.Atualizar<ReceitaDoPedido>(receitaDoPedido);
+                    MessageBox.Show("O item já existe na lista, remova e adicione novamente para atualizar!", "item já existe!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
@@ -137,7 +142,13 @@ namespace BancoDeDados.Views.Buscar
                         "Id","NomeReceita","PrecoVenda","Lucro"
                    }
             );
+            Limpar();
             
+        }
+
+        private void Limpar()
+        {
+            textBoxQuantidadeReceita.Text = "";
         }
 
         private void textBoxQuantidadeReceita_KeyPress(object sender, KeyPressEventArgs e)

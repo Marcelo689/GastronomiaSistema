@@ -78,21 +78,23 @@
             // 
             // btnAnexarLogo
             // 
+            this.btnAnexarLogo.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnAnexarLogo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAnexarLogo.Location = new System.Drawing.Point(20, 128);
             this.btnAnexarLogo.Name = "btnAnexarLogo";
             this.btnAnexarLogo.Size = new System.Drawing.Size(75, 23);
             this.btnAnexarLogo.TabIndex = 1;
             this.btnAnexarLogo.Text = "Anexar Logo";
-            this.btnAnexarLogo.UseVisualStyleBackColor = true;
+            this.btnAnexarLogo.UseVisualStyleBackColor = false;
             this.btnAnexarLogo.Click += new System.EventHandler(this.btnAnexarLogo_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Yu Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(223, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 37);
+            this.label1.Size = new System.Drawing.Size(303, 42);
             this.label1.TabIndex = 2;
             this.label1.Text = "Gerenciar Empresa";
             // 
@@ -297,32 +299,38 @@
             // 
             // btnLimpar
             // 
+            this.btnLimpar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpar.Location = new System.Drawing.Point(651, 352);
             this.btnLimpar.Name = "btnLimpar";
             this.btnLimpar.Size = new System.Drawing.Size(137, 23);
             this.btnLimpar.TabIndex = 24;
             this.btnLimpar.Text = "Limpar";
-            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.UseVisualStyleBackColor = false;
             this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
             // 
             // btnDeletar
             // 
-            this.btnDeletar.Location = new System.Drawing.Point(651, 312);
+            this.btnDeletar.BackColor = System.Drawing.Color.Red;
+            this.btnDeletar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnDeletar.Location = new System.Drawing.Point(651, 292);
             this.btnDeletar.Name = "btnDeletar";
             this.btnDeletar.Size = new System.Drawing.Size(137, 23);
             this.btnDeletar.TabIndex = 23;
             this.btnDeletar.Text = "Deletar";
-            this.btnDeletar.UseVisualStyleBackColor = true;
+            this.btnDeletar.UseVisualStyleBackColor = false;
             this.btnDeletar.Click += new System.EventHandler(this.btnDeletar_Click);
             // 
             // btnCadastrar
             // 
-            this.btnCadastrar.Location = new System.Drawing.Point(651, 394);
+            this.btnCadastrar.BackColor = System.Drawing.Color.Lime;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnCadastrar.Location = new System.Drawing.Point(651, 415);
             this.btnCadastrar.Name = "btnCadastrar";
             this.btnCadastrar.Size = new System.Drawing.Size(137, 23);
             this.btnCadastrar.TabIndex = 22;
             this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // listViewEmpresa
@@ -370,6 +378,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBoxCustoKwh);
             this.Controls.Add(this.label12);

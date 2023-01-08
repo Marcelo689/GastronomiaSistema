@@ -198,6 +198,10 @@
     <Compile Include="Migrations\20221223225406_cliente-cidade.designer.cs">
       <DependentUpon>20221223225406_cliente-cidade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20221230005221_teste.cs" />
+    <Compile Include="Migrations\20221230005221_teste.designer.cs">
+      <DependentUpon>20221230005221_teste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\BDContextoModelSnapshot.cs" />
     <Compile Include="Views\Buscar\BuscarReceita.cs">
       <SubType>Form</SubType>

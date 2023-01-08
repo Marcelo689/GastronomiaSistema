@@ -366,7 +366,7 @@ namespace BancoDeDados.Controller.Telas
                 _receitaSelecionada.EmpresaId      = _contexto.Login.EmpresaId;
                 _receitaSelecionada.PrecoVenda     = _servico.FormataDinheiro(precoVenda);
                 _banco.Atualizar<Receita>(_receitaSelecionada);
-                PreencheListViewsDaReceita(_receitaSelecionada.Id);
+                PreencheListReceita();
                 Limpar();
             }
             else

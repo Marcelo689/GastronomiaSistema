@@ -29,7 +29,8 @@ namespace BancoDeDados.Contexto
             get 
             {
                 return PrecoVenda - (PrecoCusto + ValorLuz);
-            } 
+            }
+            set { }
         } 
     }
 

@@ -88,7 +88,7 @@ namespace BancoDeDados.Servicos
             if ((isAdmin && apenasAdmin) || !apenasAdmin)
                 tela.ShowDialog();
             else
-                MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!");
+                MessageBox.Show("Existe um Administrador, peça permissão á ele para abrir está tela!","Sem permissão!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
         }
         

@@ -303,6 +303,9 @@ namespace BancoDeDados.Migrations
                     b.Property<int>("EmpresaId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Lucro")
+                        .HasColumnType("decimal(65,30)");
+
                     b.Property<string>("NomeReceita")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 

@@ -32,6 +32,7 @@
             this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemCadastrarUsuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.gerenciarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarUnidadesDeMedidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoReceitaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gerenciarProdutosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,13 +43,13 @@
             this.deslogarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxLogoEmpresa = new System.Windows.Forms.PictureBox();
             this.labelEmpresaNome = new System.Windows.Forms.Label();
-            this.gerenciarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogoEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItem,
             this.loginToolStripMenuItem});
@@ -87,6 +88,13 @@
             this.menuItemCadastrarUsuario.Size = new System.Drawing.Size(235, 22);
             this.menuItemCadastrarUsuario.Text = "Gerenciar Usuários";
             this.menuItemCadastrarUsuario.Click += new System.EventHandler(this.menuItemCadastrarUsuario_Click);
+            // 
+            // gerenciarClientesToolStripMenuItem
+            // 
+            this.gerenciarClientesToolStripMenuItem.Name = "gerenciarClientesToolStripMenuItem";
+            this.gerenciarClientesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.gerenciarClientesToolStripMenuItem.Text = "Gerenciar Clientes";
+            this.gerenciarClientesToolStripMenuItem.Click += new System.EventHandler(this.gerenciarClientesToolStripMenuItem_Click);
             // 
             // gerenciarUnidadesDeMedidaToolStripMenuItem
             // 
@@ -147,7 +155,7 @@
             // 
             // pictureBoxLogoEmpresa
             // 
-            this.pictureBoxLogoEmpresa.Location = new System.Drawing.Point(112, 122);
+            this.pictureBoxLogoEmpresa.Location = new System.Drawing.Point(138, 108);
             this.pictureBoxLogoEmpresa.Name = "pictureBoxLogoEmpresa";
             this.pictureBoxLogoEmpresa.Size = new System.Drawing.Size(502, 243);
             this.pictureBoxLogoEmpresa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -162,17 +170,11 @@
             this.labelEmpresaNome.Size = new System.Drawing.Size(0, 13);
             this.labelEmpresaNome.TabIndex = 7;
             // 
-            // gerenciarClientesToolStripMenuItem
-            // 
-            this.gerenciarClientesToolStripMenuItem.Name = "gerenciarClientesToolStripMenuItem";
-            this.gerenciarClientesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.gerenciarClientesToolStripMenuItem.Text = "Gerenciar Clientes";
-            this.gerenciarClientesToolStripMenuItem.Click += new System.EventHandler(this.gerenciarClientesToolStripMenuItem_Click);
-            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelEmpresaNome);
             this.Controls.Add(this.pictureBoxLogoEmpresa);

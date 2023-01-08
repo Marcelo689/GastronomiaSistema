@@ -58,7 +58,7 @@ namespace BancoDeDados
         {
             if (comboBoxEmpresas.SelectedIndex == -1)
             {
-                MessageBox.Show("Selecione uma empresa, caso não exista cadastre uma!");
+                MessageBox.Show("Selecione uma empresa, caso não exista cadastre uma!","Cadastre uma empresa!",MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             var empresa = comboBoxFunc.RetornaItemComboSelecionado<Empresa>(comboBoxEmpresas);
@@ -84,7 +84,7 @@ namespace BancoDeDados
                 retorno.EmpresaId = empresa.Id;
                 _contexto.SaveChanges();
                 _contexto.Logar(retorno); 
-                MessageBox.Show("Usuário logado com sucesso!");
+                MessageBox.Show("Usuário logado com sucesso!","Login efetuado!", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 labelEmpresaNome.Text = empresa.NomeEmpresa;
                 RetornaImagemParaPictureBox(empresa.Logo, pictureBoxLogoEmpresa);
 
@@ -92,7 +92,7 @@ namespace BancoDeDados
             }
             else
             {
-                MessageBox.Show("Erro ao logar!");
+                MessageBox.Show("Erro ao logar!","Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
