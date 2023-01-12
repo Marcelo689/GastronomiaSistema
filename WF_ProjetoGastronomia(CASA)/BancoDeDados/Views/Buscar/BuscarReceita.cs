@@ -91,13 +91,6 @@ namespace BancoDeDados.Views.Buscar
 
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
 
-                if(quantidade > 0)
-                {
-                    receitaSelecionada.Lucro      *= quantidade;
-                    receitaSelecionada.PrecoVenda *= quantidade;
-                    receitaSelecionada.PrecoCusto *= quantidade;
-                    receitaSelecionada.ValorLuz   *= quantidade;
-                }
                 if (receitasAdicionados.Contains(receitaSelecionada))
                 {
                     MessageBox.Show("O item já existe na lista, remova e adicione novamente para atualizar!", "item já existe!", MessageBoxButtons.OK, MessageBoxIcon.Information);

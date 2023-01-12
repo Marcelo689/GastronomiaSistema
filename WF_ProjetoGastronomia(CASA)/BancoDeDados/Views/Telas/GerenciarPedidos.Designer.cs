@@ -235,7 +235,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(516, 106);
+            this.label7.Location = new System.Drawing.Point(492, 106);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(134, 15);
             this.label7.TabIndex = 39;
@@ -244,7 +244,7 @@
             // textBoxValorVendaTotal
             // 
             this.textBoxValorVendaTotal.Enabled = false;
-            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(495, 124);
+            this.textBoxValorVendaTotal.Location = new System.Drawing.Point(492, 124);
             this.textBoxValorVendaTotal.Name = "textBoxValorVendaTotal";
             this.textBoxValorVendaTotal.Size = new System.Drawing.Size(171, 21);
             this.textBoxValorVendaTotal.TabIndex = 38;
@@ -320,9 +320,9 @@
             // 
             this.btnAdicionarReceita.BackColor = System.Drawing.Color.LawnGreen;
             this.btnAdicionarReceita.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAdicionarReceita.Location = new System.Drawing.Point(461, 151);
+            this.btnAdicionarReceita.Location = new System.Drawing.Point(492, 151);
             this.btnAdicionarReceita.Name = "btnAdicionarReceita";
-            this.btnAdicionarReceita.Size = new System.Drawing.Size(250, 23);
+            this.btnAdicionarReceita.Size = new System.Drawing.Size(233, 23);
             this.btnAdicionarReceita.TabIndex = 32;
             this.btnAdicionarReceita.Text = "Adicionar Receita Selecionada";
             this.btnAdicionarReceita.UseVisualStyleBackColor = false;

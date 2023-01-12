@@ -30,9 +30,21 @@ namespace BancoDeDados.Controller
 
         public List<Receita> RetornaReceitasDoPedido(int pedidoId)
         {
-            var idsReceitaDoPedido = _contexto.ReceitasDoPedido.Where(e => e.PedidoId == pedidoId).Select( e=> e.ReceitaId).ToList();
-
+            var ReceitasDoPedido = _contexto.ReceitasDoPedido.Where(e => e.PedidoId == pedidoId);
+            var idsReceitaDoPedido = ReceitasDoPedido.Select( e=> e.ReceitaId).ToList();
+            
             var lista = _contexto.Receitas.Where(e => idsReceitaDoPedido.Contains(e.Id)).ToList();
+
+            foreach (var  item in lista)
+            {
+                foreach (var rp in ReceitasDoPedido)
+                {
+                    item.PrecoCusto *= rp.QuantidadeReceita;
+                    item.PrecoVenda *= rp.QuantidadeReceita;
+                    item.Lucro *= rp.QuantidadeReceita;
+                }
+
+            }
             return lista;
         }
 
