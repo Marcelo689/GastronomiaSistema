@@ -88,7 +88,8 @@ namespace BancoDeDados.Views.Buscar
             {
                 btnAdicionar.Enabled = true;
                 var quantidade = _servico.FormataDinheiro(textBoxQuantidadeReceita.Text);
-
+                if (quantidade == 0)
+                    quantidade = 1;
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
 
                 if (receitasAdicionados.Contains(receitaSelecionada))

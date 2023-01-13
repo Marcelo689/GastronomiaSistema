@@ -69,22 +69,13 @@ namespace BancoDeDados.Views.Telas
         {
             
             textBoxValorVendaTotal.Text = _servico.FormataValor(pedidoSelecionado.PrecoVenda);
-            textBoxCustoTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalCusto);
-            textBoxLucroTotal.Text = _servico.FormataValor(pedidoSelecionado.TotalLucro);
+            textBoxCustoTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalCusto);
+            textBoxLucroTotal.Text      = _servico.FormataValor(pedidoSelecionado.TotalLucro);
 
             comboBoxFunc.SelecionaPorNome(comboBoxCliente, pedidoSelecionado.Cliente.NomeCompleto);
-            clienteSelecionado = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
+            clienteSelecionado          = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
 
-            //continuar aqui
-            //var quantidadeDaReceita = _contexto.ReceitasDoPedido.Where(rp => rp.PedidoId == pedidoSelecionado.Id);
             var receitasDoPedido = _banco.RetornaReceitasDoPedido(pedidoSelecionado.Id);
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
-               receitasDoPedido,
-               new string[]
-                   {
-                        "Id","NomeReceita","PrecoVenda","Lucro"
-                   }
-            );
 
             var totalVenda = 0m;
             var totalCusto = 0m;
@@ -96,11 +87,17 @@ namespace BancoDeDados.Views.Telas
                 totalVenda += item.PrecoVenda;
                 totalLucro += item.Lucro;
             }
-
-            pedidoSelecionado.TotalLucro = totalCusto;
             pedidoSelecionado.TotalLucro = totalLucro;
+            pedidoSelecionado.TotalCusto = totalCusto;
             pedidoSelecionado.PrecoVenda = totalVenda;
 
+            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
+              receitasDoPedido,
+              new string[]
+                  {
+                        "Id","NomeReceita","PrecoVenda","Lucro"
+                  }
+           );
             textBoxCustoTotal.Text      = _servico.FormataValor(totalCusto);
             textBoxLucroTotal.Text      = _servico.FormataValor(totalLucro);
             textBoxValorVendaTotal.Text = _servico.FormataValor(totalVenda);
@@ -154,7 +151,6 @@ namespace BancoDeDados.Views.Telas
         {
             if(listViewFunc.ExisteLinhaSelecionada(listViewReceitas))
             {
-                //var pedidoSelecionado = listViewFunc.RetornaItemLinhaSelecionada<Pedido>(listViewPedidos);
                 var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
 
                 if (listViewFunc.ConfirmaDeletarItemDoList(listViewReceitas))

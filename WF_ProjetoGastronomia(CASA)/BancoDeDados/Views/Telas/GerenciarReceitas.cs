@@ -373,14 +373,14 @@ namespace BancoDeDados.Controller.Telas
             {
                 var receita = new Receita()
                 {
-                    NomeReceita = nomeReceita,
-                    PrecoVenda  = _servico.FormataDinheiro(precoVenda),
-                    ValorLuz = custoLuz,
-                    PotenciaKwh = potenciaKwh,
-                    TempoDePreparo = textBoxTempoPreparo.Text,
-                    TipoReceita = tipoReceita,
-                    Empresa     = _contexto.Login.Empresa,
-                    EmpresaId   = _contexto.Login.EmpresaId,
+                    NomeReceita     = nomeReceita,
+                    PrecoVenda      = _servico.FormataDinheiro(precoVenda),
+                    ValorLuz        = custoLuz,
+                    PotenciaKwh     = potenciaKwh,
+                    TempoDePreparo  = textBoxTempoPreparo.Text,
+                    TipoReceita     = tipoReceita,
+                    Empresa         = _contexto.Login.Empresa,
+                    EmpresaId       = _contexto.Login.EmpresaId,
                 };
                 _banco.Cadastrar<Receita>(receita);
                 PreencheListReceita();
