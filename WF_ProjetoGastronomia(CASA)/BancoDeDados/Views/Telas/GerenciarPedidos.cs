@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
+using BancoDeDados.Models;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using BancoDeDados.Views.Buscar;
 using System;
@@ -75,7 +76,7 @@ namespace BancoDeDados.Views.Telas
             comboBoxFunc.SelecionaPorNome(comboBoxCliente, pedidoSelecionado.Cliente.NomeCompleto);
             clienteSelecionado          = comboBoxFunc.RetornaItemComboSelecionado<Cliente>(comboBoxCliente);
 
-            var receitasDoPedido = _banco.RetornaReceitasDoPedido(pedidoSelecionado.Id);
+            var receitasDoPedido        = _banco.RetornaReceitasDoPedido(pedidoSelecionado.Id);
 
             var totalVenda = 0m;
             var totalCusto = 0m;
@@ -87,17 +88,18 @@ namespace BancoDeDados.Views.Telas
                 totalVenda += item.PrecoVenda;
                 totalLucro += item.Lucro;
             }
+
             pedidoSelecionado.TotalLucro = totalLucro;
             pedidoSelecionado.TotalCusto = totalCusto;
             pedidoSelecionado.PrecoVenda = totalVenda;
 
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewReceitas,
+            listViewFunc.PreencheListView<ReceitaDto, ReceitaListView>(listViewReceitas,
               receitasDoPedido,
               new string[]
                   {
                         "Id","NomeReceita","PrecoVenda","Lucro"
                   }
-           );
+            );
             textBoxCustoTotal.Text      = _servico.FormataValor(totalCusto);
             textBoxLucroTotal.Text      = _servico.FormataValor(totalLucro);
             textBoxValorVendaTotal.Text = _servico.FormataValor(totalVenda);

@@ -2,7 +2,7 @@ using BancoDeDados.Contexto;
 
 namespace TesteNUnit
 {
-    public class ClienteTestes
+    public class ClienteTestes 
     {
         [SetUp]
         public void Setup()
@@ -29,5 +29,7 @@ namespace TesteNUnit
             Assert.IsTrue(valido);  
 
         }
+
+        
     }
 }

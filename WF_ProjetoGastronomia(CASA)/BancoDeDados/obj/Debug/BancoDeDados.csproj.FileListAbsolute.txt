@@ -247,3 +247,6 @@ C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoD
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Views.Telas.GerenciarPedidos.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Views.Buscar.BuscarReceita.resources
 C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\obj\Debug\BancoDeDados.Views.Telas.GerenciarClientes.resources
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\AutoMapper.dll
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\AutoMapper.pdb
+C:\Users\marce\Desktop\WF_ProjetoGastronomia(CASA)\BancoDeDados\bin\Debug\AutoMapper.xml

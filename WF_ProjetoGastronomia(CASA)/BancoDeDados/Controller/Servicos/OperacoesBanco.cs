@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Contexto;
-using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Telas;
+using BancoDeDados.Models;
+using BancoDeDados.Models.AutoMapperFolder;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -28,7 +29,7 @@ namespace BancoDeDados.Controller
                     sb => sb.ToString());
         }
 
-        public List<Receita> RetornaReceitasDoPedido(int pedidoId)
+        public List<ReceitaDto> RetornaReceitasDoPedido(int pedidoId)
         {
             var ReceitasDoPedido   = _contexto.ReceitasDoPedido.Where(e => e.PedidoId == pedidoId);
             var idsReceitaDoPedido = ReceitasDoPedido.Select( e=> e.ReceitaId).ToList();
@@ -48,7 +49,9 @@ namespace BancoDeDados.Controller
                 }
 
             }
-            return lista;
+            var mapper = new ReceitaConverter().CriarMaps();
+            var listaDto = mapper.Map<List<ReceitaDto>>(lista);   
+            return listaDto;
         }
 
         public OperacoesBanco()

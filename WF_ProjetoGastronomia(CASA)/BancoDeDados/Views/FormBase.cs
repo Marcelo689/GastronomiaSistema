@@ -1,5 +1,7 @@
-﻿using BancoDeDados.Contexto;
+﻿using AutoMapper;
+using BancoDeDados.Contexto;
 using BancoDeDados.Controller.Servicos.PictureBoxMetodos;
+using BancoDeDados.Models.AutoMapperFolder;
 using BancoDeDados.Servicos;
 using BancoDeDados.Servicos.ComboBoxMetodos;
 using BancoDeDados.Servicos.ListVIewMetodos;
@@ -16,7 +18,8 @@ namespace BancoDeDados.Controller.Model
         protected ListViewFunc listViewFunc { get; set; }
         protected ComboBoxFunc comboBoxFunc { get; set; }
         protected TextBoxFunc textBoxFunc { get; set; }
-        protected PictureBoxFunc pictureBoxFunc { get; set; }   
+        protected PictureBoxFunc pictureBoxFunc { get; set; } 
+        protected IMapper mapper { get; set; }
         public FormBase() 
         {
             bool isInFormsDesignerMode = (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "devenv");
@@ -35,7 +38,9 @@ namespace BancoDeDados.Controller.Model
             if(textBoxFunc == null)
                 textBoxFunc = new TextBoxFunc();
             if(pictureBoxFunc == null)  
-                pictureBoxFunc = new PictureBoxFunc();  
+                pictureBoxFunc = new PictureBoxFunc();
+            if (mapper == null)
+                mapper = new ReceitaConverter().CriarMaps();
 
         }
     }

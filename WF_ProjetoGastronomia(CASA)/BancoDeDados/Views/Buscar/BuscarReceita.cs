@@ -1,6 +1,7 @@
 ﻿using BancoDeDados.Contexto;
 using BancoDeDados.Contexto.ClassesRelacionadas;
 using BancoDeDados.Controller.Model;
+using BancoDeDados.Models;
 using BancoDeDados.Servicos.ListVIewMetodos;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace BancoDeDados.Views.Buscar
     public partial class BuscarReceita : FormBase
     {
         public ListView _listViewReceita;
-        public List<Receita> receitasAdicionados;
+        public List<ReceitaDto> receitasAdicionados;
         public int _pedidoId;
         public Pedido _pedido;
         public BuscarReceita()
@@ -53,7 +54,7 @@ namespace BancoDeDados.Views.Buscar
         private void PreencheListaReceitasAdicionadosAoPedido()
         {
             var receitasDoPedido = receitasAdicionados = _banco.RetornaReceitasDoPedido(_pedidoId);
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewAdicionados,
+            listViewFunc.PreencheListView<ReceitaDto, ReceitaListView>(listViewAdicionados,
                receitasDoPedido,
                new string[]
                    {
@@ -90,7 +91,7 @@ namespace BancoDeDados.Views.Buscar
                 var quantidade = _servico.FormataDinheiro(textBoxQuantidadeReceita.Text);
                 if (quantidade == 0)
                     quantidade = 1;
-                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<Receita>(listViewReceitas);
+                var receitaSelecionada = listViewFunc.RetornaItemLinhaSelecionada<ReceitaDto>(listViewReceitas);
 
                 if (receitasAdicionados.Contains(receitaSelecionada))
                 {
@@ -99,13 +100,14 @@ namespace BancoDeDados.Views.Buscar
                 else
                 {
                     receitasAdicionados.Add(receitaSelecionada);
+                    var receitaSelecionadoConvertido = mapper.Map<Receita>(receitaSelecionada);
                     var receitaPedido = new ReceitaDoPedido()
                     {
-                        Pedido = _pedido,
-                        PedidoId = _pedidoId,
-                        QuantidadeReceita = quantidade,
-                        ReceitaId = receitaSelecionada.Id,
-                        Receita = receitaSelecionada,
+                        Pedido               = _pedido,
+                        PedidoId             = _pedidoId,
+                        QuantidadeReceita    = quantidade,
+                        ReceitaId            = receitaSelecionada.Id,
+                        Receita              = receitaSelecionadoConvertido,
                     };
 
                     _banco.Cadastrar<ReceitaDoPedido>(receitaPedido);
@@ -121,7 +123,7 @@ namespace BancoDeDados.Views.Buscar
 
         private void PreencheListReceitaAdicionado()
         {
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(listViewAdicionados,
+            listViewFunc.PreencheListView<ReceitaDto, ReceitaListView>(listViewAdicionados,
                receitasAdicionados,
                new string[]
                    {
@@ -129,7 +131,7 @@ namespace BancoDeDados.Views.Buscar
                    }
             );
 
-            listViewFunc.PreencheListView<Receita, ReceitaListView>(_listViewReceita,
+            listViewFunc.PreencheListView<ReceitaDto, ReceitaListView>(_listViewReceita,
                receitasAdicionados,
                new string[]
                    {
@@ -173,7 +175,8 @@ namespace BancoDeDados.Views.Buscar
                         rp.ReceitaId == receitaSelecionada.Id
                     ).First();
                     _banco.Deletar<ReceitaDoPedido>(receitaDoPedido);
-                    receitasAdicionados.Remove(receitaSelecionada);
+                    var receitaDoPedidoDto = mapper.Map<ReceitaDto>(receitaDoPedido);
+                    receitasAdicionados.Remove(receitaDoPedidoDto);
                     PreencheListReceitaAdicionado();
                 }
 

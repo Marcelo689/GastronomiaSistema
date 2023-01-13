@@ -30,10 +30,10 @@ namespace BancoDeDados.Servicos
         
         public void LimparTodosComponentesDoForm(Form form)
         {
-            List<TextBox>  textBoxes = RetornaTodosComponentesDoForm<TextBox>(form, typeof(TextBox));
-            List<MaskedTextBox>  MtextBoxes = RetornaTodosComponentesDoForm<MaskedTextBox>(form, typeof(MaskedTextBox));
-            List<ComboBox> comboBoxes = RetornaTodosComponentesDoForm<ComboBox>(form, typeof(ComboBox));
-            List<ListView> listViews = RetornaTodosComponentesDoForm<ListView>(form, typeof(ListView));
+            List<TextBox>        textBoxes     = RetornaTodosComponentesDoForm<TextBox>(form, typeof(TextBox));
+            List<MaskedTextBox>  MtextBoxes    = RetornaTodosComponentesDoForm<MaskedTextBox>(form, typeof(MaskedTextBox));
+            List<ComboBox>       comboBoxes    = RetornaTodosComponentesDoForm<ComboBox>(form, typeof(ComboBox));
+            List<ListView>       listViews     = RetornaTodosComponentesDoForm<ListView>(form, typeof(ListView));
             
             if(comboBoxes != null)
             foreach (var item in comboBoxes)
